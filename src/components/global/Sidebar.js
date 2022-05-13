@@ -24,7 +24,7 @@ class Sidebar extends Component {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="/pages/tables.html">
+                            <a className="nav-link active" href="../components/index/Surat Masuk/SuratMasuk.js">
                                 <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                     <i className="ni ni-calendar-grid-58 text-warning text-sm opacity-10" />
                                 </div>
