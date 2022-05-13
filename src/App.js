@@ -1,10 +1,10 @@
 import logo from './logo.svg';
-import Index from './pages/Index';
+import index from '../index';
 
 function App() {
   return (
     <div>
-      <Index />
+      <index />
     </div>
   );
 }
