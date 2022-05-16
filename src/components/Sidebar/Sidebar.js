@@ -36,7 +36,6 @@ import {
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
   InputGroupText,
   InputGroup,
   Media,

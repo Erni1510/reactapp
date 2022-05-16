@@ -16,15 +16,15 @@
 
 */
 import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Route, Routes, Navigate } from "react-router-dom";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
 
 // core components
-import AuthNavbar from "components/Navbars/AuthNavbar.js";
-import AuthFooter from "components/Footers/AuthFooter.js";
+import AuthNavbar from "../components/Navbars/AuthNavbar.js";
+import AuthFooter from "../components/Footers/AuthFooter.js";
 
-import routes from "routes.js";
+import routes from "../routes.js";
 
 const Auth = (props) => {
   const mainContent = React.useRef(null);
@@ -95,10 +95,10 @@ const Auth = (props) => {
         {/* Page content */}
         <Container className="mt--8 pb-5">
           <Row className="justify-content-center">
-            <Switch>
+            <Routes>
               {getRoutes(routes)}
-              <Redirect from="*" to="/auth/login" />
-            </Switch>
+              <Route from="*" element={<Navigate replace to="/auth/login" />} />
+            </Routes>
           </Row>
         </Container>
       </div>

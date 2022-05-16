@@ -19,7 +19,7 @@ import { useState } from "react";
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
-import Chart from "chart.js";
+import Chart from "chart.js/auto";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
 // reactstrap components
@@ -44,9 +44,9 @@ import {
   parseOptions,
   chartExample1,
   chartExample2,
-} from "variables/charts.js";
+} from "../variables/charts.js";
 
-import Header from "components/Headers/Header.js";
+import Header from "../components/Headers/Header.js";
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
