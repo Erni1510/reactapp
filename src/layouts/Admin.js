@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-import { useLocation, Route, Routes, Navigate } from "react-router-dom";
+import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
@@ -80,10 +80,10 @@ const Admin = (props) => {
           {...props}
           brandText={getBrandText(props.location.pathname)}
         />
-        <Routes>
+        <Switch>
           {getRoutes(routes)}
-          <Route from="*" element={<Navigate replace to="/admin/index" />} />
-        </Routes>
+          <Redirect from="*" to="/admin/index" />
+        </Switch>
         <Container fluid>
           <AdminFooter />
         </Container>
