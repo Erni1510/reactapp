@@ -1,59 +1,176 @@
-import React, { Component } from 'react';
+// reactstrap components
 
-class SuratKeluar extends Component {
+import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import {
+    Badge,
+    Card,
+    CardHeader,
+    CardFooter,
+    DropdownMenu,
+    DropdownItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    Media,
+    Pagination,
+    PaginationItem,
+    PaginationLink,
+    Progress,
+    Table,
+    Container,
+    Row,
+    Button,
+    UncontrolledTooltip,
+} from "reactstrap";
+// core components
+import Header from "../../components/Headers/Header.js";
 
-    render() {
-        return (
-            <div className="row">
-                <div className="col-12">
-                    <div className="card mb-4">
-                        <div className="card-header pb-0">
-                            <h6>Surat Keluar</h6>
-                            <Button variant="success" class="btn button-success float-left">+ Tambah</Button>{' '}
-                        </div>
-                        <div className="card-body px-0 pt-0 pb-2">
-                            <div className="table-responsive p-0">
-                                <table className="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th className="text-uppercase text-secondary text-xs text-center font-weight-bolder opacity-7">No</th>
-                                            <th className="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Arsip</th>
-                                            <th className="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nomor Arsip</th>
-                                            <th className="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Deskripsi</th>
-                                            <th className="text-uppercase text-secondary text-xs text-center font-weight-bolder opacity-7">Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td align-middle text-center text-sm>
-                                                <h6 className="mb-0 text-center text-sm">1</h6>
-                                            </td>
-                                            <td>
-                                                <p className="text-sm font-weight-bold mb-0">Surat Keterangan</p>
-                                            </td>
-                                            <td className="align-middle text-center">
-                                                <p className="text-sm font-weight-bold mb-0">118</p>
-                                            </td>
-                                            <td className="align-middle text-center">
-                                                <p className="text-sm font-weight-bold mb-0">Keterangan Rapot</p>
-                                            </td>
-                                            <td className="align-middle text-center">
-                                                <a href="../" target="_blank" className="btn btn-info"><i className="fa fa-eye" aria-hidden="true" /></a>
-                                                <a href="../" className="btn btn-success"><i className="fas fa-edit" aria-hidden="true" /></a>
-                                                <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+const SuratKeluar = () => {
+    return (
+        <>
+            <Header />
+            {/* Page content */}
+            <Container className="mt--7" fluid>
+                {/* Table */}
+                <Row>
+                    <div className="col">
+                        <Card className="shadow">
+                            <CardHeader className="border-0">
+                                <h3 className="mb-0">Surat Keluar</h3>
+                                <Button
+                                    className="float-right"
+                                    color="success"
+                                    href="./index/Surat Masuk/suratMasukCreate.js"
+                                    onClick={(e) => e.preventDefault()}
+                                    size="sm"
+                                >
+                                    +Tambah
+                                </Button>
+                            </CardHeader>
+                            <Table className="align-items-center table-flush" responsive>
+                                <thead className="thead-light">
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Arsip</th>
+                                        <th scope="col">Nomor Arsip</th>
+                                        <th scope="col">Deskripsi</th>
+                                        <th scope="col">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className="align-middle text-center">
+                                            <p className="text-sm font-weight-bold mb-0">1</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Surat Undangan</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">337</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali Kelas</p>
+                                        </td>
+                                        <td>
+                                            <a href="../" target="_blank" className="btn btn-info"><i className="fa fa-eye" aria-hidden="true" /></a>
+                                            <a href="../" className="btn btn-success"><i className="fas fa-edit" aria-hidden="true" /></a>
+                                            <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                        </td>
+
+                                        <td className="text-right">
+                                            <UncontrolledDropdown>
+                                                <DropdownToggle
+                                                    className="btn-icon-only text-light"
+                                                    href="#pablo"
+                                                    role="button"
+                                                    size="sm"
+                                                    color=""
+                                                    onClick={(e) => e.preventDefault()}
+                                                >
+                                                    <i className="fas fa-ellipsis-v" />
+                                                </DropdownToggle>
+                                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                                    <DropdownItem
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        Action
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        Another action
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        Something else here
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                            <CardFooter className="py-4">
+                                <nav aria-label="...">
+                                    <Pagination
+                                        className="pagination justify-content-end mb-0"
+                                        listClassName="justify-content-end mb-0"
+                                    >
+                                        <PaginationItem className="disabled">
+                                            <PaginationLink
+                                                href="#pablo"
+                                                onClick={(e) => e.preventDefault()}
+                                                tabIndex="-1"
+                                            >
+                                                <i className="fas fa-angle-left" />
+                                                <span className="sr-only">Previous</span>
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem className="active">
+                                            <PaginationLink
+                                                href="#pablo"
+                                                onClick={(e) => e.preventDefault()}
+                                            >
+                                                1
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink
+                                                href="#pablo"
+                                                onClick={(e) => e.preventDefault()}
+                                            >
+                                                2 <span className="sr-only">(current)</span>
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink
+                                                href="#pablo"
+                                                onClick={(e) => e.preventDefault()}
+                                            >
+                                                3
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink
+                                                href="#pablo"
+                                                onClick={(e) => e.preventDefault()}
+                                            >
+                                                <i className="fas fa-angle-right" />
+                                                <span className="sr-only">Next</span>
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    </Pagination>
+                                </nav>
+                            </CardFooter>
+                        </Card>
                     </div>
-                </div>
-            </div>
-        );
-    }
-}
+                </Row>
+            </Container>
+        </>
+    );
+};
 
 export default SuratKeluar;

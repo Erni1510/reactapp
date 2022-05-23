@@ -1,22 +1,52 @@
-import React, { Component } from 'react';
+// reactstrap components
 
-class Galeri extends Component {
+import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import {
+    Badge,
+    Card,
+    CardHeader,
+    CardFooter,
+    DropdownMenu,
+    DropdownItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    Media,
+    Pagination,
+    PaginationItem,
+    PaginationLink,
+    Progress,
+    Table,
+    Container,
+    Row,
+    Button,
+    CardImage, CardBody, CardTitle, CardText,
+    UncontrolledTooltip,
+} from "reactstrap";
+// core components
+import Header from "../../components/Headers/Header.js";
 
-    render() {
-        return (
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-            </Card>
-        );
-    }
-}
+const Galeri = () => {
+    return (
+        <>
+            <Header />
+            {/* Page content */}
+            <Container className="mt--7" fluid>
+                {/* Table */}
+                <Row>
+                    <Card style={{ width: '18rem' }}>
+                        <img orientation="top" src="https://th.bing.com/th/id/OIP.neTp253amaORNv-lj2e9-AHaE8?pid=ImgDet&rs=1" />
+                        <CardBody>
+                            <CardTitle>Arsip Dokumen</CardTitle>
+                            <CardText>
+                                Some quick example text to build on the card title and make up the bulk of the card's content.
+                            </CardText>
+                            <Button className="btn btn-success" href="../" target="_blank">View</Button>
+                        </CardBody>
+                    </Card>
+                </Row>
+            </Container>
+        </>
+    );
+};
 
 export default Galeri;
