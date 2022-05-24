@@ -30,7 +30,7 @@ const Galeri = () => {
         <>
             <Header />
             {/* Page content */}
-            <Container className="mt--7" fluid>
+            <Container className="mt--7" fluid> 
                 {/* Table */}
                 <Row>
                     <Card style={{ width: '18rem' }}>

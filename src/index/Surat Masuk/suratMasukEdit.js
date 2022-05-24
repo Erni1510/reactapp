@@ -1,43 +1,148 @@
-import React, { Component } from 'react';
+// reactstrap components
 
-class suratMasukEdit extends Component {
+import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import {
+    Badge,
+    Card,
+    CardHeader,
+    CardFooter,
+    DropdownMenu,
+    DropdownItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    Media,
+    Pagination,
+    PaginationItem,
+    PaginationLink,
+    Progress,
+    Table,
+    Col, Input, FormGroup, Form,
+    Container,
+    Row,
+    Button,
+    CardImage, CardBody, CardTitle, CardText,
+    UncontrolledTooltip,
+} from "reactstrap";
+// core components
+import Header from "../../components/Headers/Header.js";
 
-    render() {
-        return (
-            // <div classname="row">
-            //     <div classname="col-12">
-            //         <div classname="card mb-4">
-            //             <div classname="card-header pb-0">
-            //                 <h6>Edit Surat Masuk</h6>
-            //             </div>
-            //             <div className="card-body px-0 pt-0 pb-2">
-            //                 <div className=" mb-3">
-            //                     <label className="font-weight-bold" htmlFor="namaArsip">Nama Arsip *</label>
-            //                     <input className="form-control form-control-solid" id="namaArsip" type="text" placeholder="Nama Arsip" name="namaArsip" defaultValue="" required />
-            //                 </div>
-            //                 <div className="mb-3">
-            //                     <label className="font-weight-bold" htmlFor="noArsip">Nomor Arsip *</label>
-            //                     <input className="form-control form-control-solid" id="noArsip" type="text" placeholder="Nomor Arsip" name="noArsip" defaultValue="" required />
-            //                 </div>
-            //                 <div className="mb-3">
-            //                     <label className="font-weight-bold" htmlFor="noArsip">Deskripsi *</label>
-            //                     <textarea class="form-control form-control-solid" id="deskripsi" rows="3" name="deskripsi"> </textarea>
-            //                 </div>
-            //                 <div className="mb-3">
-            //                     <label className="font-weight-bold" htmlFor="fileArsip">File Arsip *</label>
-            //                     <input type="file" name="fileArsip" className="form-control form-control-file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" required />
-            //                 </div>
-            //                 <div className="mb-0 float-right">
-            //                     <a href="../" className="btn btn-warning">Cancel</a>
-            //                     <button type="submit" className="btn btn-success">Submit</button>
-            //                 </div>
-            //             </div>
-            //         </div>  
-            //     </div>
-            // </div>
- 
-        );
-    }
-}
+const suratMasukEdit= () => {
+    return (
+        <>
+            <Header />
+            {/* Page content */}
+            <Container className="mt--7" fluid>
+                {/* Table */}
+                <Row>
+                    <Col className="order-xl-1" xl="12">
+                        <Card className="bg-secondary shadow">
+                            <CardHeader className="bg-white border-0">
+                                <Row className="align-items-center">
+                                    <Col xs="8">
+                                        <h3 className="mb-0">Surat Masuk</h3><hr className="my-4" />
+                                    </Col>
+                                </Row>
+                                <Form>
+                                    <h6 className="heading-small text-muted mb-4">
+                                        Edit Surat Masuk
+                                    </h6>
+                                    {/* Address */}
+                                    <div className="pl-lg-4">
+                                        <Row>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Nama Arsip
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Nama Arsip"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Nomor Arsip
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Nomor Arsip"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Deskripsi Arsip
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Deskripsi Arsip"
+                                                        type="textarea"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        File Arsip
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Pilih File Arsip"
+                                                        type="file"
+                                                        size="xs"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                        <Button
+                                            className="float-right"
+                                            color="success"
+                                            href="./"
+                                            onClick={(e) => e.preventDefault()}
+                                            size="sm"
+                                        >
+                                            Submit
+                                        </Button>
+                                        <Button
+                                            className="float-right"
+                                            color="warning"
+                                            href="./"
+                                            onClick={(e) => e.preventDefault()}
+                                            size="sm"
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </div>
+                                </Form>
+                            </CardHeader>
+
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    );
+};
 
 export default suratMasukEdit;
