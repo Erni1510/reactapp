@@ -359,11 +359,12 @@ const siswaCreate = () => {
                                             color="success"
                                             href="./"
                                             onClick={(e) => e.preventDefault()}
-                                            size="sm"
+                                            
                                         >
                                             Submit
                                         </Button>
-                                        <Button
+                                        <Link to={"/admin/DataSiswa"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        {/* <Button
                                             className="float-right"
                                             color="warning"
                                             href="./"
@@ -371,7 +372,7 @@ const siswaCreate = () => {
                                             size="sm"
                                         >
                                             Cancel
-                                        </Button>
+                                        </Button> */}
                                     </div>
                                 </Form>
                             </CardHeader>

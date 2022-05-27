@@ -120,19 +120,10 @@ const suratKeluarCreate= () => {
                                             color="success"
                                             href="./"
                                             onClick={(e) => e.preventDefault()}
-                                            size="sm"
                                         >
                                             Submit
                                         </Button>
-                                        <Button
-                                            className="float-right"
-                                            color="warning"
-                                            href="./"
-                                            onClick={(e) => e.preventDefault()}
-                                            size="sm"
-                                        >
-                                            Cancel
-                                        </Button>
+                                        <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>

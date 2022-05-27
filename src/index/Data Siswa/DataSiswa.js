@@ -36,7 +36,9 @@ const DataSiswa = () => {
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">Data Siswa</h3>
-                                <Button
+                                <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                {/* <Link to={"/admin/SuratMasuk/suratMasukCreate.js"} className="btn btn-success float-right" size="xs">+Tambah</Link> */}
+                                {/* <Button
                                     className="float-right"
                                     color="success"
                                     href="./index/Surat Masuk/suratMasukCreate.js"
@@ -44,7 +46,7 @@ const DataSiswa = () => {
                                     size="sm"
                                 >
                                     +Tambah
-                                </Button>
+                                </Button> */}
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">

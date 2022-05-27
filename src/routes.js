@@ -11,7 +11,8 @@ import Laporan from "./index/Laporan/Laporan.js";
 import User from "./index/User/User.js";
 import DataSiswa from "./index/Data Siswa/DataSiswa.js";
 import Galeri from "./index/Galeri/Galeri.js";
-
+import suratMasukCreate from "./index/Surat Masuk/suratMasukCreate.js"
+import siswaCreate from "./index/Data Siswa/siswaCreate";
 var routes = [
   {
     path: "/index",
@@ -44,21 +45,21 @@ var routes = [
   {
     path: "/DataSiswa",
     name: "DataSiswa",
-    icon: "ni ni-badge text-brown",
+    icon: "ni ni-badge text-brown",  
     component: DataSiswa,
     layout: "/admin",
   },
   {
     path: "/User",
     name: "Tabel User",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-tag text-pink",  
     component: User,
     layout: "/admin",
   },
   {
     path: "/user-profile",
     name: "User Profile",
-    icon: "ni ni-tag text-pink",
+    icon: "ni ni-single-02 text-yellow",
     component: Profile,
     layout: "/admin",
   },
@@ -69,13 +70,28 @@ var routes = [
     component: Galeri,
     layout: "/admin",
   },
+  // {
+  //   path: "/suratMasukCreate",
+  //   name: "Tambah Surat Masuk",
+  //   icon: "ni ni-collection text-black",
+  //   component: suratMasukCreate,
+  //   layout: "/admin",
+  // },
   {
-    path: "/icons",
-    name: "Icons",
-    icon: "ni ni-planet text-blue",
-    component: Icons,
+    path: "/siswaCreate",
+    name: "Tambah Siswa",
+    icon: "ni ni-collection text-black",
+    component: siswaCreate,
     layout: "/admin",
   },
+  
+  // {
+  //   path: "/icons",
+  //   name: "Icons",
+  //   icon: "ni ni-planet text-blue",
+  //   component: Icons,
+  //   layout: "/admin",
+  // },
   // {
   //   path: "/maps",
   //   name: "Maps",
