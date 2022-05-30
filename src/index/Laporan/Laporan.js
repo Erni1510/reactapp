@@ -36,15 +36,7 @@ const Laporan = () => {
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">Laporan</h3>
-                                <Button
-                                    className="float-right"
-                                    color="success"
-                                    href="./index/Surat Masuk/suratMasukCreate.js"
-                                    onClick={(e) => e.preventDefault()}
-                                    size="sm"
-                                >
-                                    +Tambah
-                                </Button>
+                                <Link to={"/admin/laporanCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -71,8 +63,8 @@ const Laporan = () => {
                                             <p className="text-sm font-weight-bold mb-0">Administrasi Kelas</p>
                                         </td>
                                         <td>
-                                            <a href="../" target="_blank" className="btn btn-info"><i className="fa fa-eye" aria-hidden="true" /></a>
-                                            <a href="../" className="btn btn-success"><i className="fas fa-edit" aria-hidden="true" /></a>
+                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/laporanEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
 

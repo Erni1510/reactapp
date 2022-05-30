@@ -24,7 +24,7 @@ import {
 // core components
 import Header from "../../components/Headers/Header.js";
 
-const SuratKeluar = () => {
+const TamuYayasan = () => {
     return (
         <>
             <Header />
@@ -35,72 +35,44 @@ const SuratKeluar = () => {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Surat Keluar</h3>
-                                <Link to={"/admin/suratKeluarCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <h3 className="mb-0">Tamu Yayasan</h3>
+                                <Link to={"/admin/tamuYayasanCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama Arsip</th>
-                                        <th scope="col">Nomor Arsip</th>
-                                        <th scope="col">Deskripsi</th>
+                                        <th scope="col" className="text-center">No</th>
+                                        <th scope="col">Nama Instansi</th>
+                                        <th scope="col">Alamat Instansi</th>
+                                        <th scope="col">No HP</th>
+                                        <th scope="col">Keperluan</th>
+                                        <th scope="col">Tipe Tamu</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0">1</p>
+                                        <td align-middle text-center text-sm>
+                                            <h6 className="mb-0 text-center text-sm">1</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Surat Undangan</p>
+                                            <p className="text-sm font-weight-bold mb-0">Robert</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">337</p>
+                                            <p className="text-sm font-weight-bold mb-0">Malang</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali Kelas</p>
+                                            <p className="text-sm font-weight-bold mb-0">087865654765</p>
                                         </td>
                                         <td>
-                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/suratKeluarEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                            <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                            <p className="text-sm font-weight-bold mb-0">Yayasan Peduli</p>
                                         </td>
-
-                                        <td className="text-right">
-                                            <UncontrolledDropdown>
-                                                <DropdownToggle
-                                                    className="btn-icon-only text-light"
-                                                    href="#pablo"
-                                                    role="button"
-                                                    size="sm"
-                                                    color=""
-                                                    onClick={(e) => e.preventDefault()}
-                                                >
-                                                    <i className="fas fa-ellipsis-v" />
-                                                </DropdownToggle>
-                                                <DropdownMenu className="dropdown-menu-arrow" right>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Action
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Another action
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Something else here
-                                                    </DropdownItem>
-                                                </DropdownMenu>
-                                            </UncontrolledDropdown>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Tamu Yayasan</p>
+                                        </td>
+                                        <td>
+                                        <Link to={"/admin/tamuYayasanEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -165,4 +137,4 @@ const SuratKeluar = () => {
     );
 };
 
-export default SuratKeluar;
+export default TamuYayasan;

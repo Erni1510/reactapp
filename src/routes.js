@@ -11,8 +11,26 @@ import Laporan from "./index/Laporan/Laporan.js";
 import User from "./index/User/User.js";
 import DataSiswa from "./index/Data Siswa/DataSiswa.js";
 import Galeri from "./index/Galeri/Galeri.js";
-import suratMasukCreate from "./index/Surat Masuk/suratMasukCreate.js"
 import siswaCreate from "./index/Data Siswa/siswaCreate";
+import siswaEdit from "./index/Data Siswa/siswaEdit";
+import laporanCreate from "./index/Laporan/laporanCreate";
+import laporanEdit from "./index/Laporan/laporanEdit";
+import suratMasukCreate from "./index/Surat Masuk/suratMasukCreate";
+import suratMasukEdit from "./index/Surat Masuk/suratMasukEdit";
+import suratKeluarCreate from "./index/Surat Keluar/suratKeluarCreate";
+import suratKeluarEdit from "./index/Surat Keluar/suratKeluarEdit";
+import userCreate from "./index/User/userCreate";
+import userEdit from "./index/User/userEdit";
+import TamuUmum from "./index/Tamu Umum/TamuUmum";
+import tamuUmumCreate from "./index/Tamu Umum/tamuUmumCreate";
+import tamuUmumEdit from "./index/Tamu Umum/tamuUmumEdit";
+import TamuYayasan from "./index/Tamu Yayasan/TamuYayasan";
+import tamuYayasanCreate from "./index/Tamu Yayasan/tamuYayasanCreate"; 
+import tamuYayasanEdit from "./index/Tamu Yayasan/tamuYayasanEdit"; 
+import TamuDinas from "./index/Tamu Dinas/TamuDinas"; 
+import tamuDinasCreate from "./index/Tamu Dinas/tamuDinasCreate";
+import tamuDinasEdit from "./index/Tamu Dinas/tamuDinasEdit";
+
 var routes = [
   {
     path: "/index",
@@ -43,6 +61,27 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/TamuUmum",
+    name: "Tamu Umum",
+    icon: "ni ni-box-2 text-purple",
+    component: TamuUmum,
+    layout: "/admin",
+  },
+  {
+    path: "/TamuDinas",
+    name: "Tamu Dinas",
+    icon: "ni ni-box-2 text-purple",
+    component: TamuDinas,
+    layout: "/admin",
+  },
+  {
+    path: "/TamuYayasan",
+    name: "Tamu Yayasan",
+    icon: "ni ni-box-2 text-purple",
+    component: TamuYayasan,
+    layout: "/admin",
+  },
+  {
     path: "/DataSiswa",
     name: "DataSiswa",
     icon: "ni ni-badge text-brown",  
@@ -70,21 +109,87 @@ var routes = [
     component: Galeri,
     layout: "/admin",
   },
-  // {
-  //   path: "/suratMasukCreate",
-  //   name: "Tambah Surat Masuk",
-  //   icon: "ni ni-collection text-black",
-  //   component: suratMasukCreate,
-  //   layout: "/admin",
-  // },
   {
     path: "/siswaCreate",
-    name: "Tambah Siswa",
-    icon: "ni ni-collection text-black",
     component: siswaCreate,
     layout: "/admin",
   },
-  
+  {
+    path: "/siswaEdit",
+    component: siswaEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/laporanCreate",
+    component: laporanCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/laporanEdit",
+    component: laporanEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/suratMasukCreate",
+    component: suratMasukCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/suratMasukEdit",
+    component: suratMasukEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/suratKeluarCreate",
+    component: suratKeluarCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/suratKeluarEdit",
+    component: suratKeluarEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/userCreate",
+    component: userCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/userEdit",
+    component: userEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/tamuUmumCreate",
+    component: tamuUmumCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/tamuUmumEdit",
+    component: tamuUmumEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/tamuDinasCreate",
+    component: tamuDinasCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/tamuDinasEdit",
+    component: tamuDinasEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/tamuYayasanCreate",
+    component: tamuYayasanCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/tamuYayasanEdit",
+    component: tamuYayasanEdit,
+    layout: "/admin",
+  },
+
   // {
   //   path: "/icons",
   //   name: "Icons",
@@ -106,13 +211,13 @@ var routes = [
   //   component: Tables,
   //   layout: "/admin",
   // },
-  // {
-  //   path: "/login",
-  //   name: "Login",
-  //   icon: "ni ni-key-25 text-info",
-  //   component: Login,
-  //   layout: "/auth",
-  // },
+  {
+    path: "/login",
+    name: "Login",
+    icon: "ni ni-key-25 text-info",
+    component: Login,
+    layout: "/auth",
+  },
   // {
   //   path: "/register",
   //   name: "Register",

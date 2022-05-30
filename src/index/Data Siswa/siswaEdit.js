@@ -87,12 +87,12 @@ const siswaEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Panggilan
+                                                        Jenis Kelamin
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="nama panggilan"
+                                                        placeholder="P/L"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -151,6 +151,38 @@ const siswaEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
+                                                        Kewarganegaraan
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="kewarganegaraan"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Bahasa
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="bahasa"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
                                                         Saudara Kandung
                                                     </label>
                                                     <Input
@@ -193,22 +225,7 @@ const siswaEdit = () => {
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Bahasa
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="bahasa"
-                                                        type="text"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
+                                            
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label
@@ -343,13 +360,13 @@ const siswaEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Jenis Kelamin
+                                                        Tanggal Daftar
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="P/L"
-                                                        type="text"
+                                                        placeholder="tanggal daftar"
+                                                        type="date"
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -359,10 +376,20 @@ const siswaEdit = () => {
                                             color="success"
                                             href="./"
                                             onClick={(e) => e.preventDefault()}
+                                            
                                         >
                                             Submit
                                         </Button>
                                         <Link to={"/admin/DataSiswa"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        {/* <Button
+                                            className="float-right"
+                                            color="warning"
+                                            href="./"
+                                            onClick={(e) => e.preventDefault()}
+                                            size="sm"
+                                        >
+                                            Cancel
+                                        </Button> */}
                                     </div>
                                 </Form>
                             </CardHeader>

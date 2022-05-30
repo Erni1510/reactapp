@@ -36,17 +36,8 @@ const DataSiswa = () => {
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">Data Siswa</h3>
-                                <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
-                                {/* <Link to={"/admin/SuratMasuk/suratMasukCreate.js"} className="btn btn-success float-right" size="xs">+Tambah</Link> */}
-                                {/* <Button
-                                    className="float-right"
-                                    color="success"
-                                    href="./index/Surat Masuk/suratMasukCreate.js"
-                                    onClick={(e) => e.preventDefault()}
-                                    size="sm"
-                                >
-                                    +Tambah
-                                </Button> */}
+                                <Link to={"/admin/siswaCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                               
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -79,14 +70,14 @@ const DataSiswa = () => {
                                             <p className="text-sm font-weight-bold mb-0">Perempuan</p>
                                         </td>
                                         <td className="align-middle text-center">
-                                            <a href="../" target="_blank" className="btn btn-info"><i className="fa fa-eye" aria-hidden="true" /></a>
+                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                         </td>
                                         <td className="align-middle text-center">
-                                            <a href="../" target="_blank" className="btn btn-info"><i className="fa fa-eye" aria-hidden="true" /></a>
+                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                         </td>
                                         <td className="align-middle text-center">
-                                            <a href="../" className="btn btn-success"><i className="fas fa-edit" aria-hidden="true" /></a>
-                                            <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                        <Link to={"/admin/siswaEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
                                 </tbody>
