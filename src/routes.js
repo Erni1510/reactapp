@@ -56,28 +56,28 @@ var routes = [
   {
     path: "/Laporan",
     name: "Laporan",
-    icon: "ni ni-box-2 text-purple",
+    icon: "ni ni-box-2 text-primary",
     component: Laporan,
     layout: "/admin",
   },
   {
     path: "/TamuUmum",
     name: "Tamu Umum",
-    icon: "ni ni-box-2 text-purple",
+    icon: "ni ni-book-bookmark text-purple",
     component: TamuUmum,
     layout: "/admin",
   },
   {
     path: "/TamuDinas",
     name: "Tamu Dinas",
-    icon: "ni ni-box-2 text-purple",
+    icon: "ni ni-building text-orange",
     component: TamuDinas,
     layout: "/admin",
   },
   {
     path: "/TamuYayasan",
     name: "Tamu Yayasan",
-    icon: "ni ni-box-2 text-purple",
+    icon: "ni ni-folder-17 text-teal",
     component: TamuYayasan,
     layout: "/admin",
   },
@@ -109,6 +109,7 @@ var routes = [
     component: Galeri,
     layout: "/admin",
   },
+  //<Route exact path="/DataSiswa/edit" component={siswaCreate}></Route>;
   {
     path: "/siswaCreate",
     component: siswaCreate,

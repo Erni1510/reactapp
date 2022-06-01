@@ -40,7 +40,7 @@ const Galeri = () => {
                             <CardText>
                                 Some quick example text to build on the card title and make up the bulk of the card's content.
                             </CardText>
-                            <Button className="btn btn-success" href="../" target="_blank">View</Button>
+                            <Link to={"/"} className="btn btn-success" size="sm">view</Link>
                         </CardBody>
                     </Card>
                 </Row>

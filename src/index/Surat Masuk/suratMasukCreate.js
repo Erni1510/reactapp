@@ -55,12 +55,12 @@ const suratMasukCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Arsip
+                                                        Nomor Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="nama arsip"
+                                                        placeholder="Nomor Surat"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -71,12 +71,12 @@ const suratMasukCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nomor Arsip
+                                                        Asal Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="nomor arsip"
+                                                        placeholder="asal Surat"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -87,12 +87,12 @@ const suratMasukCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Deskripsi Arsip
+                                                        Uraian Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="deskripsi rsip"
+                                                        placeholder="Deskripsi Surat"
                                                         type="textarea"
                                                     />
                                                 </FormGroup>
@@ -103,21 +103,60 @@ const suratMasukCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        File Arsip
+                                                        Keterangan Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Pilih File Arsip"
+                                                        placeholder="Keterangan Surat"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Tipe Surat
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="tipe Surat"
+                                                        type="select"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        File Surat
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Pilih File Surat"
                                                         type="file"
                                                         size="xs"
                                                     />
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Button type="submit" className="btn btn-success float-right">Submit</Button>
+                                        <Button
+                                            className="float-right"
+                                            color="success"
+                                            href="./"
+                                            onClick={(e) => e.preventDefault()}
+                                        >
+                                            Submit
+                                        </Button>
                                         <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
-                                        </div>
+                                    </div>
                                 </Form>
                             </CardHeader>
 

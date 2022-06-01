@@ -177,19 +177,7 @@ const Sidebar = (props) => {
           {/* Collapse header */}
           <div className="navbar-collapse-header d-md-none">
             <Row>
-              {logo ? (
-                <Col className="collapse-brand" xs="6">
-                  {logo.innerLink ? (
-                    <Link to={logo.innerLink}>
-                      <img alt={logo.imgAlt} src={logo.imgSrc} />
-                    </Link>
-                  ) : (
-                    <a href={logo.outterLink}>
-                      <img alt={logo.imgAlt} src={logo.imgSrc} />
-                    </a>
-                  )}
-                </Col>
-              ) : null}
+              
               <Col className="collapse-close" xs="6">
                 <button
                   className="navbar-toggler"

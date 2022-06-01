@@ -42,9 +42,11 @@ const SuratKeluar = () => {
                                 <thead className="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Arsip</th>
-                                        <th scope="col">Nomor Arsip</th>
-                                        <th scope="col">Deskripsi</th>
+                                        <th scope="col">Nomor Surat</th>
+                                        <th scope="col">tujuan Surat</th>
+                                        <th scope="col">Uraian</th>
+                                        <th scope="col">Keterangan</th>
+                                        <th scope="col">Tipe Surat</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -60,7 +62,13 @@ const SuratKeluar = () => {
                                             <p className="text-sm font-weight-bold mb-0">337</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali Kelas</p>
+                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Surat Keluar</p>
                                         </td>
                                         <td>
                                         <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
