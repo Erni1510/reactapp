@@ -3,7 +3,7 @@ import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 
-function LaporanCreate() {
+function ArsipCreate() {
   return (
     <>
             <Header />
@@ -14,12 +14,12 @@ function LaporanCreate() {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Laporan</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Arsip</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Tambah Laporan
+                                        Tambah Arsip
                                     </h6>
                                     {/* Address */}
                                     <div className="pl-lg-4">
@@ -98,7 +98,7 @@ function LaporanCreate() {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/Laporan"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/Arsip"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -111,4 +111,4 @@ function LaporanCreate() {
   )
 }
 
-export default LaporanCreate
+export default ArsipCreate

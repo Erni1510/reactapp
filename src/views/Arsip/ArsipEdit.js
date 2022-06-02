@@ -4,7 +4,7 @@ import { NavLink as  Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 
-const laporanEdit= () => {
+const ArsipEdit= () => {
     return (
         <>
             <Header />
@@ -17,12 +17,12 @@ const laporanEdit= () => {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Laporan</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Arsip</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Edit Laporan
+                                        Edit Arsip
                                     </h6>
                                     {/* Address */}
                                     <div className="pl-lg-4">
@@ -101,7 +101,7 @@ const laporanEdit= () => {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/Laporan"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/Arsip"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -114,4 +114,4 @@ const laporanEdit= () => {
     );
 };
 
-export default laporanEdit;
+export default ArsipEdit;

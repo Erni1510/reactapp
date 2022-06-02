@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 
-function Laporan() {
+function Arsip() {
   return (
     <>
             <Header />
@@ -22,8 +22,8 @@ function Laporan() {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Laporan</h3>
-                                <Link to={"/admin/LaporanCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <h3 className="mb-0">Data Arsip</h3>
+                                <Link to={"/admin/ArsipCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -41,7 +41,7 @@ function Laporan() {
                                             <p className="text-sm font-weight-bold mb-0">1</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Laporan Administrasi</p>
+                                            <p className="text-sm font-weight-bold mb-0">Arsip Administrasi</p>
                                         </td>
                                         <td>
                                             <p className="text-sm font-weight-bold mb-0">768</p>
@@ -51,7 +51,7 @@ function Laporan() {
                                         </td>
                                         <td>
                                         <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/LaporanEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/ArsipEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
@@ -117,4 +117,4 @@ function Laporan() {
   )
 }
 
-export default Laporan
+export default Arsip
