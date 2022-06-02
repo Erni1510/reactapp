@@ -1,4 +1,4 @@
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React from 'react'
@@ -17,7 +17,7 @@ function TamuUmumCreate() {
                                             <h3 className="mb-0">Tamu Umum</h3><hr className="my-4" />
                                         </Col>
                                     </Row>
-                                    <Form onSubmit={this.handleSubmit}>
+                                    <Form>
                                         <h6 className="heading-small text-muted mb-4">
                                             Tambah Tamu Umum
                                         </h6>
@@ -37,8 +37,8 @@ function TamuUmumCreate() {
                                                             id="input-address"
                                                             placeholder="nama instansi"
                                                             type="text"
-                                                            value={this.state.nama_instansi}
-                                                            onChange={(event)=>this.handleChange(event)}
+                                                            value=""
+                                                            onChange=""
                                                         />
                                                     </FormGroup>
                                                 </Col>
@@ -55,8 +55,8 @@ function TamuUmumCreate() {
                                                             id="input-address"
                                                             placeholder="alamat instansi"
                                                             type="text"
-                                                            value={this.state.alamat_instansi}
-                                                            onChange={(event)=>this.handleChange(event)}
+                                                            value=""
+                                                            onChange=""
                                                         />
                                                     </FormGroup>
                                                 </Col>
@@ -73,8 +73,8 @@ function TamuUmumCreate() {
                                                             id="input-address"
                                                             placeholder="08xx"
                                                             type="text"
-                                                            value={this.state.no_hp}
-                                                            onChange={(event)=>this.handleChange(event)}
+                                                            value=""
+                                                            onChange=""
                                                         />
                                                     </FormGroup>
                                                 </Col>
@@ -91,8 +91,8 @@ function TamuUmumCreate() {
                                                             id="input-address"
                                                             placeholder="keperluan"
                                                             type="textarea"
-                                                            value={this.state.keperluan}
-                                                            onChange={(event)=>this.handleChange(event)}
+                                                            value=""
+                                                            onChange=""
                                                         />
                                                     </FormGroup>
                                                 </Col>
@@ -106,8 +106,9 @@ function TamuUmumCreate() {
                                                         </label>
                                                         <select 
                                                         className="form-control-alternative" 
-                                                        value={this.state.tipe_tamu}
-                                                        onChange={(event)=>this.handleChange(event)}>
+                                                        value=""
+                                                        onChange=""
+                                                        >
                                                         <option>
                                                             Tamu Umum
                                                         </option>
