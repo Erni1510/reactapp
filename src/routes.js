@@ -1,35 +1,31 @@
 import Index from "./views/Index.js";
 import Profile from "./views/examples/Profile.js";
-import Maps from "./views/examples/Maps.js";
-import Register from "./views/examples/Register.js";
 import Login from "./views/examples/Login.js";
-import Tables from "./views/examples/Tables.js";
-import Icons from "./views/examples/Icons.js";
-import SuratMasuk from "./index/Surat Masuk/SuratMasuk.js"
-import SuratKeluar from "./index/Surat Keluar/SuratKeluar.js"
+import SuratMasuk from "./index/SuratMasuk/SuratMasuk.js"
+import SuratKeluar from "./index/SuratKeluar/SuratKeluar.js"
 import Laporan from "./index/Laporan/Laporan.js";
 import User from "./index/User/User.js";
-import DataSiswa from "./index/Data Siswa/DataSiswa.js";
+import Siswa from "./index/DataSiswa/Siswa.js";
 import Galeri from "./index/Galeri/Galeri.js";
-import siswaCreate from "./index/Data Siswa/siswaCreate";
-import siswaEdit from "./index/Data Siswa/siswaEdit";
-import laporanCreate from "./index/Laporan/laporanCreate";
-import laporanEdit from "./index/Laporan/laporanEdit";
-import suratMasukCreate from "./index/Surat Masuk/suratMasukCreate";
-import suratMasukEdit from "./index/Surat Masuk/suratMasukEdit";
-import suratKeluarCreate from "./index/Surat Keluar/suratKeluarCreate";
-import suratKeluarEdit from "./index/Surat Keluar/suratKeluarEdit";
-import userCreate from "./index/User/userCreate";
-import userEdit from "./index/User/userEdit";
-import TamuUmum from "./index/Tamu Umum/TamuUmum";
-import tamuUmumCreate from "./index/Tamu Umum/tamuUmumCreate";
-import tamuUmumEdit from "./index/Tamu Umum/tamuUmumEdit";
-import TamuYayasan from "./index/Tamu Yayasan/TamuYayasan";
-import tamuYayasanCreate from "./index/Tamu Yayasan/tamuYayasanCreate"; 
-import tamuYayasanEdit from "./index/Tamu Yayasan/tamuYayasanEdit"; 
-import TamuDinas from "./index/Tamu Dinas/TamuDinas"; 
-import tamuDinasCreate from "./index/Tamu Dinas/tamuDinasCreate";
-import tamuDinasEdit from "./index/Tamu Dinas/tamuDinasEdit";
+import SiswaCreate from "./index/DataSiswa/SiswaCreate";
+import SiswaEdit from "./index/DataSiswa/SiswaEdit";
+import LaporanCreate from "./index/Laporan/LaporanCreate";
+import LaporanEdit from "./index/Laporan/LaporanEdit";
+import SuratMasukCreate from "./index/SuratMasuk/SuratMasukCreate";
+import SuratMasukEdit from "./index/SuratMasuk/SuratMasukEdit";
+import SuratKeluarCreate from "./index/SuratKeluar/SuratKeluarCreate";
+import SuratKeluarEdit from "./index/SuratKeluar/SuratKeluarEdit";
+import UserCreate from "./index/User/UserCreate";
+import UserEdit from "./index/User/UserEdit";
+import TamuUmum from "./index/TamuUmum/TamuUmum";
+import TamuUmumCreate from "./index/TamuUmum/TamuUmumCreate";
+import TamuUmumEdit from "./index/TamuUmum/TamuUmumEdit";
+import TamuYayasan from "./index/TamuYayasan/TamuYayasan";
+import TamuYayasanCreate from "./index/TamuYayasan/TamuYayasanCreate"; 
+import TamuYayasanEdit from "./index/TamuYayasan/TamuYayasanEdit"; 
+import TamuDinas from "./index/TamuDinas/TamuDinas"; 
+import TamuDinasCreate from "./index/TamuDinas/TamuDinasCreate";
+import TamuDinasEdit from "./index/TamuDinas/TamuDinasEdit";
 
 var routes = [
   {
@@ -40,14 +36,14 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/suratMasuk",
+    path: "/SuratMasuk",
     name: "Surat Masuk",
     icon: "ni ni-credit-card text-green",
     component: SuratMasuk,
     layout: "/admin",
   },
   {
-    path: "/suratKeluar",
+    path: "/SuratKeluar",
     name: "Surat Keluar",
     icon: "ni ni-ungroup ",
     component: SuratKeluar,
@@ -82,10 +78,10 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/DataSiswa",
+    path: "/Siswa",
     name: "DataSiswa",
     icon: "ni ni-badge text-brown",  
-    component: DataSiswa,
+    component: Siswa,
     layout: "/admin",
   },
   {
@@ -109,109 +105,86 @@ var routes = [
     component: Galeri,
     layout: "/admin",
   },
-  //<Route exact path="/DataSiswa/edit" component={siswaCreate}></Route>;
   {
-    path: "/siswaCreate",
-    component: siswaCreate,
+    path: "/SiswaCreate",
+    component: SiswaCreate,
     layout: "/admin",
   },
   {
-    path: "/siswaEdit",
-    component: siswaEdit,
+    path: "/SiswaEdit",
+    component: SiswaEdit,
     layout: "/admin",
   },
   {
-    path: "/laporanCreate",
-    component: laporanCreate,
+    path: "/LaporanCreate",
+    component: LaporanCreate,
     layout: "/admin",
   },
   {
-    path: "/laporanEdit",
-    component: laporanEdit,
+    path: "/LaporanEdit",
+    component: LaporanEdit,
     layout: "/admin",
   },
   {
-    path: "/suratMasukCreate",
-    component: suratMasukCreate,
+    path: "/SuratMasukCreate",
+    component: SuratMasukCreate,
     layout: "/admin",
   },
   {
-    path: "/suratMasukEdit",
-    component: suratMasukEdit,
+    path: "/SuratMasukEdit",
+    component: SuratMasukEdit,
     layout: "/admin",
   },
   {
-    path: "/suratKeluarCreate",
-    component: suratKeluarCreate,
+    path: "/SuratKeluarCreate",
+    component: SuratKeluarCreate,
     layout: "/admin",
   },
   {
-    path: "/suratKeluarEdit",
-    component: suratKeluarEdit,
+    path: "/SuratKeluarEdit",
+    component: SuratKeluarEdit,
     layout: "/admin",
   },
   {
-    path: "/userCreate",
-    component: userCreate,
+    path: "/UserCreate",
+    component: UserCreate,
     layout: "/admin",
   },
   {
-    path: "/userEdit",
-    component: userEdit,
+    path: "/UserEdit",
+    component: UserEdit,
     layout: "/admin",
   },
   {
-    path: "/tamuUmumCreate",
-    component: tamuUmumCreate,
+    path: "/TamuUmumCreate",
+    component: TamuUmumCreate,
     layout: "/admin",
   },
   {
-    path: "/tamuUmumEdit",
-    component: tamuUmumEdit,
+    path: "/TamuUmumEdit",
+    component: TamuUmumEdit,
     layout: "/admin",
   },
   {
-    path: "/tamuDinasCreate",
-    component: tamuDinasCreate,
+    path: "/TamuDinasCreate",
+    component: TamuDinasCreate,
     layout: "/admin",
   },
   {
-    path: "/tamuDinasEdit",
-    component: tamuDinasEdit,
+    path: "/TamuDinasEdit",
+    component: TamuDinasEdit,
     layout: "/admin",
   },
   {
-    path: "/tamuYayasanCreate",
-    component: tamuYayasanCreate,
+    path: "/TamuYayasanCreate",
+    component: TamuYayasanCreate,
     layout: "/admin",
   },
   {
-    path: "/tamuYayasanEdit",
-    component: tamuYayasanEdit,
+    path: "/TamuYayasanEdit",
+    component: TamuYayasanEdit,
     layout: "/admin",
   },
-
-  // {
-  //   path: "/icons",
-  //   name: "Icons",
-  //   icon: "ni ni-planet text-blue",
-  //   component: Icons,
-  //   layout: "/admin",
-  // },
-  // {
-  //   path: "/maps",
-  //   name: "Maps",
-  //   icon: "ni ni-pin-3 text-orange",
-  //   component: Maps,
-  //   layout: "/admin",
-  // },
-  // {
-  //   path: "/tables",
-  //   name: "Tables",
-  //   icon: "ni ni-bullet-list-67 text-red",
-  //   component: Tables,
-  //   layout: "/admin",
-  // },
   {
     path: "/login",
     name: "Login",
@@ -219,12 +192,5 @@ var routes = [
     component: Login,
     layout: "/auth",
   },
-  // {
-  //   path: "/register",
-  //   name: "Register",
-  //   icon: "ni ni-circle-08 text-pink",
-  //   component: Register,
-  //   layout: "/auth",
-  // },
 ];
 export default routes;

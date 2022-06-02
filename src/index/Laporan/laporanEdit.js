@@ -1,29 +1,7 @@
 // reactstrap components
 
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 
 const laporanEdit= () => {

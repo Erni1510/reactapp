@@ -1,34 +1,11 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const tamuYayasanEdit = () => {
-    return (
-        <>
+function SuratMasukEdit() {
+  return (
+    <>
             <Header />
             {/* Page content */}
             <Container className="mt--7" fluid>
@@ -39,12 +16,12 @@ const tamuYayasanEdit = () => {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Tamu Yayasan</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Surat Masuk</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Tambah Tamu Yayasan
+                                        Edit Surat Masuk
                                     </h6>
                                     {/* Address */}
                                     <div className="pl-lg-4">
@@ -55,12 +32,12 @@ const tamuYayasanEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Instansi
+                                                        Nomor Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="nama instansi"
+                                                        placeholder="Nomor Surat"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -71,12 +48,12 @@ const tamuYayasanEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Alamat Instansi
+                                                        Asal Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="alamat instansi"
+                                                        placeholder="asal Surat"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -87,28 +64,12 @@ const tamuYayasanEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        No HP
+                                                        Uraian Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="08xx"
-                                                        type="text"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Keperluan
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="keperluan"
+                                                        placeholder="Deskripsi Surat"
                                                         type="textarea"
                                                     />
                                                 </FormGroup>
@@ -119,13 +80,46 @@ const tamuYayasanEdit = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Tipe Tamu
+                                                        Keterangan Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Jabatan"
+                                                        placeholder="Keterangan Surat"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Tipe Surat
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="tipe Surat"
                                                         type="select"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        File Surat
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Pilih File Surat"
+                                                        type="file"
+                                                        size="xs"
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -138,7 +132,7 @@ const tamuYayasanEdit = () => {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/TamuYayasan"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -148,7 +142,7 @@ const tamuYayasanEdit = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default tamuYayasanEdit;
+export default SuratMasukEdit

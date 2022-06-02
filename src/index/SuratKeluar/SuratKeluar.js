@@ -1,50 +1,36 @@
-// reactstrap components
-
+import React from 'react'
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import {
-    Badge,
     Card,
     CardHeader,
     CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
     Pagination,
     PaginationItem,
     PaginationLink,
-    Progress,
     Table,
     Container,
-    Button,
     Row,
-    UncontrolledTooltip,
 } from "reactstrap";
-// core components
 import Header from "../../components/Headers/Header.js";
 
-const SuratMasuk = () => {
-    return (
-        <>
+function SuratKeluar() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Surat Masuk</h3>
-                                <Link to={"/admin/suratMasukCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <h3 className="mb-0">Surat Keluar</h3>
+                                <Link to={"/admin/SuratKeluarCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
-
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nomor Surat</th>
-                                        <th scope="col">Asal Surat</th>
+                                        <th scope="col">tujuan Surat</th>
                                         <th scope="col">Uraian</th>
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Tipe Surat</th>
@@ -57,59 +43,24 @@ const SuratMasuk = () => {
                                             <p className="text-sm font-weight-bold mb-0">1</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Surat Jabatan</p>
+                                            <p className="text-sm font-weight-bold mb-0">Surat Undangan</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">229</p>
+                                            <p className="text-sm font-weight-bold mb-0">337</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Jabatan ketua TK</p>
+                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Rekomendasi Jabatan</p>
+                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Surat Masuk</p>
+                                            <p className="text-sm font-weight-bold mb-0">Surat Keluar</p>
                                         </td>
                                         <td>
                                         <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/SuratMasukEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/SuratKeluarEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
-                                        </td>
-
-                                        <td className="text-right">
-                                            <UncontrolledDropdown>
-                                                <DropdownToggle
-                                                    className="btn-icon-only text-light"
-                                                    href="#pablo"
-                                                    role="button"
-                                                    size="sm"
-                                                    color=""
-                                                    onClick={(e) => e.preventDefault()}
-                                                >
-                                                    <i className="fas fa-ellipsis-v" />
-                                                </DropdownToggle>
-                                                <DropdownMenu className="dropdown-menu-arrow" right>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Action
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Another action
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Something else here
-                                                    </DropdownItem>
-                                                </DropdownMenu>
-                                            </UncontrolledDropdown>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -171,7 +122,7 @@ const SuratMasuk = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default SuratMasuk;
+export default SuratKeluar

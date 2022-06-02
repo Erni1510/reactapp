@@ -1,62 +1,13 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React, { Component } from 'react';
+import React from 'react'
 
-class tamuUmumCreate extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state={
-            nama_instansi : "",
-            alamat_instansi : "",
-            no_hp : "",
-            keperluan : "",
-            tipe_tamu : "Tamu Umum",
-            id : "",
-        };
-    }
-    handlehange = (event) => {
-        this.state({
-            [event.target.nama_instansi] : event.target.value
-        })
-    }
-    handleSubmit = (event) => {
-        event.preventDefault();
-    }
-
-    render() {
-        //const {...this.state}, handleChange={this.handleChange} ,handleSubmit={this.handleSubmit};
-        return (
-            <>
+function TamuUmumCreate() {
+  return (
+    <>
                 <Header />
-                {/* Page content */}
                 <Container className="mt--7" fluid>
-                    {/* Table */}
                     <Row>
                         <Col className="order-xl-1" xl="12">
                             <Card className="bg-secondary shadow">
@@ -182,8 +133,7 @@ class tamuUmumCreate extends Component {
                     </Row>
                 </Container>
             </>
-        );
-    }}
-// }
+  )
+}
 
-export default tamuUmumCreate;
+export default TamuUmumCreate

@@ -1,38 +1,13 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const userEdit = () => {
-    return (
-        <>
+function UserEdit() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <Col className="order-xl-1" xl="12">
                         <Card className="bg-secondary shadow">
@@ -132,7 +107,7 @@ const userEdit = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default userEdit;
+export default UserEdit

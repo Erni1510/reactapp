@@ -1,37 +1,13 @@
-// reactstrap components
-
+import React from 'react'
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, Container, Row,CardBody, CardTitle, CardText } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 
-const Galeri = () => {
-    return (
-        <>
+function Galeri() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid> 
-                {/* Table */}
                 <Row>
                     <Card style={{ width: '18rem' }}>
                         <img orientation="top" src="https://th.bing.com/th/id/OIP.neTp253amaORNv-lj2e9-AHaE8?pid=ImgDet&rs=1" />
@@ -46,7 +22,7 @@ const Galeri = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default Galeri;
+export default Galeri

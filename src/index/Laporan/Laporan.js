@@ -1,42 +1,29 @@
-// reactstrap components
-
+import React from 'react'
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import {
-    Badge,
     Card,
     CardHeader,
     CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
     Pagination,
     PaginationItem,
     PaginationLink,
-    Progress,
     Table,
     Container,
     Row,
-    Button,
-    UncontrolledTooltip,
 } from "reactstrap";
-// core components
 import Header from "../../components/Headers/Header.js";
 
-const Laporan = () => {
-    return (
-        <>
+function Laporan() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">Laporan</h3>
-                                <Link to={"/admin/laporanCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <Link to={"/admin/LaporanCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -64,43 +51,8 @@ const Laporan = () => {
                                         </td>
                                         <td>
                                         <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/laporanEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/LaporanEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
-                                        </td>
-
-                                        <td className="text-right">
-                                            <UncontrolledDropdown>
-                                                <DropdownToggle
-                                                    className="btn-icon-only text-light"
-                                                    href="#pablo"
-                                                    role="button"
-                                                    size="sm"
-                                                    color=""
-                                                    onClick={(e) => e.preventDefault()}
-                                                >
-                                                    <i className="fas fa-ellipsis-v" />
-                                                </DropdownToggle>
-                                                <DropdownMenu className="dropdown-menu-arrow" right>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Action
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Another action
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Something else here
-                                                    </DropdownItem>
-                                                </DropdownMenu>
-                                            </UncontrolledDropdown>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -162,7 +114,7 @@ const Laporan = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default Laporan;
+export default Laporan

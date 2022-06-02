@@ -1,50 +1,25 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const suratMasukEdit= () => {
-    return (
-        <>
+function TamuYayasanEdit() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <Col className="order-xl-1" xl="12">
                         <Card className="bg-secondary shadow">
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Surat Masuk</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Tamu Yayasan</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Edit Surat Masuk
+                                        Tambah Tamu Yayasan
                                     </h6>
                                     {/* Address */}
                                     <div className="pl-lg-4">
@@ -55,12 +30,12 @@ const suratMasukEdit= () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nomor Surat
+                                                        Nama Instansi
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Nomor Surat"
+                                                        placeholder="nama instansi"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -71,12 +46,12 @@ const suratMasukEdit= () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Asal Surat
+                                                        Alamat Instansi
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="asal Surat"
+                                                        placeholder="alamat instansi"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -87,12 +62,28 @@ const suratMasukEdit= () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Uraian Surat
+                                                        No HP
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Deskripsi Surat"
+                                                        placeholder="08xx"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Keperluan
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="keperluan"
                                                         type="textarea"
                                                     />
                                                 </FormGroup>
@@ -103,46 +94,13 @@ const suratMasukEdit= () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Keterangan Surat
+                                                        Tipe Tamu
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Keterangan Surat"
-                                                        type="text"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Tipe Surat
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="tipe Surat"
+                                                        placeholder="Jabatan"
                                                         type="select"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        File Surat
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Pilih File Surat"
-                                                        type="file"
-                                                        size="xs"
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -155,7 +113,7 @@ const suratMasukEdit= () => {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/TamuYayasan"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -165,7 +123,7 @@ const suratMasukEdit= () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default suratMasukEdit;
+export default TamuYayasanEdit

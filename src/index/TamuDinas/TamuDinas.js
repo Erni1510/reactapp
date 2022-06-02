@@ -1,55 +1,40 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import {
-    Badge,
     Card,
     CardHeader,
     CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
     Pagination,
     PaginationItem,
     PaginationLink,
-    Progress,
     Table,
     Container,
     Row,
-    Button,
-    UncontrolledTooltip,
 } from "reactstrap";
-// core components
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const DataSiswa = () => {
-    return (
-        <>
+function TamuDinas() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Data Siswa</h3>
-                                <Link to={"/admin/siswaCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
-                               
+                                <h3 className="mb-0">Tamu Dinas</h3>
+                                <Link to={"/admin/TamuDinasCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama Siswa</th>
-                                        <th scope="col">TTL</th>
-                                        <th scope="col">Alamat</th>
-                                        <th scope="col">Jenis Kelamin</th>
-                                        <th scope="col">Dokumen</th>
-                                        <th scope="col">Rekap Nilai</th>
-                                        <th scope="col" className="text-center">Opsi</th>
+                                        <th scope="col" className="text-center">No</th>
+                                        <th scope="col">Nama Instansi</th>
+                                        <th scope="col">Alamat Instansi</th>
+                                        <th scope="col">No HP</th>
+                                        <th scope="col">Keperluan</th>
+                                        <th scope="col">Tipe Tamu</th>
+                                        <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,25 +43,22 @@ const DataSiswa = () => {
                                             <h6 className="mb-0 text-center text-sm">1</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Rena</p>
+                                            <p className="text-sm font-weight-bold mb-0">Bima</p>
                                         </td>
-                                        <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0">Surabaya, 15 Juni 2018</p>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Surabaya</p>
                                         </td>
-                                        <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0">Jalan Merpati No 11</p>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">087865654765</p>
                                         </td>
-                                        <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0">Perempuan</p>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Rapat</p>
                                         </td>
-                                        <td className="align-middle text-center">
-                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0">Tamu Dinas</p>
                                         </td>
-                                        <td className="align-middle text-center">
-                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                        </td>
-                                        <td className="align-middle text-center">
-                                        <Link to={"/admin/siswaEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <td>
+                                        <Link to={"/admin/TamuDinasEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                         <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
@@ -139,7 +121,7 @@ const DataSiswa = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default DataSiswa;
+export default TamuDinas

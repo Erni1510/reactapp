@@ -1,38 +1,13 @@
-// reactstrap components
-
+import React from 'react'
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 
-const siswaCreate = () => {
-    return (
-        <>
+function SiswaCreate() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <Col className="order-xl-1" xl="12">
                         <Card className="bg-secondary shadow">
@@ -380,16 +355,7 @@ const siswaCreate = () => {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/DataSiswa"} className="btn btn-warning float-right" size="sm">Cancel</Link>
-                                        {/* <Button
-                                            className="float-right"
-                                            color="warning"
-                                            href="./"
-                                            onClick={(e) => e.preventDefault()}
-                                            size="sm"
-                                        >
-                                            Cancel
-                                        </Button> */}
+                                        <Link to={"/admin/Siswa"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -399,7 +365,7 @@ const siswaCreate = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default siswaCreate;
+export default SiswaCreate

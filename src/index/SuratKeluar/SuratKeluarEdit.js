@@ -1,50 +1,25 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const tamuDinasCreate = () => {
-    return (
-        <>
+function SuratKeluarEdit() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <Col className="order-xl-1" xl="12">
                         <Card className="bg-secondary shadow">
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Tamu Dinas</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Surat Keluar</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Tambah Tamu Dinas
+                                        Edit Surat Keluar
                                     </h6>
                                     {/* Address */}
                                     <div className="pl-lg-4">
@@ -55,12 +30,12 @@ const tamuDinasCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Instansi
+                                                        Nomor Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="nama instansi"
+                                                        placeholder="Nomor Surat"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -71,12 +46,12 @@ const tamuDinasCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Alamat Instansi
+                                                        Tujuan Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="alamat instansi"
+                                                        placeholder="tujuan Surat"
                                                         type="text"
                                                     />
                                                 </FormGroup>
@@ -87,28 +62,12 @@ const tamuDinasCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        No HP
+                                                        Uraian Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="08xx"
-                                                        type="text"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Keperluan
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="keperluan"
+                                                        placeholder="Deskripsi Surat"
                                                         type="textarea"
                                                     />
                                                 </FormGroup>
@@ -119,13 +78,46 @@ const tamuDinasCreate = () => {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Tipe Tamu
+                                                        Keterangan Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Jabatan"
+                                                        placeholder="Keterangan Surat"
+                                                        type="text"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Tipe Surat
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="tipe Surat"
                                                         type="select"
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        File Surat
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Pilih File Surat"
+                                                        type="file"
+                                                        size="xs"
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -138,7 +130,7 @@ const tamuDinasCreate = () => {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/TamuDinas"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -148,7 +140,9 @@ const tamuDinasCreate = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default tamuDinasCreate;
+export default SuratKeluarEdit
+
+        

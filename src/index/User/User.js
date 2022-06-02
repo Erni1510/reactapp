@@ -1,42 +1,29 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import {
-    Badge,
     Card,
     CardHeader,
     CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
     Pagination,
     PaginationItem,
     PaginationLink,
-    Progress,
     Table,
     Container,
     Row,
-    Button,
-    UncontrolledTooltip,
 } from "reactstrap";
-// core components
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const User = () => {
-    return (
-        <>
+function User() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">User</h3>
-                                <Link to={"/admin/userCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <Link to={"/admin/UserCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -63,7 +50,7 @@ const User = () => {
                                             <p className="text-sm font-weight-bold mb-0">Kepala Sekolah</p>
                                         </td>
                                         <td>
-                                        <Link to={"/admin/userEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <Link to={"/admin/UserEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                         <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
@@ -126,7 +113,8 @@ const User = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default User;
+export default User
+

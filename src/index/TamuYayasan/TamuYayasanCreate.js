@@ -1,52 +1,26 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Col, Input, FormGroup, Form,
-    Container,
-    Row,
-    Button,
-    CardImage, CardBody, CardTitle, CardText,
-    UncontrolledTooltip,
-} from "reactstrap";
-// core components
+import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const tamuUmumEdit = () => {
-    return (
-        <>
+function TamuYayasanCreate() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <Col className="order-xl-1" xl="12">
                         <Card className="bg-secondary shadow">
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Tamu Umum</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Tamu Yayasan</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Edit Tamu Umum
+                                        Tambah Tamu Yayasan
                                     </h6>
-                                    {/* Address */}
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -138,7 +112,7 @@ const tamuUmumEdit = () => {
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/TamuUmum"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/TamuYayasan"} className="btn btn-warning float-right" size="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -148,7 +122,7 @@ const tamuUmumEdit = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default tamuUmumEdit;
+export default TamuYayasanCreate

@@ -1,53 +1,42 @@
-// reactstrap components
-
+import React from 'react'
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import {
-    Badge,
     Card,
     CardHeader,
     CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
     Pagination,
     PaginationItem,
     PaginationLink,
-    Progress,
     Table,
     Container,
     Row,
-    Button,
-    UncontrolledTooltip,
 } from "reactstrap";
-// core components
 import Header from "../../components/Headers/Header.js";
 
-const TamuUmum = () => {
-    return (
-        <>
+function Siswa() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Tamu Umum</h3>
-                                <Link to={"/admin/tamuUmumCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <h3 className="mb-0">Data Siswa</h3>
+                                <Link to={"/admin/SiswaCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                               
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
-                                        <th scope="col" className="text-center">No</th>
-                                        <th scope="col">Nama Instansi</th>
-                                        <th scope="col">Alamat Instansi</th>
-                                        <th scope="col">No HP</th>
-                                        <th scope="col">Keperluan</th>
-                                        <th scope="col">Tipe Tamu</th>
-                                        <th scope="col">Opsi</th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Siswa</th>
+                                        <th scope="col">TTL</th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Jenis Kelamin</th>
+                                        <th scope="col">Dokumen</th>
+                                        <th scope="col">Rekap Nilai</th>
+                                        <th scope="col" className="text-center">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,22 +45,25 @@ const TamuUmum = () => {
                                             <h6 className="mb-0 text-center text-sm">1</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Nuriya</p>
+                                            <p className="text-sm font-weight-bold mb-0">Rena</p>
                                         </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">Kediri</p>
+                                        <td className="align-middle text-center">
+                                            <p className="text-sm font-weight-bold mb-0">Surabaya, 15 Juni 2018</p>
                                         </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">087865654765</p>
+                                        <td className="align-middle text-center">
+                                            <p className="text-sm font-weight-bold mb-0">Jalan Merpati No 11</p>
                                         </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">Pengambilan Rapot</p>
+                                        <td className="align-middle text-center">
+                                            <p className="text-sm font-weight-bold mb-0">Perempuan</p>
                                         </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">Tamu Umum</p>
+                                        <td className="align-middle text-center">
+                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                         </td>
-                                        <td>
-                                        <Link to={"/admin/tamuUmumEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <td className="align-middle text-center">
+                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                        </td>
+                                        <td className="align-middle text-center">
+                                        <Link to={"/admin/SiswaEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                         <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
@@ -134,7 +126,7 @@ const TamuUmum = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default TamuUmum;
+export default Siswa;

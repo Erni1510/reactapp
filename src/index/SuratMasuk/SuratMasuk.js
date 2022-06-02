@@ -1,78 +1,67 @@
-// reactstrap components
-
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import {
-    Badge,
     Card,
     CardHeader,
     CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
     Pagination,
     PaginationItem,
     PaginationLink,
-    Progress,
     Table,
     Container,
     Row,
-    Button,
-    UncontrolledTooltip,
 } from "reactstrap";
-// core components
 import Header from "../../components/Headers/Header.js";
+import React from 'react'
 
-const TamuDinas = () => {
-    return (
-        <>
+function SuratMasuk() {
+  return (
+    <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Tamu Dinas</h3>
-                                <Link to={"/admin/tamuDinasCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <h3 className="mb-0">Surat Masuk</h3>
+                                <Link to={"/admin/SuratMasukCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
                             </CardHeader>
+
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
-                                        <th scope="col" className="text-center">No</th>
-                                        <th scope="col">Nama Instansi</th>
-                                        <th scope="col">Alamat Instansi</th>
-                                        <th scope="col">No HP</th>
-                                        <th scope="col">Keperluan</th>
-                                        <th scope="col">Tipe Tamu</th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nomor Surat</th>
+                                        <th scope="col">Asal Surat</th>
+                                        <th scope="col">Uraian</th>
+                                        <th scope="col">Keterangan</th>
+                                        <th scope="col">Tipe Surat</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td align-middle text-center text-sm>
-                                            <h6 className="mb-0 text-center text-sm">1</h6>
+                                        <td className="align-middle text-center">
+                                            <p className="text-sm font-weight-bold mb-0">1</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Bima</p>
+                                            <p className="text-sm font-weight-bold mb-0">Surat Jabatan</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Surabaya</p>
+                                            <p className="text-sm font-weight-bold mb-0">229</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">087865654765</p>
+                                            <p className="text-sm font-weight-bold mb-0">Jabatan ketua TK</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Rapat</p>
+                                            <p className="text-sm font-weight-bold mb-0">Rekomendasi Jabatan</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Tamu Dinas</p>
+                                            <p className="text-sm font-weight-bold mb-0">Surat Masuk</p>
                                         </td>
                                         <td>
-                                        <Link to={"/admin/tamuDinasEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/SuratMasukEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -134,7 +123,7 @@ const TamuDinas = () => {
                 </Row>
             </Container>
         </>
-    );
-};
+  )
+}
 
-export default TamuDinas;
+export default SuratMasuk
