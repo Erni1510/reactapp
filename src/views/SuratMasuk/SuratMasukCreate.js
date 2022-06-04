@@ -1,15 +1,25 @@
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 
 function SuratMasukCreate() {
+    const [asal, setAsal] = useState('')
+    const [nomor, setNomor] = useState('')
+    const [uraian, setUraian] = useState('')
+    const [keterangan, setKeterangan] = useState('')
+    const [file, setFile] = useState('')
+
+    let data ={nomor, asal, uraian, keterangan, file};
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log(data);
+    }
+
   return (
     <>
             <Header />
-            {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
                 <Row>
                     <Col className="order-xl-1" xl="12">
                         <Card className="bg-secondary shadow">
@@ -19,13 +29,13 @@ function SuratMasukCreate() {
                                         <h3 className="mb-0">Surat Masuk</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
                                         Tambah Surat Masuk
                                     </h6>
                                     {/* Address */}
                                     <div className="pl-lg-4">
-                                        <Row>
+                                        <Row> 
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label
@@ -39,6 +49,7 @@ function SuratMasukCreate() {
                                                         id="input-address"
                                                         placeholder="Nomor Surat"
                                                         type="text"
+                                                        onChange={(e) => setNomor(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -55,6 +66,7 @@ function SuratMasukCreate() {
                                                         id="input-address"
                                                         placeholder="asal Surat"
                                                         type="text"
+                                                        onChange={(e) => setAsal(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -71,6 +83,7 @@ function SuratMasukCreate() {
                                                         id="input-address"
                                                         placeholder="Deskripsi Surat"
                                                         type="textarea"
+                                                        onChange={(e) => setUraian(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -87,22 +100,7 @@ function SuratMasukCreate() {
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
                                                         type="text"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Tipe Surat
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="tipe Surat"
-                                                        type="select"
+                                                        onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -119,7 +117,8 @@ function SuratMasukCreate() {
                                                         id="input-address"
                                                         placeholder="Pilih File Surat"
                                                         type="file"
-                                                        size="xs"
+                                                        bssize="xs"
+                                                        onChange={(e) => setFile(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -127,12 +126,10 @@ function SuratMasukCreate() {
                                         <Button
                                             className="float-right"
                                             color="success"
-                                            href="./"
-                                            onClick={(e) => e.preventDefault()}
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>

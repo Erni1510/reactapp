@@ -1,11 +1,21 @@
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 function TamuUmumEdit() {
-  return (
-    <>
+    const [nama, setNama] = useState('')
+    const [alamat, setAlamat] = useState('')
+    const [no, setNo] = useState('')
+    const [keperluan, setKeperluan] = useState('')
+
+    let data = { nama, alamat, no, keperluan };
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log(data);
+    }
+    return (
+        <>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -17,7 +27,7 @@ function TamuUmumEdit() {
                                         <h3 className="mb-0">Tamu Umum</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Tamu Umum
                                     </h6>
@@ -36,6 +46,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="nama instansi"
                                                         type="text"
+                                                        onChange={(e) => setNama(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -52,6 +63,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="alamat instansi"
                                                         type="text"
+                                                        onChange={(e) => setAlamat(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -68,6 +80,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="08xx"
                                                         type="text"
+                                                        onChange={(e) => setNo(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -84,22 +97,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="keperluan"
                                                         type="textarea"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Tipe Tamu
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Jabatan"
-                                                        type="select"
+                                                        onChange={(e) => setKeperluan(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -107,12 +105,10 @@ function TamuUmumEdit() {
                                         <Button
                                             className="float-right"
                                             color="success"
-                                            href="./"
-                                            onClick={(e) => e.preventDefault()}
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/TamuUmum"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/TamuUmum"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -122,7 +118,7 @@ function TamuUmumEdit() {
                 </Row>
             </Container>
         </>
-  )
+    )
 }
 
 export default TamuUmumEdit

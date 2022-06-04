@@ -23,7 +23,7 @@ function SuratKeluar() {
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">Surat Keluar</h3>
-                                <Link to={"/admin/SuratKeluarCreate"} className="btn btn-success float-right" size="sm">+Tambah</Link>
+                                <Link to={"/admin/SuratKeluarCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -58,8 +58,8 @@ function SuratKeluar() {
                                             <p className="text-sm font-weight-bold mb-0">Surat Keluar</p>
                                         </td>
                                         <td>
-                                        <Link to={""} target="_blank" className="btn btn-info" size="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/SuratKeluarEdit"} className="btn btn-success" size="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/SuratKeluarEdit"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>

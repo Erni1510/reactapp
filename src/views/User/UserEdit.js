@@ -1,11 +1,21 @@
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 function UserEdit() {
-  return (
-    <>
+    const [nama, setNama] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [jabatan, setJabatan] = useState('')
+
+    let data = { nama, username, password, jabatan };
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log(data);
+    }
+    return (
+        <>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -17,7 +27,7 @@ function UserEdit() {
                                         <h3 className="mb-0">User</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit User
                                     </h6>
@@ -37,6 +47,7 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="Nama"
                                                         type="text"
+                                                        onChange={(e) => setNama(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -53,6 +64,7 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="xxx@mail.com"
                                                         type="email"
+                                                        onChange={(e) => setUsername(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -69,6 +81,7 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="password"
                                                         type="password"
+                                                        onChange={(e) => setPassword(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -85,6 +98,7 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="Jabatan"
                                                         type="select"
+                                                        onChange={(e) => setJabatan(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -92,12 +106,10 @@ function UserEdit() {
                                         <Button
                                             className="float-right"
                                             color="success"
-                                            href="./"
-                                            onClick={(e) => e.preventDefault()}
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/User"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -107,7 +119,7 @@ function UserEdit() {
                 </Row>
             </Container>
         </>
-  )
+    )
 }
 
 export default UserEdit

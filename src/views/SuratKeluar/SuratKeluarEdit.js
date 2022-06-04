@@ -1,11 +1,22 @@
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 function SuratKeluarEdit() {
-  return (
-    <>
+    const [nomor, setNomor] = useState('')
+    const [tujuan, setTujuan] = useState('')
+    const [uraian, setUraian] = useState('')
+    const [keterangan, setKeterangan] = useState('')
+    const [file, setFile] = useState('')
+
+    let data = { nomor, tujuan, uraian, keterangan, file };
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log(data);
+    }
+    return (
+        <>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -17,7 +28,7 @@ function SuratKeluarEdit() {
                                         <h3 className="mb-0">Surat Keluar</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Surat Keluar
                                     </h6>
@@ -37,6 +48,7 @@ function SuratKeluarEdit() {
                                                         id="input-address"
                                                         placeholder="Nomor Surat"
                                                         type="text"
+                                                        onChange={(e) => setNomor(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -53,6 +65,7 @@ function SuratKeluarEdit() {
                                                         id="input-address"
                                                         placeholder="tujuan Surat"
                                                         type="text"
+                                                        onChange={(e) => setTujuan(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -69,6 +82,7 @@ function SuratKeluarEdit() {
                                                         id="input-address"
                                                         placeholder="Deskripsi Surat"
                                                         type="textarea"
+                                                        onChange={(e) => setUraian(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -85,22 +99,7 @@ function SuratKeluarEdit() {
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
                                                         type="text"
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Tipe Surat
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="tipe Surat"
-                                                        type="select"
+                                                        onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -117,7 +116,8 @@ function SuratKeluarEdit() {
                                                         id="input-address"
                                                         placeholder="Pilih File Surat"
                                                         type="file"
-                                                        size="xs"
+                                                        bssize="xs"
+                                                        onChange={(e) => setFile(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -125,12 +125,10 @@ function SuratKeluarEdit() {
                                         <Button
                                             className="float-right"
                                             color="success"
-                                            href="./"
-                                            onClick={(e) => e.preventDefault()}
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" size="sm">Cancel</Link>
+                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -140,9 +138,8 @@ function SuratKeluarEdit() {
                 </Row>
             </Container>
         </>
-  )
+    )
 }
 
 export default SuratKeluarEdit
 
-        
