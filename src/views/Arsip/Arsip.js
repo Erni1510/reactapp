@@ -1,21 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink as Link } from "react-router-dom";
-import {
-    Card,
-    CardHeader,
-    CardFooter,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Table,
-    Container,
-    Row,
-} from "reactstrap";
+import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import apiClient from '../../services/API.js';
 
 function Arsip() {
-  return (
-    <>
+    const [nama, setNama] = useState('')
+    const [nomor, setNomor] = useState('')
+    const [deskripsi, setDeskripsi] = useState('')
+
+    const fetchAPI = () => {
+        apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+            apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+                console.log(response.data)
+            }).catch((err) => {
+                console.error(err)
+            })
+        })
+    }
+
+    useEffect(() => {
+        fetchAPI()
+    }, [nama, nomor, deskripsi])
+
+
+    return (
+        <>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -50,7 +60,7 @@ function Arsip() {
                                             <p className="text-sm font-weight-bold mb-0">Administrasi Kelas</p>
                                         </td>
                                         <td>
-                                        <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                            <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                             <Link to={"/admin/ArsipEdit"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
@@ -114,7 +124,7 @@ function Arsip() {
                 </Row>
             </Container>
         </>
-  )
+    )
 }
 
 export default Arsip
