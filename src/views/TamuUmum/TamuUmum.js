@@ -11,9 +11,20 @@ import {
     Row,
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import apiClient from '../../services/API.js';
 
 function TamuUmum() {
+    const [APIData, setAPIData] =useState([]);
+    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+                    setAPIData(response.data);
+                    console.log(response.data)
+                }).catch((err) => {
+                    console.error(err)
+                })
+            })})
+    
   return (
     <>
             <Header />
@@ -33,7 +44,6 @@ function TamuUmum() {
                                         <th scope="col">Alamat Instansi</th>
                                         <th scope="col">No HP</th>
                                         <th scope="col">Keperluan</th>
-                                        <th scope="col">Tipe Tamu</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -55,10 +65,7 @@ function TamuUmum() {
                                             <p className="text-sm font-weight-bold mb-0">Pengambilan Rapot</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Tamu Umum</p>
-                                        </td>
-                                        <td>
-                                        <Link to={"/admin/TamuUmumEdit"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <Link to={"/admin/editTamuUmum/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                         <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>

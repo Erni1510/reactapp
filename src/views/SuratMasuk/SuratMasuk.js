@@ -11,9 +11,20 @@ import {
     Row,
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import apiClient from '../../services/API.js';
 
 function SuratMasuk() {
+    const [APIData, setAPIData] =useState([]);
+    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+                    setAPIData(response.data);
+                    console.log(response.data)
+                }).catch((err) => {
+                    console.error(err)
+                })
+            })})
+    
   return (
     <>
             <Header />
@@ -34,7 +45,6 @@ function SuratMasuk() {
                                         <th scope="col">Asal Surat</th>
                                         <th scope="col">Uraian</th>
                                         <th scope="col">Keterangan</th>
-                                        <th scope="col">Tipe Surat</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -56,11 +66,8 @@ function SuratMasuk() {
                                             <p className="text-sm font-weight-bold mb-0">Rekomendasi Jabatan</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Surat Masuk</p>
-                                        </td>
-                                        <td>
                                         <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/SuratMasukEdit"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/editSuratMasuk/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>

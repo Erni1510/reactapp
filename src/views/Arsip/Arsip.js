@@ -5,26 +5,20 @@ import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 
 function Arsip() {
-    const [nama, setNama] = useState('')
-    const [nomor, setNomor] = useState('')
-    const [deskripsi, setDeskripsi] = useState('')
+    const [APIData, setAPIData] =useState([]);
+    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+                    setAPIData(response.data);
+                    console.log(response.data)
+                }).catch((err) => {
+                    console.error(err)
+                })
+            })})
 
-    const fetchAPI = () => {
-        apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
-            apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                console.log(response.data)
-            }).catch((err) => {
-                console.error(err)
-            })
-        })
-    }
-
-    useEffect(() => {
-        fetchAPI()
-    }, [nama, nomor, deskripsi])
-
-
+    // {APIData.map((data) => {
+{APIData.map((data) => {})}
     return (
+        
         <>
             <Header />
             <Container className="mt--7" fluid>
@@ -51,17 +45,17 @@ function Arsip() {
                                             <p className="text-sm font-weight-bold mb-0">1</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Arsip Administrasi</p>
+                                            <p className="text-sm font-weight-bold mb-0">jg</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">768</p>
+                                            <p className="text-sm font-weight-bold mb-0">kmj</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Administrasi Kelas</p>
+                                            <p className="text-sm font-weight-bold mb-0">h</p>
                                         </td>
                                         <td>
-                                            <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/ArsipEdit"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                            <Link to={"/admin/editArsip/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
@@ -125,6 +119,7 @@ function Arsip() {
             </Container>
         </>
     )
+// })}
 }
 
 export default Arsip

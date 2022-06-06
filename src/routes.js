@@ -128,7 +128,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/ArsipEdit",
+    path: "/editArsip/:id",
     component: ArsipEdit,
     layout: "/admin",
   },
@@ -138,7 +138,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/SuratMasukEdit",
+    path: "/editSuratMasuk/:id",
     component: SuratMasukEdit,
     layout: "/admin",
   },
@@ -148,7 +148,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/SuratKeluarEdit",
+    path: "/editSuratKeluar/:id",
     component: SuratKeluarEdit,
     layout: "/admin",
   },
@@ -158,7 +158,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/UserEdit",
+    path: "/editUser/:id",
     component: UserEdit,
     layout: "/admin",
   },
@@ -168,7 +168,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/TamuUmumEdit",
+    path: "/editTamuUmum/:id",
     component: TamuUmumEdit,
     layout: "/admin",
   },
@@ -178,7 +178,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/TamuDinasEdit",
+    path: "/editTamuDinas/:id",
     component: TamuDinasEdit,
     layout: "/admin",
   },
@@ -188,7 +188,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/TamuYayasanEdit",
+    path: "/editTamuYayasan/:id",
     component: TamuYayasanEdit,
     layout: "/admin",
   },
