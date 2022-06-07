@@ -15,15 +15,18 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function TamuYayasan() {
-    const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+    const [tamuYayasan, setTamuYayasan] = useState([])
+
+    useEffect(() => {
+        let isMounted = true
+
         apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+            const tamuYayasanData = JSON.parse(response.data.TamuYayasan)
+            isMounted && setTamuYayasan(tamuYayasanData)
+        }).catch((err) => {
+            console.error(err)
+        })
+    }, [])
     
   return (
     <>

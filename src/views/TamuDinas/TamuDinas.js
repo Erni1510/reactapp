@@ -15,15 +15,18 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function TamuDinas() {
-    const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+    const [tamuDinas, setTamuDinas] = useState([])
+
+    useEffect(() => {
+        let isMounted = true
+
         apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+            const tamuDinasData = JSON.parse(response.data.TamuDinas)
+            isMounted && setTamuDinas(tamuDinasData)
+        }).catch((err) => {
+            console.error(err)
+        })
+    }, [])
 
 
         return (
@@ -54,16 +57,16 @@ function TamuDinas() {
                                                     <h6 className="mb-0 text-center text-sm">1</h6>
                                                 </td>
                                                 <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.nama_instansi}</p>
+                                                    <p className="text-sm font-weight-bold mb-0"></p>
                                                 </td>
                                                 <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.alamat_instansi}</p>
+                                                    <p className="text-sm font-weight-bold mb-0"></p>
                                                 </td>
                                                 <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.no_hp}</p>
+                                                    <p className="text-sm font-weight-bold mb-0"></p>
                                                 </td>
                                                 <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.keperluan}</p>
+                                                    <p className="text-sm font-weight-bold mb-0"></p>
                                                 </td>
                                                 <td>
                                                 <Link to={"/admin/editTamuDinas/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>

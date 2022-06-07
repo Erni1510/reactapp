@@ -15,15 +15,18 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function User() {
-    const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        let isMounted = true
+
         apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+            const userData = JSON.parse(response.data.user)
+            isMounted && setUser(userData)
+        }).catch((err) => {
+            console.error(err)
+        })
+    }, [])
 
   return (
     <>

@@ -15,15 +15,18 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function SuratMasuk() {
-    const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+    const [suratMasuk, setSuratMasuk] = useState([])
+
+    useEffect(() => {
+        let isMounted = true
+
         apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+            const suratMasukData = JSON.parse(response.data.suratMasuk)
+            isMounted && setSuratMasuk(suratMasukData)
+        }).catch((err) => {
+            console.error(err)
+        })
+    }, [])
     
   return (
     <>

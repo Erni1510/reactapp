@@ -5,21 +5,21 @@ import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 
 function Arsip() {
-    const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+    const [arsip, setArsip] = useState([])
 
-    // {APIData.map((data) => {
-{APIData.map((data) => {})}
+    useEffect(() => {
+        let isMounted = true
+
+        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+            const arsipData = JSON.parse(response.data.arsip)
+            isMounted && setArsip(arsipData)
+        }).catch((err) => {
+            console.error(err)
+        })
+    }, [])
+
     return (
-        
-        <>
+        <div>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -30,6 +30,7 @@ function Arsip() {
                                 <Link to={"/admin/ArsipCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
+
                                 <thead className="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -39,27 +40,40 @@ function Arsip() {
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0">1</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">jg</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">kmj</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0">h</p>
-                                        </td>
-                                        <td>
-                                            <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                            <Link to={"/admin/editArsip/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                            <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
+
+                                {arsip.map(data => {
+                                    return (
+                                        <>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td className="align-middle text-center">
+                                                        <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+
+
+                                                    </td>
+                                                    <td>
+                                                        <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
+
+                                                    </td>
+                                                    <td>
+                                                        <p className="text-sm font-weight-bold mb-0">{data.nomor}</p>
+
+                                                    </td>
+                                                    <td><p className="text-sm font-weight-bold mb-0">{data.deskripsi}</p>
+
+                                                    </td>
+                                                    <td>
+                                                        <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                        <Link to={"/admin/editArsip/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </>
+                                    )
+                                })}
                             </Table>
                             <CardFooter className="py-4">
                                 <nav aria-label="...">
@@ -117,9 +131,12 @@ function Arsip() {
                     </div>
                 </Row>
             </Container>
-        </>
+
+
+
+        </div>
+
     )
-// })}
 }
 
 export default Arsip

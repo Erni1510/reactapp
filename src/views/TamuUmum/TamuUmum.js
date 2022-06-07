@@ -15,15 +15,18 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function TamuUmum() {
-    const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+    const [tamuUmum, setTamuUmum] = useState([])
+
+    useEffect(() => {
+        let isMounted = true
+
         apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+            const tamuUmumData = JSON.parse(response.data.TamuUmum)
+            isMounted && setTamuUmum(tamuUmumData)
+        }).catch((err) => {
+            console.error(err) 
+        })
+    }, [])
     
   return (
     <>

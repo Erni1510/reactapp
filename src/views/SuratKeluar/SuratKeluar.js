@@ -15,15 +15,18 @@ import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 
 function SuratKeluar() {
-const [APIData, setAPIData] =useState([]);
-    useEffect(() => { apiClient.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+    const [suratKeluar, setSuratKeluar] = useState([])
+
+    useEffect(() => {
+        let isMounted = true
+
         apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-                    setAPIData(response.data);
-                    console.log(response.data)
-                }).catch((err) => {
-                    console.error(err)
-                })
-            })})
+            const suratKeluarData = JSON.parse(response.data.suratKeluar)
+            isMounted && setSuratKeluar(suratKeluarData)
+        }).catch((err) => {
+            console.error(err)
+        })
+    }, [])
 
   return (
     <>
