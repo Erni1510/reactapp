@@ -15,14 +15,15 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function TamuDinas() {
-    const [tamuDinas, setTamuDinas] = useState([])
+    const [tamu, setTamu] = useState([])
 
     useEffect(() => {
         let isMounted = true
 
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-            const tamuDinasData = JSON.parse(response.data.TamuDinas)
-            isMounted && setTamuDinas(tamuDinasData)
+        apiClient.get('http://localhost:8000/api/tamu').then((response) => {
+            const tamuData = JSON.parse(response.data.tamu)
+            isMounted && setTamu(tamuData)
+            console.log(tamuData)
         }).catch((err) => {
             console.error(err)
         })
@@ -41,40 +42,50 @@ function TamuDinas() {
                                         <Link to={"/admin/TamuDinasCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                                     </CardHeader>
                                     <Table className="align-items-center table-flush" responsive>
-                                        <thead className="thead-light">
-                                            <tr>
-                                                <th scope="col" className="text-center">No</th>
-                                                <th scope="col">Nama Instansi</th>
-                                                <th scope="col">Alamat Instansi</th>
-                                                <th scope="col">No HP</th>
-                                                <th scope="col">Keperluan</th>
-                                                <th scope="col">Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td align-middle text-center text-sm>
-                                                    <h6 className="mb-0 text-center text-sm">1</h6>
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0"></p>
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0"></p>
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0"></p>
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0"></p>
-                                                </td>
-                                                <td>
-                                                <Link to={"/admin/editTamuDinas/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                                <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
+                                <thead className="thead-light">
+                                    <tr>
+                                        <th scope="col" className="text-center">No</th>
+                                        <th scope="col">Nama Instansi</th>
+                                        <th scope="col">Alamat Instansi</th>
+                                        <th scope="col">No HP</th>
+                                        <th scope="col">Keperluan</th>
+                                        <th scope="col">Tipe Tamu</th>
+                                        <th scope="col">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {tamu.map(data => {
+                                    return (
+                                        <>
+                                    <tr>
+                                        <td align-middle text-center text-sm>
+                                            <h6 className="mb-0 text-center text-sm"  key={data.id}>{data.id}</h6>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.nama_instansi}</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.alamat_instansi}</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.no_hp}</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.keperluan}</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe_tamu}</p>
+                                        </td>
+                                        <td>
+                                        <Link to={"/admin/editTamuUmum/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                        </td>
+                                    </tr>
+                                    </>
+                                    )
+                                })}
+                                </tbody>
+                            </Table>
                                     <CardFooter className="py-4">
                                         <nav aria-label="...">
                                             <Pagination

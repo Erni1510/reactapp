@@ -20,9 +20,10 @@ function User() {
     useEffect(() => {
         let isMounted = true
 
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+        apiClient.get('http://localhost:8000/api/user').then((response) => {
             const userData = JSON.parse(response.data.user)
             isMounted && setUser(userData)
+            console.log(userData)
         }).catch((err) => {
             console.error(err)
         })

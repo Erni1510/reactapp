@@ -10,9 +10,10 @@ function Arsip() {
     useEffect(() => {
         let isMounted = true
 
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+        apiClient.get('http://localhost:8000/api/arsip').then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
+            console.log(arsipData)
         }).catch((err) => {
             console.error(err)
         })
@@ -35,32 +36,24 @@ function Arsip() {
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Arsip</th>
-                                        <th scope="col">Nomor Arsip</th>
-                                        <th scope="col">Deskripsi</th>
+                                        <th scope="col">Keterangan Arsip</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
-
+                                <tbody>
                                 {arsip.map(data => {
                                     return (
                                         <>
-                                            <tbody>
-
                                                 <tr>
                                                     <td className="align-middle text-center">
-                                                        <p className="text-sm font-weight-bold mb-0">{data.id}</p>
-
+                                                        <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nama_arsip}</p>
 
                                                     </td>
                                                     <td>
-                                                        <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
-
-                                                    </td>
-                                                    <td>
-                                                        <p className="text-sm font-weight-bold mb-0">{data.nomor}</p>
-
-                                                    </td>
-                                                    <td><p className="text-sm font-weight-bold mb-0">{data.deskripsi}</p>
+                                                        <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
 
                                                     </td>
                                                     <td>
@@ -69,11 +62,10 @@ function Arsip() {
                                                         <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                                     </td>
                                                 </tr>
-
-                                            </tbody>
                                         </>
                                     )
                                 })}
+                                </tbody>
                             </Table>
                             <CardFooter className="py-4">
                                 <nav aria-label="...">

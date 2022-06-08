@@ -20,17 +20,18 @@ function SuratKeluar() {
     useEffect(() => {
         let isMounted = true
 
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+        apiClient.get('http://localhost:8000/api/surat-keluar').then((response) => {
             const suratKeluarData = JSON.parse(response.data.suratKeluar)
             isMounted && setSuratKeluar(suratKeluarData)
+            console.log(suratKeluarData)
         }).catch((err) => {
             console.error(err)
         })
     }, [])
 
   return (
-    <>
-            <Header />
+      <div>
+          <Header />
             <Container className="mt--7" fluid>
                 <Row>
                     <div className="col">
@@ -47,25 +48,32 @@ function SuratKeluar() {
                                         <th scope="col">tujuan Surat</th>
                                         <th scope="col">Uraian</th>
                                         <th scope="col">Keterangan</th>
+                                        <th scope="col">Tipe</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {suratKeluar.map(data => {
+                                    return (
+                                        <>
                                     <tr>
+                                    <td className="align-middle text-center">
+                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
+                                        </td>
                                         <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0">1</p>
+                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nomor_surat}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Surat Undangan</p>
+                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tujuan_surat}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">337</p>
+                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.uraian}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali</p>
+                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Undangan Wali</p>
+                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tipe_surat}</p>
                                         </td>
                                         
                                         <td>
@@ -74,6 +82,9 @@ function SuratKeluar() {
                                             <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
+                                    </>
+                                    )
+                                })}
                                 </tbody>
                             </Table>
                             <CardFooter className="py-4">
@@ -132,7 +143,8 @@ function SuratKeluar() {
                     </div>
                 </Row>
             </Container>
-        </>
+      </div>
+            
   )
 }
 

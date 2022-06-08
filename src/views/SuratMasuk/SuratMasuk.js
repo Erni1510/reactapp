@@ -20,9 +20,10 @@ function SuratMasuk() {
     useEffect(() => {
         let isMounted = true
 
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
+        apiClient.get('http://localhost:8000/api/surat-masuk').then((response) => {
             const suratMasukData = JSON.parse(response.data.suratMasuk)
             isMounted && setSuratMasuk(suratMasukData)
+            console.log(suratMasukData)
         }).catch((err) => {
             console.error(err)
         })

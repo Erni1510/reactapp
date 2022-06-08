@@ -15,14 +15,15 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 
 function TamuYayasan() {
-    const [tamuYayasan, setTamuYayasan] = useState([])
+    const [tamu, setTamu] = useState([])
 
     useEffect(() => {
         let isMounted = true
 
-        apiClient.get('http://localhost:8000/api/request-read').then((response) => {
-            const tamuYayasanData = JSON.parse(response.data.TamuYayasan)
-            isMounted && setTamuYayasan(tamuYayasanData)
+        apiClient.get('http://localhost:8000/api/tamu').then((response) => {
+            const tamuData = JSON.parse(response.data.tamu)
+            isMounted && setTamu(tamuData)
+            console.log(tamuData)
         }).catch((err) => {
             console.error(err)
         })
@@ -47,31 +48,41 @@ function TamuYayasan() {
                                         <th scope="col">Alamat Instansi</th>
                                         <th scope="col">No HP</th>
                                         <th scope="col">Keperluan</th>
+                                        <th scope="col">Tipe Tamu</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {tamu.map(data => {
+                                    return (
+                                        <>
                                     <tr>
                                         <td align-middle text-center text-sm>
-                                            <h6 className="mb-0 text-center text-sm">1</h6>
+                                            <h6 className="mb-0 text-center text-sm"  key={data.id}>{data.id}</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Robert</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.nama_instansi}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Malang</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.alamat_instansi}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">087865654765</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.no_hp}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Yayasan Peduli</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.keperluan}</p>
                                         </td>
                                         <td>
-                                        <Link to={"/admin/editTamuYayasan/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe_tamu}</p>
+                                        </td>
+                                        <td>
+                                        <Link to={"/admin/editTamuUmum/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                         <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
                                         </td>
                                     </tr>
+                                    </>
+                                    )
+                                })}
                                 </tbody>
                             </Table>
                             <CardFooter className="py-4">
