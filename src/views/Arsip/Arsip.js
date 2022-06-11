@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink as Link } from "react-router-dom";
-import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row } from "reactstrap";
+import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 
 function Arsip() {
     const [arsip, setArsip] = useState([])
+    const setData = (data) => {
+        console.log(data);
+    }
+    const onDelete =(id) => {
+        apiClient.delete('http://localhost:8000/api/arsip/${id}').then(() =>{
+            getData();
+        })
+    }
+    const getData = () => {
+        apiClient.get('http://localhost:8000/api/arsip').then((getData) => {
+            setArsip(getData.data)
+        })
+    }
 
     useEffect(() => {
         let isMounted = true
@@ -14,7 +27,7 @@ function Arsip() {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
             console.log(arsipData)
-        }).catch((err) => {
+        }).catch((err) => { 
             console.error(err)
         })
     }, [])
@@ -58,8 +71,10 @@ function Arsip() {
                                                     </td>
                                                     <td>
                                                         <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                                        <Link to={"/admin/editArsip/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                                        <Link to={"/admin/editArsip/:id"} className="btn btn-success" bssize="sm" onClick={() => setData(data)}>
+                                                            <i className="fas fa-edit" aria-hidden="true" />
+                                                            </Link>                                                            
+                                                        <div className=" btn btn-danger"><i onClick={() => onDelete(data.id)} className="fa fa-trash" aria-hidden="true" /></div>
                                                     </td>
                                                 </tr>
                                         </>

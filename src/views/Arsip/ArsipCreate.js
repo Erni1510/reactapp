@@ -2,18 +2,24 @@ import React, { useState } from 'react'
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import apiClient from '../../services/API.js';
 
 function ArsipCreate() {
-    const [nama, setNama] = useState('')
+    const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file, setFile] = useState('')
+    const [file_arsip, setFile] = useState('')
 
-    let data = { nama, keterangan, file };
-
+    const postData = () => {
+        apiClient.post('http://localhost:8000/api/arsip', {
+            nama_arsip, keterangan, file_arsip
+        })
+        
+    }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(data);
+        console.log();
     }
+
     return (
         <>
             <Header />
@@ -31,7 +37,6 @@ function ArsipCreate() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Tambah Arsip
                                     </h6>
-                                    {/* Address */}
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -47,6 +52,7 @@ function ArsipCreate() {
                                                         id="input-address"
                                                         placeholder="Nama Arsip"
                                                         type="text"
+                                                        
                                                         onChange={(e) => setNama(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -90,6 +96,8 @@ function ArsipCreate() {
                                         <Button
                                             className="float-right"
                                             color="success"
+                                            onClick={postData}
+                                            type='submit'
                                         >
                                             Submit
                                         </Button>
