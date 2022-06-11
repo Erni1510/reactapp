@@ -6,30 +6,29 @@ import apiClient from '../../services/API.js';
 
 function Arsip() {
     const [arsip, setArsip] = useState([])
-    const setData = (data) => {
-        console.log(data);
-    }
-    const onDelete =(id) => {
-        apiClient.delete('http://localhost:8000/api/arsip/${id}').then(() =>{
-            getData();
+
+    const onDelete = async (id) => {
+        console.log(id)
+        await apiClient.delete(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+            // TODO: Setelah di klik nanti ngerefresh pagenya
+        }).catch((err) => {
+            console.error(err)
         })
     }
-    const getData = () => {
-        apiClient.get('http://localhost:8000/api/arsip').then((getData) => {
-            setArsip(getData.data)
+
+    const getData = async (isMounted) => {
+        await apiClient.get('http://localhost:8000/api/arsip').then((response) => {
+            const arsipData = JSON.parse(response.data.arsip)
+            isMounted && setArsip(arsipData)
+        }).catch((err) => {
+            console.error(err)
+            return isMounted = false;
         })
     }
 
     useEffect(() => {
         let isMounted = true
-
-        apiClient.get('http://localhost:8000/api/arsip').then((response) => {
-            const arsipData = JSON.parse(response.data.arsip)
-            isMounted && setArsip(arsipData)
-            console.log(arsipData)
-        }).catch((err) => { 
-            console.error(err)
-        })
+        getData(isMounted)
     }, [])
 
     return (
@@ -54,35 +53,32 @@ function Arsip() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {arsip.map(data => {
-                                    return (
-                                        <>
-                                                <tr>
-                                                    <td className="align-middle text-center">
-                                                        <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
-                                                    </td>
-                                                    <td>
-                                                        <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nama_arsip}</p>
+                                    {arsip.map(data => {
+                                        return (
+                                            <tr key={data.id}>
+                                                <td className="align-middle text-center">
+                                                    <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                </td>
+                                                <td>
+                                                    <p className="text-sm font-weight-bold mb-0">{data.nama_arsip}</p>
 
-                                                    </td>
-                                                    <td>
-                                                        <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
-
-                                                    </td>
-                                                    <td>
-                                                        <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                                        <Link to={"/admin/editArsip/:id"} className="btn btn-success" bssize="sm" onClick={() => setData(data)}>
-                                                            <i className="fas fa-edit" aria-hidden="true" />
-                                                            </Link>                                                            
-                                                        <div className=" btn btn-danger"><i onClick={() => onDelete(data.id)} className="fa fa-trash" aria-hidden="true" /></div>
-                                                    </td>
-                                                </tr>
-                                        </>
-                                    )
-                                })}
+                                                </td>
+                                                <td>
+                                                    <p className="text-sm font-weight-bold mb-0"    >{data.keterangan}</p>
+                                                </td>
+                                                <td>
+                                                    <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                    <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
+                                                        <i className="fas fa-edit" aria-hidden="true" />
+                                                    </Link>
+                                                    <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
                                 </tbody>
                             </Table>
-                            <CardFooter className="py-4">
+                            {/* <CardFooter className="py-4">
                                 <nav aria-label="...">
                                     <Pagination
                                         className="pagination justify-content-end mb-0"
@@ -133,7 +129,7 @@ function Arsip() {
                                         </PaginationItem>
                                     </Pagination>
                                 </nav>
-                            </CardFooter>
+                            </CardFooter> */}
                         </Card>
                     </div>
                 </Row>

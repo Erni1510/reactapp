@@ -128,7 +128,7 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/editArsip/:id",
+    path: '/editArsip/',
     component: ArsipEdit,
     layout: "/admin",
   },

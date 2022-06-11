@@ -3,29 +3,37 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
+import { useLocation } from "react-router-dom";
 
 function ArsipEdit() {
+    const location = useLocation();
+    const [id, setID] = useState(JSON.parse(location.state.id))
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
-    const [id, setID] =useState(null)
 
     useEffect(() => {
-        setID(localStorage.getItem('id'));
-        setNama(localStorage.getItem('nama_arsip'));
-        setKeterangan(localStorage.getItem('keterangan'));
-        setFile(localStorage.getItem('file_arsip'))
-    }, [])
-    const updateAPIData = () => {
-        apiClient.put('http://localhost:8000/api/arsip/${id}', {
-            nama_arsip, keterangan, file_arsip
-        
+        apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+            const arsipData = JSON.parse(response.data.arsip)
+            console.log(arsipData)
+            setNama(arsipData.nama_arsip)
+            setKeterangan(arsipData.keterangan)
+        }).catch((e) => {
+            console.error(e)
+        })
+    }, [id])
+
+    const updateAPIData = async (e) => {
+        const data = { nama_arsip, keterangan, file_arsip }
+        apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
+            console.error(e)
         })
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log();
+        updateAPIData()
+        // TODO: redirect ke page arsip dengan message sukses jika sukses / gagal jika gagal
     }
     return (
         <>
@@ -37,13 +45,10 @@ function ArsipEdit() {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Arsip</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Edit Arsip</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
-                                <Form >
-                                    <h6 className="heading-small text-muted mb-4">
-                                        Edit Arsip
-                                    </h6>
+                                <Form onSubmit={handleSubmit}>
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
