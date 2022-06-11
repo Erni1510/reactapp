@@ -19,8 +19,7 @@ function ArsipEdit() {
     const updateAPIData = () => {
         apiClient.put('http://localhost:8000/api/arsip/${id}', {
             nama_arsip, keterangan, file_arsip
-        }).then(() => {
-            history.push
+        
         })
     }
 
