@@ -19,8 +19,9 @@ function SuratMasuk() {
 
     const onDelete = async (id) => {
         console.log(id)
+        let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/surat-masuk/${id}`).then((response) => {
-            // delete error
+            getData(isMounted)
         }).catch((err) => {
             console.error(err)
         })

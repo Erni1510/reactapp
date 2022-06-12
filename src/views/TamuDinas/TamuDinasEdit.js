@@ -130,14 +130,15 @@ function TamuDinasEdit() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Button
-                                            className="float-right"
-                                            color="success"
-                                            type="submit"
+                                        <Link
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
                                             onClick={updateAPIData}
+                                            type='submit'
+                                            to={"/admin/TamuDinas"}
                                         >
                                             Submit
-                                        </Button>
+                                        </Link>
                                         <Link to={"/admin/TamuDinas"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

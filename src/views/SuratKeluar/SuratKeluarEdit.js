@@ -22,7 +22,7 @@ function SuratKeluarEdit() {
             setTujuan(suratData.tujuan_surat)
             setUraian(suratData.uraian)
             setKeterangan(suratData.keterangan)
-            setFile(suratData.file_surat)            
+            setFile(suratData.file_surat)
         }).catch((e) => {
             console.error(e)
         })
@@ -150,14 +150,15 @@ function SuratKeluarEdit() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Button
-                                            className="float-right"
-                                            color="success"
-                                            type="submit"
+                                        <Link
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
                                             onClick={updateAPIData}
+                                            type='submit'
+                                            to={"/admin/SuratKeluar"}
                                         >
                                             Submit
-                                        </Button>
+                                        </Link>
                                         <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

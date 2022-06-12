@@ -3,6 +3,7 @@ import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
 
 function ArsipCreate() {
     const [nama_arsip, setNama] = useState('')
@@ -17,6 +18,7 @@ function ArsipCreate() {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
+        
     }
 
     return (
@@ -91,14 +93,15 @@ function ArsipCreate() {
                                                 </FormGroup>
                                             </Col>
                                         </Row> 
-                                        <Button
-                                            className="float-right"
-                                            color="success"
+                                        <Link
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
                                             onClick={postData}
                                             type='submit'
+                                            to={"/admin/Arsip"}
                                         >
                                             Submit
-                                        </Button>
+                                        </Link>
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

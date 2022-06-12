@@ -19,8 +19,9 @@ function TamuYayasan() {
 
     const onDelete = async (id) =>{
         console.log(id)
+        let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/tamu-yayasan/${id}`).then((response) => {
-
+            getData(isMounted)
         }).catch((err) => {
             console.error(err)
         })

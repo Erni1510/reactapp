@@ -9,7 +9,9 @@ function Arsip() {
 
     const onDelete = async (id) => {
         console.log(id)
+        let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+            getData(isMounted)
             // TODO: Setelah di klik nanti ngerefresh pagenya
         }).catch((err) => {
             console.error(err)
@@ -101,23 +103,7 @@ function Arsip() {
                                             >
                                                 1
                                             </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                2 <span className="sr-only">(current)</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                3
-                                            </PaginationLink>
-                                        </PaginationItem>
+                                        </PaginationItem>                                        
                                         <PaginationItem>
                                             <PaginationLink
                                                 href="#pablo"

@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
+import swal from 'sweetalert';
 
 function ArsipEdit() {
     const location = useLocation();
@@ -107,14 +108,15 @@ function ArsipEdit() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Button
-                                            className="float-right"
-                                            color="success"
-                                            type="submit"
+                                        <Link
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
                                             onClick={updateAPIData}
+                                            type='submit'
+                                            to={"/admin/Arsip"}
                                         >
                                             Submit
-                                        </Button>
+                                        </Link>
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

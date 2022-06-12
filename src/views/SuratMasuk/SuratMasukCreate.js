@@ -127,14 +127,15 @@ function SuratMasukCreate() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Button
-                                            className="float-right"
-                                            color="success"
+                                        <Link
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
                                             onClick={postData}
                                             type='submit'
+                                            to={"/admin/SuratMasuk"}
                                         >
                                             Submit
-                                        </Button>
+                                        </Link>
                                         <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

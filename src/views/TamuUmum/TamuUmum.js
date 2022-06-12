@@ -19,8 +19,9 @@ function TamuUmum() {
 
     const onDelete = async (id) =>{
         console.log(id)
+        let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/tamu-umum/${id}`).then((response) => {
-
+            getData(isMounted)
         }).catch((err) => {
             console.error(err)
         })
