@@ -1,18 +1,22 @@
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import apiClient from '../../services/API.js';
 
 function TamuYayasanCreate() {
-    const [nama, setNama] = useState('')
-    const [alamat, setAlamat] = useState('')
-    const [no, setNo] = useState('')
+    const [nama_instansi, setNama] = useState('')
+    const [alamat_instansi, setAlamat] = useState('')
+    const [no_hp, setNo] = useState('')
     const [keperluan, setKeperluan] = useState('')
-
-    let data = { nama, alamat, no, keperluan };
+    const postData = () => {
+        apiClient.post('http://localhost:8000/api/tamu-yayasan', {
+            nama_instansi, alamat_instansi, no_hp, keperluan
+        })
+    }
+    
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(data);
     }
     return (
         <>
@@ -31,6 +35,7 @@ function TamuYayasanCreate() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Tambah Tamu Yayasan
                                     </h6>
+                                    {/* Address */}
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -43,7 +48,7 @@ function TamuYayasanCreate() {
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
-                                                        id="input-address"
+                                                        id="nama_instansi"
                                                         placeholder="nama instansi"
                                                         type="text"
                                                         onChange={(e) => setNama(e.target.value)}
@@ -60,7 +65,7 @@ function TamuYayasanCreate() {
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
-                                                        id="input-address"
+                                                        id="alamat_instansi"
                                                         placeholder="alamat instansi"
                                                         type="text"
                                                         onChange={(e) => setAlamat(e.target.value)}
@@ -77,7 +82,7 @@ function TamuYayasanCreate() {
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
-                                                        id="input-address"
+                                                        id="no_hp"
                                                         placeholder="08xx"
                                                         type="text"
                                                         onChange={(e) => setNo(e.target.value)}
@@ -94,17 +99,19 @@ function TamuYayasanCreate() {
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
-                                                        id="input-address"
+                                                        id="keperluan"
                                                         placeholder="keperluan"
                                                         type="textarea"
                                                         onChange={(e) => setKeperluan(e.target.value)}
                                                     />
                                                 </FormGroup>
-                                            </Col>
+                                            </Col>                                            
                                         </Row>
                                         <Button
                                             className="float-right"
                                             color="success"
+                                            type="submit"
+                                            onClick={postData}
                                         >
                                             Submit
                                         </Button>

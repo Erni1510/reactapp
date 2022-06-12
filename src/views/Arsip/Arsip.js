@@ -64,10 +64,10 @@ function Arsip() {
 
                                                 </td>
                                                 <td>
-                                                    <p className="text-sm font-weight-bold mb-0"    >{data.keterangan}</p>
+                                                    <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
                                                 </td>
                                                 <td>
-                                                    <Link to={"/"} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true"/></Link>
                                                     <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
                                                         <i className="fas fa-edit" aria-hidden="true" />
                                                     </Link>
@@ -78,7 +78,7 @@ function Arsip() {
                                     })}
                                 </tbody>
                             </Table>
-                            {/* <CardFooter className="py-4">
+                            <CardFooter className="py-4">
                                 <nav aria-label="...">
                                     <Pagination
                                         className="pagination justify-content-end mb-0"
@@ -129,14 +129,11 @@ function Arsip() {
                                         </PaginationItem>
                                     </Pagination>
                                 </nav>
-                            </CardFooter> */}
+                            </CardFooter>
                         </Card>
                     </div>
                 </Row>
             </Container>
-
-
-
         </div>
 
     )

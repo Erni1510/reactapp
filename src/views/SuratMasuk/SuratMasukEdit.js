@@ -1,22 +1,46 @@
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import apiClient from '../../services/API.js';
+import { useLocation } from "react-router-dom";
 
 function SuratMasukEdit() {
-    const [asal, setAsal] = useState('')
-    const [nomor, setNomor] = useState('')
+    const location = useLocation();
+    const [id, setID] = useState(JSON.parse(location.state.id))
+    const [nomor_surat, setNomor] = useState('')
+    const [asal_surat, setAsal] = useState('')
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file, setFile] = useState('')
+    const [file_surat, setFile] = useState('')
 
-    let data ={nomor, asal, uraian, keterangan, file};
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(data);
+    useEffect(() => {
+        apiClient.get(`http://localhost:8000/api/surat-masuk/${id}`).then((response) => {
+            const suratData = JSON.parse(response.data.suratMasuk)
+            console.log(suratData)
+            setNomor(suratData.nomor_surat)
+            setAsal(suratData.asal_surat)
+            setUraian(suratData.uraian)
+            setKeterangan(suratData.keterangan)
+            setFile(suratData.file_surat)            
+        }).catch((e) => {
+            console.error(e)
+        })
+    }, [id])
+
+    const updateAPIData = async (e) => {
+        const data = { nomor_surat, asal_surat, uraian, keterangan, file_surat }
+        apiClient.put(`http://localhost:8000/api/surat-masuk/${id}`, data).catch((e) => {
+            console.error(e)
+        })
     }
-  return (
-    <>
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        updateAPIData()
+    }
+    return (
+        <>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -32,9 +56,8 @@ function SuratMasukEdit() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Surat Masuk
                                     </h6>
-                                    {/* Address */}
                                     <div className="pl-lg-4">
-                                    <Row>
+                                        <Row>
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label
@@ -48,6 +71,7 @@ function SuratMasukEdit() {
                                                         id="input-address"
                                                         placeholder="Nomor Surat"
                                                         type="text"
+                                                        value={nomor_surat}
                                                         onChange={(e) => setNomor(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -65,6 +89,7 @@ function SuratMasukEdit() {
                                                         id="input-address"
                                                         placeholder="asal Surat"
                                                         type="text"
+                                                        value={asal_surat}
                                                         onChange={(e) => setAsal(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -82,6 +107,7 @@ function SuratMasukEdit() {
                                                         id="input-address"
                                                         placeholder="Deskripsi Surat"
                                                         type="textarea"
+                                                        value={uraian}
                                                         onChange={(e) => setUraian(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -99,6 +125,7 @@ function SuratMasukEdit() {
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
                                                         type="text"
+                                                        value={keterangan}
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -117,6 +144,7 @@ function SuratMasukEdit() {
                                                         placeholder="Pilih File Surat"
                                                         type="file"
                                                         bssize="xs"
+                                                        value={file_surat}
                                                         onChange={(e) => setFile(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -125,6 +153,8 @@ function SuratMasukEdit() {
                                         <Button
                                             className="float-right"
                                             color="success"
+                                            type="submit"
+                                            onClick={updateAPIData}
                                         >
                                             Submit
                                         </Button>
@@ -138,7 +168,7 @@ function SuratMasukEdit() {
                 </Row>
             </Container>
         </>
-  )
+    )
 }
 
 export default SuratMasukEdit

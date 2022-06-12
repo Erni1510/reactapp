@@ -8,7 +8,7 @@ import {
     PaginationLink,
     Table,
     Container,
-    Row,
+    Row, Button
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
@@ -17,30 +17,43 @@ import apiClient from '../../services/API.js';
 function TamuYayasan() {
     const [tamu, setTamu] = useState([])
 
-    useEffect(() => {
-        let isMounted = true
+    const onDelete = async (id) =>{
+        console.log(id)
+        await apiClient.delete(`http://localhost:8000/api/tamu-yayasan/${id}`).then((response) => {
 
-        apiClient.get('http://localhost:8000/api/tamu').then((response) => {
-            const tamuData = JSON.parse(response.data.tamu)
-            isMounted && setTamu(tamuData)
-            console.log(tamuData)
         }).catch((err) => {
             console.error(err)
         })
+    }
+
+    const getData = async (isMounted) => {
+        await apiClient.get('http://localhost:8000/api/tamu-yayasan').then((response) => {
+            const tamuData = JSON.parse(response.data.tamu)
+            isMounted && setTamu(tamuData)
+        }).catch((err) => {
+            console.error(err)
+            return isMounted = false;
+        })
+    }
+
+    useEffect(() => {
+        let isMounted = true
+        getData(isMounted)
     }, [])
-    
-  return (
-    <>
-            <Header /> 
-            <Container className="mt--7" fluid>
-                <Row>
-                    <div className="col">
-                        <Card className="shadow">
-                            <CardHeader className="border-0">
-                                <h3 className="mb-0">Tamu Yayasan</h3>
-                                <Link to={"/admin/TamuYayasanCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
-                            </CardHeader>
-                            <Table className="align-items-center table-flush" responsive>
+
+
+        return (
+            <>
+                    <Header />
+                    <Container className="mt--7" fluid>
+                        <Row>
+                            <div className="col">
+                                <Card className="shadow">
+                                    <CardHeader className="border-0">
+                                        <h3 className="mb-0">Tamu Yayasan</h3>
+                                        <Link to={"/admin/TamuYayasanCreate"} className="btn btn-success float-right" bs="sm">+Tambah</Link>
+                                    </CardHeader>
+                                    <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
                                         <th scope="col" className="text-center">No</th>
@@ -76,8 +89,8 @@ function TamuYayasan() {
                                             <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe_tamu}</p>
                                         </td>
                                         <td>
-                                        <Link to={"/admin/editTamuUmum/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                        <Link to={{ pathname: '/admin/editTamuYayasan/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
                                         </td>
                                     </tr>
                                     </>
@@ -85,65 +98,48 @@ function TamuYayasan() {
                                 })}
                                 </tbody>
                             </Table>
-                            <CardFooter className="py-4">
-                                <nav aria-label="...">
-                                    <Pagination
-                                        className="pagination justify-content-end mb-0"
-                                        listClassName="justify-content-end mb-0"
-                                    >
-                                        <PaginationItem className="disabled">
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                                tabIndex="-1"
+                                    <CardFooter className="py-4">
+                                        <nav aria-label="...">
+                                            <Pagination
+                                                className="pagination justify-content-end mb-0"
+                                                listClassName="justify-content-end mb-0"
                                             >
-                                                <i className="fas fa-angle-left" />
-                                                <span className="sr-only">Previous</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem className="active">
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                1
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                2 <span className="sr-only">(current)</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                3
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                <i className="fas fa-angle-right" />
-                                                <span className="sr-only">Next</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    </Pagination>
-                                </nav>
-                            </CardFooter>
-                        </Card>
-                    </div>
-                </Row>
-            </Container>
-        </>
-  )
-}
+                                                <PaginationItem className="disabled">
+                                                    <PaginationLink
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                        tabIndex="-1"
+                                                    >
+                                                        <i className="fas fa-angle-left" />
+                                                        <span className="sr-only">Previous</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem className="active">
+                                                    <PaginationLink
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        1
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem>
+                                                    <PaginationLink
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        <i className="fas fa-angle-right" />
+                                                        <span className="sr-only">Next</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                            </Pagination>
+                                        </nav>
+                                    </CardFooter>
+                                </Card>
+                            </div>
+                        </Row>
+                    </Container>
+                </>
+            )
+        }
 
 export default TamuYayasan
-

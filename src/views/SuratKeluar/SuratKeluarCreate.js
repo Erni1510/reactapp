@@ -1,21 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-
+import apiClient from '../../services/API.js';
 function SuratKeluarCreate() {
-    const [nomor, setNomor] = useState('')
-    const [tujuan, setTujuan] = useState('')
+    const [nomor_surat, setNomor] = useState('')
+    const [tujuan_surat, setTujuan] = useState('')
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file, setFile] = useState('')
+    const [file_surat, setFile] = useState('')
 
-    let data = { nomor, tujuan, uraian, keterangan, file };
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(data);
+    const postData = () => {
+        apiClient.post('http://localhost:8000/api/surat-keluar', {
+            nomor_surat, tujuan_surat, uraian, keterangan, file_surat
+        })
+        
     }
 
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+    }
+ 
     return (
         <>
             <Header />
@@ -125,10 +130,12 @@ function SuratKeluarCreate() {
                                         <Button
                                             className="float-right"
                                             color="success"
+                                            onClick={postData}
+                                            type='submit'
                                         >
                                             Submit
                                         </Button>
-                                        <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
+                                        <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>

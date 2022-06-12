@@ -2,17 +2,40 @@ import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
+import apiClient from "../../services/API.js";
 
 function TamuUmumEdit() {
-    const [nama, setNama] = useState('')
-    const [alamat, setAlamat] = useState('')
-    const [no, setNo] = useState('')
+    const location = useLocation();
+    const [id, setID] = useState(JSON.parse(location.state.id))
+    const [nama_instansi, setNama] = useState('')
+    const [alamat_instansi, setAlamat] = useState('')
+    const [no_hp, setNo] = useState('')
     const [keperluan, setKeperluan] = useState('')
 
-    let data = { nama, alamat, no, keperluan };
+    useEffect(() => {
+        apiClient.get(`http://localhost:8000/api/tamu-umum/${id}`).then((response) => {
+            const tamuData=JSON.parse(response.data.tamu)
+            console.log(tamuData)
+            setNama(tamuData.nama_instansi)
+            setAlamat(tamuData.alamat_instansi)
+            setNo(tamuData.no_hp)
+            setKeperluan(tamuData.keperluan)
+        }).catch((e) => {
+            console.error(e)
+        })
+    }, [id])
+
+    const updateAPIData = async (e) => {
+        const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
+        apiClient.put(`http://localhost:8000/api/tamu-umum/${id}`, data).catch((e) => {
+            console.error(e)
+        })
+    }
+
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(data);
+        updateAPIData();
     }
     return (
         <>
@@ -31,6 +54,7 @@ function TamuUmumEdit() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Tamu Umum
                                     </h6>
+                                    {/* Address */}
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -46,6 +70,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="nama instansi"
                                                         type="text"
+                                                        value={nama_instansi}
                                                         onChange={(e) => setNama(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -63,6 +88,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="alamat instansi"
                                                         type="text"
+                                                        value={alamat_instansi}
                                                         onChange={(e) => setAlamat(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -80,6 +106,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="08xx"
                                                         type="text"
+                                                        value={no_hp}
                                                         onChange={(e) => setNo(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -97,6 +124,7 @@ function TamuUmumEdit() {
                                                         id="input-address"
                                                         placeholder="keperluan"
                                                         type="textarea"
+                                                        value={keperluan}
                                                         onChange={(e) => setKeperluan(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -105,6 +133,8 @@ function TamuUmumEdit() {
                                         <Button
                                             className="float-right"
                                             color="success"
+                                            type="submit"
+                                            onClick={updateAPIData}
                                         >
                                             Submit
                                         </Button>
@@ -112,7 +142,6 @@ function TamuUmumEdit() {
                                     </div>
                                 </Form>
                             </CardHeader>
-
                         </Card>
                     </Col>
                 </Row>

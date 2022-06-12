@@ -17,7 +17,6 @@ function ArsipCreate() {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log();
     }
 
     return (
@@ -52,7 +51,6 @@ function ArsipCreate() {
                                                         id="input-address"
                                                         placeholder="Nama Arsip"
                                                         type="text"
-                                                        
                                                         onChange={(e) => setNama(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -92,7 +90,7 @@ function ArsipCreate() {
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                        </Row>
+                                        </Row> 
                                         <Button
                                             className="float-right"
                                             color="success"

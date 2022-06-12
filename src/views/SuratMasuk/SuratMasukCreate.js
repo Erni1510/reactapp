@@ -1,23 +1,28 @@
+import React, { useState } from 'react';
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React, {useState, useEffect} from 'react';
-
+import apiClient from '../../services/API.js';
 function SuratMasukCreate() {
-    const [asal, setAsal] = useState('')
-    const [nomor, setNomor] = useState('')
+    const [nomor_surat, setNomor] = useState('')
+    const [asal_surat, setAsal] = useState('')
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file, setFile] = useState('')
+    const [file_surat, setFile] = useState('')
 
-    let data ={nomor, asal, uraian, keterangan, file};
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(data);
+    const postData = () => {
+        apiClient.post('http://localhost:8000/api/surat-masuk', {
+            nomor_surat, asal_surat, uraian, keterangan, file_surat
+        })
+        
     }
 
-  return (
-    <>
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+    }
+ 
+    return (
+        <>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -26,16 +31,15 @@ function SuratMasukCreate() {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Surat Masuk</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Surat Keluar</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form onSubmit={handleSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
                                         Tambah Surat Masuk
                                     </h6>
-                                    {/* Address */}
                                     <div className="pl-lg-4">
-                                        <Row> 
+                                        <Row>
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label
@@ -59,12 +63,12 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Asal Surat
+                                                        Tujuan Surat
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="asal Surat"
+                                                        placeholder="tujuan Surat"
                                                         type="text"
                                                         onChange={(e) => setAsal(e.target.value)}
                                                     />
@@ -126,6 +130,8 @@ function SuratMasukCreate() {
                                         <Button
                                             className="float-right"
                                             color="success"
+                                            onClick={postData}
+                                            type='submit'
                                         >
                                             Submit
                                         </Button>
@@ -139,7 +145,7 @@ function SuratMasukCreate() {
                 </Row>
             </Container>
         </>
-  )
+    )
 }
 
 export default SuratMasukCreate

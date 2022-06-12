@@ -8,7 +8,7 @@ import {
     PaginationLink,
     Table,
     Container,
-    Row,
+    Row, Button
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
@@ -17,16 +17,28 @@ import apiClient from '../../services/API.js';
 function TamuDinas() {
     const [tamu, setTamu] = useState([])
 
-    useEffect(() => {
-        let isMounted = true
+    const onDelete = async (id) =>{
+        console.log(id)
+        await apiClient.delete(`http://localhost:8000/api/tamu-dinas/${id}`).then((response) => {
 
-        apiClient.get('http://localhost:8000/api/tamu').then((response) => {
-            const tamuData = JSON.parse(response.data.tamu)
-            isMounted && setTamu(tamuData)
-            console.log(tamuData)
         }).catch((err) => {
             console.error(err)
         })
+    }
+
+    const getData = async (isMounted) => {
+        await apiClient.get('http://localhost:8000/api/tamu-dinas').then((response) => {
+            const tamuData = JSON.parse(response.data.tamu)
+            isMounted && setTamu(tamuData)
+        }).catch((err) => {
+            console.error(err)
+            return isMounted = false;
+        })
+    }
+
+    useEffect(() => {
+        let isMounted = true
+        getData(isMounted)
     }, [])
 
 
@@ -39,7 +51,7 @@ function TamuDinas() {
                                 <Card className="shadow">
                                     <CardHeader className="border-0">
                                         <h3 className="mb-0">Tamu Dinas</h3>
-                                        <Link to={"/admin/TamuDinasCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
+                                        <Link to={"/admin/TamuDinasCreate"} className="btn btn-success float-right" bs="sm">+Tambah</Link>
                                     </CardHeader>
                                     <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
@@ -77,8 +89,8 @@ function TamuDinas() {
                                             <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe_tamu}</p>
                                         </td>
                                         <td>
-                                        <Link to={"/admin/editTamuUmum/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                        <Link to={{ pathname: '/admin/editTamuDinas/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
                                         </td>
                                     </tr>
                                     </>
@@ -108,22 +120,6 @@ function TamuDinas() {
                                                         onClick={(e) => e.preventDefault()}
                                                     >
                                                         1
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                                <PaginationItem>
-                                                    <PaginationLink
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        2 <span className="sr-only">(current)</span>
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                                <PaginationItem>
-                                                    <PaginationLink
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        3
                                                     </PaginationLink>
                                                 </PaginationItem>
                                                 <PaginationItem>
