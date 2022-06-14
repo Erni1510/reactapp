@@ -1,4 +1,4 @@
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 function ArsipEdit() {
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
+    const history = useHistory()
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
@@ -33,8 +34,7 @@ function ArsipEdit() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        updateAPIData()
-        // TODO: redirect ke page arsip dengan message sukses jika sukses / gagal jika gagal
+        history.push('/admin/Arsip')
     }
     return (
         <>
@@ -108,15 +108,14 @@ function ArsipEdit() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Link
+                                        <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
                                             onClick={updateAPIData}
                                             type='submit'
-                                            to={"/admin/Arsip"}
                                         >
                                             Submit
-                                        </Link>
+                                        </Button>
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

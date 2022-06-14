@@ -1,10 +1,11 @@
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
 import apiClient from '../../services/API.js';
 
 function TamuYayasanCreate() {
+    const history = useHistory()
     const [nama_instansi, setNama] = useState('')
     const [alamat_instansi, setAlamat] = useState('')
     const [no_hp, setNo] = useState('')
@@ -17,6 +18,7 @@ function TamuYayasanCreate() {
     
     const handleSubmit = async(e) => {
         e.preventDefault();
+        history.push('/admin/TamuYayasan')
     }
     return (
         <>
@@ -107,15 +109,14 @@ function TamuYayasanCreate() {
                                                 </FormGroup>
                                             </Col>                                            
                                         </Row>
-                                        <Link
+                                        <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
                                             onClick={postData}
                                             type='submit'
-                                            to={"/admin/TamuYayasan"}
                                         >
                                             Submit
-                                        </Link>
+                                        </Button>
                                         <Link to={"/admin/TamuYayasan"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

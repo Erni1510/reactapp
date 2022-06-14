@@ -1,4 +1,4 @@
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import apiClient from "../../services/API.js";
 
 function TamuYayasanEdit() {
+    const history = useHistory()
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
     const [nama_instansi, setNama] = useState('')
@@ -35,7 +36,7 @@ function TamuYayasanEdit() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        updateAPIData();
+        history.push('/admin/TamuYayasan')
     }
     return (
         <>
@@ -130,15 +131,14 @@ function TamuYayasanEdit() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Link
+                                        <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
                                             onClick={updateAPIData}
                                             type='submit'
-                                            to={"/admin/TamuYayasan"}
                                         >
                                             Submit
-                                        </Link>
+                                        </Button>
                                         <Link to={"/admin/TamuYayasan"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

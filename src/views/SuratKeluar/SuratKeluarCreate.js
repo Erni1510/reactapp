@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
+
 function SuratKeluarCreate() {
+    const history = useHistory()
     const [nomor_surat, setNomor] = useState('')
     const [tujuan_surat, setTujuan] = useState('')
     const [uraian, setUraian] = useState('')
@@ -19,6 +21,7 @@ function SuratKeluarCreate() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        history.push('/admin/SuratKeluar')
     }
  
     return (
@@ -127,15 +130,14 @@ function SuratKeluarCreate() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Link
+                                        <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
                                             onClick={postData}
                                             type='submit'
-                                            to={"/admin/SuratKeluar"}
                                         >
                                             Submit
-                                        </Link>
+                                        </Button>
                                         <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

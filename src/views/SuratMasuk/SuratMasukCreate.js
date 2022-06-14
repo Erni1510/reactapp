@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 function SuratMasukCreate() {
+    const history = useHistory()
     const [nomor_surat, setNomor] = useState('')
     const [asal_surat, setAsal] = useState('')
     const [uraian, setUraian] = useState('')
@@ -14,11 +15,11 @@ function SuratMasukCreate() {
         apiClient.post('http://localhost:8000/api/surat-masuk', {
             nomor_surat, asal_surat, uraian, keterangan, file_surat
         })
-        
     }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        history.push('/admin/SuratMasuk/')
     }
  
     return (
@@ -127,15 +128,14 @@ function SuratMasukCreate() {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Link
+                                        <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
                                             onClick={postData}
                                             type='submit'
-                                            to={"/admin/SuratMasuk"}
                                         >
                                             Submit
-                                        </Link>
+                                        </Button>
                                         <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

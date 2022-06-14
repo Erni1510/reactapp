@@ -12,7 +12,6 @@ function Arsip() {
         let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/arsip/${id}`).then((response) => {
             getData(isMounted)
-            // TODO: Setelah di klik nanti ngerefresh pagenya
         }).catch((err) => {
             console.error(err)
         })

@@ -77,7 +77,7 @@ const Login = () => {
           <Col xs="6">
             <a
               className="text-light"
-              href="#pablo"
+              href="admin/index/"
               onClick={(e) => e.preventDefault()}
             >
               <small>Forgot password?</small>

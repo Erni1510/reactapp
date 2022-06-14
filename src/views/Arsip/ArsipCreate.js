@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
@@ -9,16 +9,17 @@ function ArsipCreate() {
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
+    const history = useHistory()
 
     const postData = () => {
         apiClient.post('http://localhost:8000/api/arsip', {
             nama_arsip, keterangan, file_arsip
+            
         })
-        
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
+        history.push('/admin/Arsip/')
     }
 
     return (
@@ -93,15 +94,14 @@ function ArsipCreate() {
                                                 </FormGroup>
                                             </Col>
                                         </Row> 
-                                        <Link
+                                        <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
                                             onClick={postData}
                                             type='submit'
-                                            to={"/admin/Arsip"}
                                         >
                                             Submit
-                                        </Link>
+                                        </Button> 
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

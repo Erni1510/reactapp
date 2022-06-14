@@ -1,18 +1,41 @@
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
+import apiClient from '../../services/API.js';
+import { useLocation } from "react-router-dom";
 
 function UserEdit() {
+    const history = useHistory()
+    const location = useLocation();
+    const [id, setID] = useState(JSON.parse(location.state.id))
     const [nama, setNama] = useState('')
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [jabatan, setJabatan] = useState('')
+    const [role, setRole] = useState('')
+    
+    useEffect(() => {
+        apiClient.get(`http://localhost:8000/api/user/${id}`).then((response) => {
+            const userData = JSON.parse(response.data.user)
+            console.log(userData)
+            setNama(userData.nama)
+            setEmail(userData.email)
+            setPassword(userData.password)
+            setRole(userData.role)
+        }).catch((e) => {
+            console.error(e)
+        })
+    }, [id])
 
-    let data = { nama, username, password, jabatan };
+    const updateAPIData = async (e) => {
+        const data = {nama, email, password, role}
+        apiClient.put(`http://localhost:8000/api/user/${id}`, data).catch((e) => {
+            console.error(e)
+        })
+    }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(data);
+        history.push('/admin/User/')
     }
     return (
         <>
@@ -47,6 +70,7 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="Nama"
                                                         type="text"
+                                                        value={nama}
                                                         onChange={(e) => setNama(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -64,7 +88,8 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="xxx@mail.com"
                                                         type="email"
-                                                        onChange={(e) => setUsername(e.target.value)}
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -81,6 +106,7 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="password"
                                                         type="password"
+                                                        value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
                                                     />
                                                 </FormGroup>
@@ -98,14 +124,17 @@ function UserEdit() {
                                                         id="input-address"
                                                         placeholder="Jabatan"
                                                         type="select"
-                                                        onChange={(e) => setJabatan(e.target.value)}
+                                                        value={role}
+                                                        onChange={(e) => setRole(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
                                         </Row>
                                         <Button
-                                            className="float-right"
-                                            color="success"
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
+                                            onClick={updateAPIData}
+                                            type='submit'
                                         >
                                             Submit
                                         </Button>

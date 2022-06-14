@@ -9,6 +9,7 @@ import {
     Table,
     Container,
     Row,
+    Button
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
@@ -17,16 +18,29 @@ import apiClient from '../../services/API.js';
 function User() {
     const [user, setUser] = useState([])
 
-    useEffect(() => {
-        let isMounted = true
-
-        apiClient.get('http://localhost:8000/api/user').then((response) => {
-            const userData = JSON.parse(response.data.user)
-            isMounted && setUser(userData)
-            console.log(userData)
+    const onDelete = async (id) => {
+        console.log(id)
+        let isMounted=true
+        await apiClient.delete(``).then((response) => {
+            getData(isMounted)
         }).catch((err) => {
             console.error(err)
         })
+    }
+
+    const getData = async (isMounted) => {
+        await apiClient.get('http://localhost:8000/api/user').then((response) => {
+            const userData = JSON.parse(response.data.user)
+            isMounted && setUser(userData)
+        }).catch((err) => {
+            console.error(err)
+            return isMounted=false
+        })
+    }
+
+    useEffect(() => {
+        let isMounted = true
+        getData(isMounted)
     }, [])
 
   return (
@@ -51,24 +65,28 @@ function User() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                {user.map(data => {
+                                        return (
+                                    <tr ket={data.id}>
                                         <td align-middle text-center text-sm>
-                                            <h6 className="mb-0 text-center text-sm">1</h6>
+                                            <h6 className="mb-0 text-center text-sm">{data.id}</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Admin</p>
+                                            <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Admin@gmail.com</p>
+                                            <p className="text-sm font-weight-bold mb-0">{data.username}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">Kepala Sekolah</p>
+                                            <p className="text-sm font-weight-bold mb-0">{data.jabatan}</p>
                                         </td>
                                         <td>
-                                        <Link to={"/admin/editUser/:id"} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                        <div className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></div>
+                                         <Link to={{ pathname: '/admin/editUser/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                        <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
                                         </td>
                                     </tr>
+                                    )
+                                })}
                                 </tbody>
                             </Table>
                             <CardFooter className="py-4">
@@ -94,23 +112,7 @@ function User() {
                                             >
                                                 1
                                             </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                2 <span className="sr-only">(current)</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                3
-                                            </PaginationLink>
-                                        </PaginationItem>
+                                        </PaginationItem>                                        
                                         <PaginationItem>
                                             <PaginationLink
                                                 href="#pablo"

@@ -1,18 +1,24 @@
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import apiClient from '../../services/API.js';
 
 function UserCreate() {
+    const history = useHistory()
     const [nama, setNama] = useState('')
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [jabatan, setJabatan] = useState('')
+    const [role, setRole] = useState('')
 
-    let data = { nama, username, password, jabatan };
+    const postData = () => {
+        apiClient.post('http://localhost:8000/api/user', {
+            nama, email, password, role
+        })
+    }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(data);
+        history.push('/admin/User/')
     }
     return (
         <>
@@ -31,7 +37,6 @@ function UserCreate() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Tambah User
                                     </h6>
-                                    {/* Address */}
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -64,7 +69,7 @@ function UserCreate() {
                                                         id="input-address"
                                                         placeholder="xxx@mail.com"
                                                         type="email"
-                                                        onChange={(e) => setUsername(e.target.value)}
+                                                        onChange={(e) => setEmail(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -98,14 +103,16 @@ function UserCreate() {
                                                         id="input-address"
                                                         placeholder="Jabatan"
                                                         type="select"
-                                                        onChange={(e) => setJabatan(e.target.value)}
+                                                        onChange={(e) => setRole(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </Col>
                                         </Row>
                                         <Button
-                                            className="float-right"
-                                            color="success"
+                                            className="btn btn-success float-right"
+                                            bssize="sm"
+                                            onClick={postData}
+                                            type='submit'
                                         >
                                             Submit
                                         </Button>
