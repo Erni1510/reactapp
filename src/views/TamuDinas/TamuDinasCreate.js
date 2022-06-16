@@ -3,6 +3,7 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
 
 function TamuDinasCreate() {
     const history = useHistory()
@@ -14,6 +15,7 @@ function TamuDinasCreate() {
         apiClient.post('http://localhost:8000/api/tamu-dinas', {
             nama_instansi, alamat_instansi, no_hp, keperluan
         })
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     
     const handleSubmit = async(e) => {
@@ -46,7 +48,7 @@ function TamuDinasCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Instansi
+                                                        Nama Instansi*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -54,6 +56,7 @@ function TamuDinasCreate() {
                                                         placeholder="nama instansi"
                                                         type="text"
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -63,7 +66,7 @@ function TamuDinasCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Alamat Instansi
+                                                        Alamat Instansi*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -71,6 +74,7 @@ function TamuDinasCreate() {
                                                         placeholder="alamat instansi"
                                                         type="text"
                                                         onChange={(e) => setAlamat(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -80,7 +84,7 @@ function TamuDinasCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        No HP
+                                                        No HP*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -88,6 +92,7 @@ function TamuDinasCreate() {
                                                         placeholder="08xx"
                                                         type="text"
                                                         onChange={(e) => setNo(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -97,7 +102,7 @@ function TamuDinasCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Keperluan
+                                                        Keperluan*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -105,6 +110,7 @@ function TamuDinasCreate() {
                                                         placeholder="keperluan"
                                                         type="textarea"
                                                         onChange={(e) => setKeperluan(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>                                            

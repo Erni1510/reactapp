@@ -3,6 +3,7 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
 
 function UserCreate() {
     const history = useHistory()
@@ -15,6 +16,7 @@ function UserCreate() {
         apiClient.post('http://localhost:8000/api/user', {
             nama, email, password, role
         })
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -45,7 +47,7 @@ function UserCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama
+                                                        Nama*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -53,6 +55,7 @@ function UserCreate() {
                                                         placeholder="Nama"
                                                         type="text"
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -62,7 +65,7 @@ function UserCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Username
+                                                       Email*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -70,6 +73,7 @@ function UserCreate() {
                                                         placeholder="xxx@mail.com"
                                                         type="email"
                                                         onChange={(e) => setEmail(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -79,7 +83,7 @@ function UserCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Password
+                                                        Password*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -87,6 +91,7 @@ function UserCreate() {
                                                         placeholder="password"
                                                         type="password"
                                                         onChange={(e) => setPassword(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -96,7 +101,7 @@ function UserCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Jabatan
+                                                        Jabatan*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -104,6 +109,7 @@ function UserCreate() {
                                                         placeholder="Jabatan"
                                                         type="select"
                                                         onChange={(e) => setRole(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>

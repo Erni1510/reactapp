@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
 
 function SuratMasuk() { 
     const [suratMasuk, setSuratMasuk] = useState([])
@@ -21,8 +22,10 @@ function SuratMasuk() {
         console.log(id)
         let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/surat-masuk/${id}`).then((response) => {
+            swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
+            swal("Sorry!", "Data gagal Dihapus!", "warning");
             console.error(err)
         })
     }

@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
+import swal from 'sweetalert';
 
 function SuratMasukEdit() {
     const history = useHistory()
@@ -31,8 +32,12 @@ function SuratMasukEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nomor_surat, asal_surat, uraian, keterangan, file_surat }
+        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/surat-masuk/${id}`, data).catch((e) => {
             console.error(e)
+        }).catch((err) => {
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
         })
     }
 
@@ -65,7 +70,7 @@ function SuratMasukEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nomor Surat
+                                                        Nomor Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -74,6 +79,7 @@ function SuratMasukEdit() {
                                                         type="text"
                                                         value={nomor_surat}
                                                         onChange={(e) => setNomor(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -83,7 +89,7 @@ function SuratMasukEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Asal Surat
+                                                        Asal Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -92,6 +98,7 @@ function SuratMasukEdit() {
                                                         type="text"
                                                         value={asal_surat}
                                                         onChange={(e) => setAsal(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -101,7 +108,7 @@ function SuratMasukEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Uraian Surat
+                                                        Uraian Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -110,6 +117,7 @@ function SuratMasukEdit() {
                                                         type="textarea"
                                                         value={uraian}
                                                         onChange={(e) => setUraian(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -137,7 +145,7 @@ function SuratMasukEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        File Surat
+                                                        File Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -147,6 +155,7 @@ function SuratMasukEdit() {
                                                         bssize="xs"
                                                         value={file_surat}
                                                         onChange={(e) => setFile(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>

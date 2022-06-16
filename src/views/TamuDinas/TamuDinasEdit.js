@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import apiClient from "../../services/API.js";
+import swal from 'sweetalert';
 
 function TamuDinasEdit() {
     const history = useHistory()
@@ -29,8 +30,12 @@ function TamuDinasEdit() {
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
+        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/tamu-dinas/${id}`, data).catch((e) => {
             console.error(e)
+        }).catch((err) => {
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
         })
     }
 
@@ -64,7 +69,7 @@ function TamuDinasEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Instansi
+                                                        Nama Instansi*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -73,6 +78,7 @@ function TamuDinasEdit() {
                                                         type="text"
                                                         value={nama_instansi}
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -82,7 +88,7 @@ function TamuDinasEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Alamat Instansi
+                                                        Alamat Instansi*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -91,6 +97,7 @@ function TamuDinasEdit() {
                                                         type="text"
                                                         value={alamat_instansi}
                                                         onChange={(e) => setAlamat(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -100,7 +107,7 @@ function TamuDinasEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        No HP
+                                                        No HP*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -109,6 +116,7 @@ function TamuDinasEdit() {
                                                         type="text"
                                                         value={no_hp}
                                                         onChange={(e) => setNo(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -118,7 +126,7 @@ function TamuDinasEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Keperluan
+                                                        Keperluan*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -127,6 +135,7 @@ function TamuDinasEdit() {
                                                         type="textarea"
                                                         value={keperluan}
                                                         onChange={(e) => setKeperluan(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>

@@ -3,6 +3,7 @@ import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
 
 function Arsip() {
     const [arsip, setArsip] = useState([])
@@ -11,8 +12,10 @@ function Arsip() {
         console.log(id)
         let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+            swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
+            swal("Sorry!", "Data gagal Dihapus!", "warning");
             console.error(err)
         })
     }
@@ -50,6 +53,7 @@ function Arsip() {
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Arsip</th>
                                         <th scope="col">Keterangan Arsip</th>
+                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -66,6 +70,9 @@ function Arsip() {
                                                 </td>
                                                 <td>
                                                     <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
+                                                </td>
+                                                <td>
+                                                    <p className="text-sm font-weight-bold mb-0">{data.created_at}</p>
                                                 </td>
                                                 <td>
                                                 <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true"/></Link>

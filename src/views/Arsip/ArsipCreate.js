@@ -14,9 +14,10 @@ function ArsipCreate() {
     const postData = () => {
         apiClient.post('http://localhost:8000/api/arsip', {
             nama_arsip, keterangan, file_arsip
-            
         })
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
+    
     const handleSubmit = async(e) => {
         e.preventDefault();
         history.push('/admin/Arsip/')
@@ -47,7 +48,7 @@ function ArsipCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Arsip
+                                                        Nama Arsip*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -55,6 +56,7 @@ function ArsipCreate() {
                                                         placeholder="Nama Arsip"
                                                         type="text"
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -64,7 +66,7 @@ function ArsipCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Keterangan Arsip
+                                                        Keterangan Arsip*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -72,6 +74,7 @@ function ArsipCreate() {
                                                         placeholder="leterangan Arsip"
                                                         type="textarea"
                                                         onChange={(e) => setKeterangan(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -81,7 +84,7 @@ function ArsipCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        File Arsip
+                                                        File Arsip*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -90,6 +93,7 @@ function ArsipCreate() {
                                                         type="file"
                                                         bssize="xs"
                                                         onChange={(e) => setFile(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>

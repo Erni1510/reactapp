@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
+import swal from 'sweetalert';
 
 function UserEdit() {
     const history = useHistory()
@@ -29,8 +30,12 @@ function UserEdit() {
 
     const updateAPIData = async (e) => {
         const data = {nama, email, password, role}
+        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/user/${id}`, data).catch((e) => {
             console.error(e)
+        }).catch((err) => {
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
         })
     }
     const handleSubmit = async(e) => {
@@ -63,7 +68,7 @@ function UserEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama
+                                                        Nama*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -72,6 +77,7 @@ function UserEdit() {
                                                         type="text"
                                                         value={nama}
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -81,7 +87,7 @@ function UserEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Username
+                                                        Email*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -90,6 +96,7 @@ function UserEdit() {
                                                         type="email"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -99,7 +106,7 @@ function UserEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Password
+                                                        Password*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -108,6 +115,7 @@ function UserEdit() {
                                                         type="password"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -117,7 +125,7 @@ function UserEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Jabatan
+                                                        Jabatan*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -126,6 +134,7 @@ function UserEdit() {
                                                         type="select"
                                                         value={role}
                                                         onChange={(e) => setRole(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -142,7 +151,6 @@ function UserEdit() {
                                     </div>
                                 </Form>
                             </CardHeader>
-
                         </Card>
                     </Col>
                 </Row>

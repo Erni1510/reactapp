@@ -13,6 +13,7 @@ import {
 import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
 
 function TamuDinas() {
     const [tamu, setTamu] = useState([])
@@ -21,8 +22,10 @@ function TamuDinas() {
         console.log(id)
         let isMounted = true
         await apiClient.delete(`http://localhost:8000/api/tamu-dinas/${id}`).then((response) => {
+            swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
+            swal("Sorry!", "Data gagal Dihapus!", "warning");
             console.error(err)
         })
     }

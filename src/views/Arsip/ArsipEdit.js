@@ -27,8 +27,12 @@ function ArsipEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nama_arsip, keterangan, file_arsip }
+        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
             console.error(e)
+        }).catch((err) => {
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
         })
     }
 
@@ -58,7 +62,7 @@ function ArsipEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Arsip
+                                                        Nama Arsip*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -67,6 +71,7 @@ function ArsipEdit() {
                                                         type="text"
                                                         value={nama_arsip}
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -76,7 +81,7 @@ function ArsipEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Keterangan Arsip
+                                                        Keterangan Arsip*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -85,6 +90,7 @@ function ArsipEdit() {
                                                         type="textarea"
                                                         value={keterangan}
                                                         onChange={(e) => setKeterangan(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -94,7 +100,7 @@ function ArsipEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        File Arsip
+                                                        File Arsip*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -104,6 +110,7 @@ function ArsipEdit() {
                                                         bssize="xs"
                                                         value={file_arsip}
                                                         onChange={(e) => setFile(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>

@@ -3,6 +3,8 @@ import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
+import swal from 'sweetalert';
+
 function SuratMasukCreate() {
     const history = useHistory()
     const [nomor_surat, setNomor] = useState('')
@@ -15,6 +17,7 @@ function SuratMasukCreate() {
         apiClient.post('http://localhost:8000/api/surat-masuk', {
             nomor_surat, asal_surat, uraian, keterangan, file_surat
         })
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
 
     const handleSubmit = async(e) => {
@@ -47,7 +50,7 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nomor Surat
+                                                        Nomor Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -55,6 +58,7 @@ function SuratMasukCreate() {
                                                         placeholder="Nomor Surat"
                                                         type="text"
                                                         onChange={(e) => setNomor(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -64,14 +68,15 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Tujuan Surat
+                                                        Tujuan Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="tujuan Surat"
+                                                        placeholder="Tujuan Surat"
                                                         type="text"
                                                         onChange={(e) => setAsal(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -81,14 +86,15 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Uraian Surat
+                                                        Uraian Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Deskripsi Surat"
+                                                        placeholder="Uraian Surat"
                                                         type="textarea"
                                                         onChange={(e) => setUraian(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -115,7 +121,7 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        File Surat
+                                                        File Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -124,6 +130,7 @@ function SuratMasukCreate() {
                                                         type="file"
                                                         bssize="xs"
                                                         onChange={(e) => setFile(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>

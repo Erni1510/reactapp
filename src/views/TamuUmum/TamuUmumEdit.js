@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import apiClient from "../../services/API.js";
+import swal from 'sweetalert';
 
 function TamuUmumEdit() {
     const history = useHistory()
@@ -29,8 +30,12 @@ function TamuUmumEdit() {
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
+        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/tamu-umum/${id}`, data).catch((e) => {
             console.error(e)
+        }).catch((err) => {
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
         })
     }
 
