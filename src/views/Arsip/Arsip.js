@@ -4,9 +4,12 @@ import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLin
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 function Arsip() {
     const [arsip, setArsip] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const onDelete = async (id) => {
         console.log(id)
@@ -31,12 +34,22 @@ function Arsip() {
     }
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 5000)
         let isMounted = true
         getData(isMounted)
+        
     }, [])
 
     return (
         <div>
+            {
+                loading?
+                <ClipLoader color={'#3C79BE'} loading={loading} size={40}/>
+                :
+                <div>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -126,8 +139,9 @@ function Arsip() {
                     </div>
                 </Row>
             </Container>
+            </div>
+            }
         </div>
-
     )
 }
 
