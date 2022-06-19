@@ -5,6 +5,7 @@ import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import moment from 'moment';
 
 
 function Arsip() {
@@ -37,7 +38,7 @@ function Arsip() {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-        }, 5000)
+        }, 1000)
         let isMounted = true
         getData(isMounted)
 
@@ -86,7 +87,7 @@ function Arsip() {
                                                                 <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{data.created_at}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                             </td>
                                                             <td>
                                                                 <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
