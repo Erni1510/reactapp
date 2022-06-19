@@ -4,7 +4,7 @@ import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLin
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
-import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 
 
 function Arsip() {
@@ -40,16 +40,10 @@ function Arsip() {
         }, 5000)
         let isMounted = true
         getData(isMounted)
-        
-    }, [])
 
+    }, [])
     return (
         <div>
-            {
-                loading?
-                <ClipLoader color={'#3C79BE'} loading={loading} size={40}/>
-                :
-                <div>
             <Header />
             <Container className="mt--7" fluid>
                 <Row>
@@ -59,46 +53,56 @@ function Arsip() {
                                 <h3 className="mb-0">Data Arsip</h3>
                                 <Link to={"/admin/ArsipCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
-                            <Table className="align-items-center table-flush" responsive>
 
-                                <thead className="thead-light">
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama Arsip</th>
-                                        <th scope="col">Keterangan Arsip</th>
-                                        <th scope="col">Tanggal</th>
-                                        <th scope="col">Opsi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {arsip.map(data => {
-                                        return (
-                                            <tr key={data.id}>
-                                                <td className="align-middle text-center">
-                                                    <p className="text-sm font-weight-bold mb-0">{data.id}</p>
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.nama_arsip}</p>
+                            {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
+                                    <div>
+                                        <Table className="align-items-center table-flush" responsive>
 
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
-                                                </td>
-                                                <td>
-                                                    <p className="text-sm font-weight-bold mb-0">{data.created_at}</p>
-                                                </td>
-                                                <td>
-                                                <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true"/></Link>
-                                                    <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
-                                                        <i className="fas fa-edit" aria-hidden="true" />
-                                                    </Link>
-                                                    <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </Table>
+                                            <thead className="thead-light">
+                                                <tr>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Nama Arsip</th>
+                                                    <th scope="col">Keterangan Arsip</th>
+                                                    <th scope="col">Tanggal</th>
+                                                    <th scope="col">Opsi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {arsip.map(data => {
+                                                    return (
+                                                        <tr key={data.id}>
+                                                            <td className="align-middle text-center">
+                                                                <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nama_arsip}</p>
+
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.created_at}</p>
+                                                            </td>
+                                                            <td>
+                                                                <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                                <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
+                                                                    <i className="fas fa-edit" aria-hidden="true" />
+                                                                </Link>
+                                                                <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })}
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                            }
+
                             <CardFooter className="py-4">
                                 <nav aria-label="...">
                                     <Pagination
@@ -122,7 +126,7 @@ function Arsip() {
                                             >
                                                 1
                                             </PaginationLink>
-                                        </PaginationItem>                                        
+                                        </PaginationItem>
                                         <PaginationItem>
                                             <PaginationLink
                                                 href="#pablo"
@@ -139,8 +143,6 @@ function Arsip() {
                     </div>
                 </Row>
             </Container>
-            </div>
-            }
         </div>
     )
 }
