@@ -23,7 +23,7 @@ function TamuDinas() {
     const onDelete = async (id) =>{
         console.log(id)
         let isMounted = true
-        await apiClient.delete(`http://localhost:8000/api/tamu-dinas/${id}`).then((response) => {
+        await apiClient.delete(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`).then((response) => {
             swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
@@ -33,7 +33,7 @@ function TamuDinas() {
     }
 
     const getData = async (isMounted) => {
-        await apiClient.get('http://localhost:8000/api/tamu-dinas').then((response) => {
+        await apiClient.get('http://cerman.tahutekno.com/api/tamu-dinas').then((response) => {
             const tamuData = JSON.parse(response.data.tamu)
             isMounted && setTamu(tamuData)
         }).catch((err) => {

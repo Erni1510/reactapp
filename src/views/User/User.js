@@ -24,7 +24,7 @@ function User() {
     const onDelete = async (id) => {
         console.log(id)
         let isMounted=true
-        await apiClient.delete(``).then((response) => {
+        await apiClient.delete(`http://cerman.tahutekno.com/api/user`).then((response) => {
             swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
@@ -34,7 +34,7 @@ function User() {
     }
 
     const getData = async (isMounted) => {
-        await apiClient.get('http://localhost:8000/api/user').then((response) => {
+        await apiClient.get('http://cerman.tahutekno.com/api/user').then((response) => {
             const userData = JSON.parse(response.data.user)
             isMounted && setUser(userData)
         }).catch((err) => {

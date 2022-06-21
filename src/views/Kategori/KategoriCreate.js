@@ -11,7 +11,7 @@ function KategoriCreate() {
     const history = useHistory()
 
     const postData = () => {
-        apiClient.post('http://localhost:8000/api/Kategori', {
+        apiClient.post('http://cerman.tahutekno.com/api/Kategori', {
             nama_kategori, keterangan
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");

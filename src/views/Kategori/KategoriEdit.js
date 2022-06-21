@@ -14,7 +14,7 @@ function KategoriEdit() {
     const [keterangan, setKeterangan] = useState('')
 
     useEffect(() => {
-        apiClient.get(`http://localhost:8000/api/kategori/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/kategori/${id}`).then((response) => {
             const kategoriData = JSON.parse(response.data.kategori)
             console.log(kategoriData)
             setNama(kategoriData.nama_kategori)
@@ -27,7 +27,7 @@ function KategoriEdit() {
     const updateAPIData = async (e) => {
         const data = { nama_kategori, keterangan}
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://localhost:8000/api/kategori/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/kategori/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");

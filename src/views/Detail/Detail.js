@@ -6,7 +6,7 @@ import { Card, CardHeader, Form, Col, Container, Row, Button, FormGroup } from "
 
 function Detail() {
 
-  
+
   return (
     <div>
       <Header />
@@ -30,7 +30,10 @@ function Detail() {
                             htmlFor="input-address"
                           >
                             Nama Arsip :
-                          </label>                          
+                            <div className="form-control-label">nama</div> 
+                            <hr className="my-4" />
+                          </label>
+                                             
                         </FormGroup>
                       </Col>
                       <Col md="12">
@@ -71,7 +74,6 @@ function Detail() {
         </Row>
       </Container>
     </div>
-
   )
 }
 

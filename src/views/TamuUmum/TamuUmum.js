@@ -23,7 +23,7 @@ function TamuUmum() {
     const onDelete = async (id) =>{
         console.log(id)
         let isMounted = true
-        await apiClient.delete(`http://localhost:8000/api/tamu-umum/${id}`).then((response) => {
+        await apiClient.delete(`http://cerman.tahutekno.com/api/tamu-umum/${id}`).then((response) => {
             swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
@@ -33,7 +33,7 @@ function TamuUmum() {
     }
 
     const getData = async (isMounted) => {
-        await apiClient.get('http://localhost:8000/api/tamu-umum').then((response) => {
+        await apiClient.get('http://cerman.tahutekno.com/api/tamu-umum').then((response) => {
             const tamuData = JSON.parse(response.data.tamu)
             isMounted && setTamu(tamuData)
         }).catch((err) => {

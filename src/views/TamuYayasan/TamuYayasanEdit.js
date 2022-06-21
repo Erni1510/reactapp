@@ -16,7 +16,7 @@ function TamuYayasanEdit() {
     const [keperluan, setKeperluan] = useState('')
 
     useEffect(() => {
-        apiClient.get(`http://localhost:8000/api/tamu-yayasan/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`).then((response) => {
             const tamuData=JSON.parse(response.data.tamu)
             console.log(tamuData)
             setNama(tamuData.nama_instansi)
@@ -31,7 +31,7 @@ function TamuYayasanEdit() {
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://localhost:8000/api/tamu-yayasan/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");

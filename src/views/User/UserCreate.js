@@ -13,7 +13,7 @@ function UserCreate() {
     const [role, setRole] = useState('')
 
     const postData = () => {
-        apiClient.post('http://localhost:8000/api/user', {
+        apiClient.post('http://cerman.tahutekno.com/api/user', {
             nama, email, password, role
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");

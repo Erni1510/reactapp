@@ -12,7 +12,7 @@ function TamuYayasanCreate() {
     const [no_hp, setNo] = useState('')
     const [keperluan, setKeperluan] = useState('')
     const postData = () => {
-        apiClient.post('http://localhost:8000/api/tamu-yayasan', {
+        apiClient.post('http://cerman.tahutekno.com/api/tamu-yayasan', {
             nama_instansi, alamat_instansi, no_hp, keperluan
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");

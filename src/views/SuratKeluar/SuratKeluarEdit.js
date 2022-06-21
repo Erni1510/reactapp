@@ -19,7 +19,7 @@ function SuratKeluarEdit() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        apiClient.get(`http://localhost:8000/api/surat-keluar/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
             console.log(suratData)
             setNomor(suratData.nomor_surat)
@@ -35,7 +35,7 @@ function SuratKeluarEdit() {
     const updateAPIData = async (e) => {
         const data = { nomor_surat, tujuan_surat, uraian, keterangan, file_surat }
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://localhost:8000/api/surat-keluar/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/surat-keluar/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");

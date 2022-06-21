@@ -15,7 +15,7 @@ function ArsipEdit() {
     const [file_arsip, setFile] = useState('')
 
     useEffect(() => {
-        apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/arsip/${id}`).then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             console.log(arsipData)
             setNama(arsipData.nama_arsip)
@@ -28,7 +28,7 @@ function ArsipEdit() {
     const updateAPIData = async (e) => {
         const data = { nama_arsip, keterangan, file_arsip }
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/arsip/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");

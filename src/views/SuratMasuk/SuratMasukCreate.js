@@ -14,7 +14,7 @@ function SuratMasukCreate() {
     const [file_surat, setFile] = useState('')
 
     const postData = () => {
-        apiClient.post('http://localhost:8000/api/surat-masuk', {
+        apiClient.post('http://cerman.tahutekno.com/api/surat-masuk', {
             nomor_surat, asal_surat, uraian, keterangan, file_surat
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");

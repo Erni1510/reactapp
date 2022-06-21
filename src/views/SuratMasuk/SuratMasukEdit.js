@@ -17,7 +17,7 @@ function SuratMasukEdit() {
     const [file_surat, setFile] = useState('')
 
     useEffect(() => {
-        apiClient.get(`http://localhost:8000/api/surat-masuk/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratMasuk)
             console.log(suratData)
             setNomor(suratData.nomor_surat)
@@ -33,7 +33,7 @@ function SuratMasukEdit() {
     const updateAPIData = async (e) => {
         const data = { nomor_surat, asal_surat, uraian, keterangan, file_surat }
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://localhost:8000/api/surat-masuk/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/surat-masuk/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");

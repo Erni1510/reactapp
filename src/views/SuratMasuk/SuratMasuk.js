@@ -24,7 +24,7 @@ function SuratMasuk() {
     const onDelete = async (id) => {
         console.log(id)
         let isMounted = true
-        await apiClient.delete(`http://localhost:8000/api/surat-masuk/${id}`).then((response) => {
+        await apiClient.delete(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
             swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
@@ -33,7 +33,7 @@ function SuratMasuk() {
         })
     }
     const getData = async (isMounted) => {
-        await apiClient.get('http://localhost:8000/api/surat-masuk').then((response) => {
+        await apiClient.get('http://cerman.tahutekno.com/api/surat-masuk').then((response) => {
             const suratData = JSON.parse(response.data.suratMasuk)
             isMounted && setSuratMasuk(suratData)
         }).catch((err) => {
