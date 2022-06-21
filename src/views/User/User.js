@@ -15,9 +15,11 @@ import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function User() {
     const [user, setUser] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const onDelete = async (id) => {
         console.log(id)
@@ -42,6 +44,10 @@ function User() {
     }
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         let isMounted = true
         getData(isMounted)
     }, [])
@@ -57,6 +63,11 @@ function User() {
                                 <h3 className="mb-0">User</h3>
                                 <Link to={"/admin/UserCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
+                            {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
+                                    <div>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
@@ -92,6 +103,8 @@ function User() {
                                 })}
                                 </tbody>
                             </Table>
+                            </div>
+                            }
                             <CardFooter className="py-4">
                                 <nav aria-label="...">
                                     <Pagination

@@ -5,17 +5,16 @@ import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
-import moment from 'moment';
 
 
-function Arsip() {
-    const [arsip, setArsip] = useState([])
+function Kategori() {
+    const [kategori, setKategori] = useState([])
     const [loading, setLoading] = useState(false)
 
     const onDelete = async (id) => {
         console.log(id)
         let isMounted = true
-        await apiClient.delete(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+        await apiClient.delete(`http://localhost:8000/api/kategori/${id}`).then((response) => {
             swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
@@ -25,9 +24,9 @@ function Arsip() {
     }
 
     const getData = async (isMounted) => {
-        await apiClient.get('http://localhost:8000/api/arsip').then((response) => {
-            const arsipData = JSON.parse(response.data.arsip)
-            isMounted && setArsip(arsipData)
+        await apiClient.get('http://localhost:8000/api/kategori').then((response) => {
+            const kategoriData = JSON.parse(response.data.kategori)
+            isMounted && setKategori(kategoriData)
         }).catch((err) => {
             console.error(err)
             return isMounted = false;
@@ -51,8 +50,8 @@ function Arsip() {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                                <h3 className="mb-0">Data Arsip</h3>
-                                <Link to={"/admin/ArsipCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
+                                <h3 className="mb-0">Data Kategori</h3>
+                                <Link to={"/admin/kategoriCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
                             {
                                 loading ?
@@ -64,33 +63,28 @@ function Arsip() {
                                             <thead className="thead-light">
                                                 <tr>
                                                     <th scope="col">No</th>
-                                                    <th scope="col">Nama Arsip</th>
-                                                    <th scope="col">Keterangan Arsip</th>
-                                                    <th scope="col">Tanggal</th>
+                                                    <th scope="col">Nama kategori</th>
+                                                    <th scope="col">Keterangan</th>
                                                     <th scope="col">Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                {arsip.map(data => {
+                                                {kategori.map(data => {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
                                                                 <p className="text-sm font-weight-bold mb-0">{data.id}</p>
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{data.nama_arsip}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nama_kategori}</p>
 
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
-                                                            </td>
-                                                            <td>
-                                                                <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                                                <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
+                                                                <Link to={{ pathname: '/admin/editKategori/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
                                                                     <i className="fas fa-edit" aria-hidden="true" />
                                                                 </Link>
                                                                 <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
@@ -147,4 +141,4 @@ function Arsip() {
     )
 }
 
-export default Arsip
+export default Kategori

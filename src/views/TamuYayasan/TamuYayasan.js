@@ -14,9 +14,11 @@ import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function TamuYayasan() {
     const [tamu, setTamu] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const onDelete = async (id) =>{
         console.log(id)
@@ -41,6 +43,10 @@ function TamuYayasan() {
     }
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         let isMounted = true
         getData(isMounted)
     }, [])
@@ -57,6 +63,11 @@ function TamuYayasan() {
                                         <h3 className="mb-0">Tamu Yayasan</h3>
                                         <Link to={"/admin/TamuYayasanCreate"} className="btn btn-success float-right" bs="sm">+Tambah</Link>
                                     </CardHeader>
+                                    {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
+                                    <div>
                                     <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
@@ -102,6 +113,8 @@ function TamuYayasan() {
                                 })}
                                 </tbody>
                             </Table>
+                            </div>
+                            }
                                     <CardFooter className="py-4">
                                         <nav aria-label="...">
                                             <Pagination

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function SuratKeluarEdit() {
     const location = useLocation();
@@ -15,6 +16,7 @@ function SuratKeluarEdit() {
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_surat, setFile] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         apiClient.get(`http://localhost:8000/api/surat-keluar/${id}`).then((response) => {

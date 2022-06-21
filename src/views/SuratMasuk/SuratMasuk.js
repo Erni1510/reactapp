@@ -14,9 +14,12 @@ import {
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
+import moment from 'moment';
 
-function SuratMasuk() { 
+function SuratMasuk() {
     const [suratMasuk, setSuratMasuk] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const onDelete = async (id) => {
         console.log(id)
@@ -40,13 +43,17 @@ function SuratMasuk() {
     }
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         let isMounted = true
         getData(isMounted)
     }, [])
 
-  return (
-      <div>
-          <Header />
+    return (
+        <div>
+            <Header />
             <Container className="mt--7" fluid>
                 <Row>
                     <div className="col">
@@ -55,53 +62,63 @@ function SuratMasuk() {
                                 <h3 className="mb-0">Surat Masuk</h3>
                                 <Link to={"/admin/SuratMasukCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
-                            <Table className="align-items-center table-flush" responsive>
-                                <thead className="thead-light">
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nomor Surat</th>
-                                        <th scope="col">Asal Surat</th>
-                                        <th scope="col">Uraian</th>
-                                        <th scope="col">Keterangan</th>
-                                        <th scope="col">Tipe</th>
-                                        <th scope="col">Opsi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {suratMasuk.map(data => {
-                                    return (
-                                        <>
-                                    <tr>
-                                    <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
-                                        </td>
-                                        <td className="align-middle text-center">
-                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nomor_surat}</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.asal_surat}</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.uraian}</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tipe_surat}</p>
-                                        </td>
-                                        
-                                        <td>
-                                        <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true"/></Link>
-                                            <Link to={{ pathname: '/admin/editSuratMasuk/', state: { id: data.id }}} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
-                                            <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
-                                        </td>
-                                    </tr>
-                                    </>
-                                    )
-                                })}
-                                </tbody>
-                            </Table>
+                            {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
+                                    <div>
+                                        <Table className="align-items-center table-flush" responsive>
+                                            <thead className="thead-light">
+                                                <tr>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Nomor Surat</th>
+                                                    <th scope="col">Asal Surat</th>
+                                                    <th scope="col">Uraian</th>
+                                                    <th scope="col">Keterangan</th>
+                                                    <th scope="col">Tipe</th>
+                                                    <th scope="col">Tanggal</th>
+                                                    <th scope="col">Opsi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {suratMasuk.map(data => {
+                                                    return (
+                                                        <>
+                                                            <tr>
+                                                                <td className="align-middle text-center">
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
+                                                                </td>
+                                                                <td className="align-middle text-center">
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nomor_surat}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.asal_surat}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.uraian}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tipe_surat}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                                    <Link to={{ pathname: '/admin/editSuratMasuk/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
+                                                                    <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    )
+                                                })}
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                            }
                             <CardFooter className="py-4">
                                 <nav aria-label="...">
                                     <Pagination
@@ -126,7 +143,7 @@ function SuratMasuk() {
                                                 1
                                             </PaginationLink>
                                         </PaginationItem>
-                                        
+
                                         <PaginationItem>
                                             <PaginationLink
                                                 href="#pablo"
@@ -143,9 +160,9 @@ function SuratMasuk() {
                     </div>
                 </Row>
             </Container>
-      </div>
-            
-  )
+        </div>
+
+    )
 }
 
 export default SuratMasuk
