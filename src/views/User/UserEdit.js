@@ -16,7 +16,7 @@ function UserEdit() {
     const [role, setRole] = useState('')
     
     useEffect(() => {
-        apiClient.get(`http://localhost:8000/api/user/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/user/${id}`).then((response) => {
             const userData = JSON.parse(response.data.user)
             console.log(userData)
             setNama(userData.nama)
@@ -31,7 +31,7 @@ function UserEdit() {
     const updateAPIData = async (e) => {
         const data = {nama, email, password, role}
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://localhost:8000/api/user/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/user/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");

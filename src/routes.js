@@ -9,10 +9,13 @@ import KategoriCreate from "./views/Kategori/KategoriCreate";
 import KategoriEdit from "./views/Kategori/KategoriEdit";
 import ArsipCreate from "./views/Arsip/ArsipCreate";
 import ArsipEdit from "./views/Arsip/ArsipEdit";
+import ArsipDetail from "./views/Arsip/ArsipDetail";
 import SuratMasukCreate from "./views/SuratMasuk/SuratMasukCreate";
 import SuratMasukEdit from "./views/SuratMasuk/SuratMasukEdit";
+import SuratMasukDetail from "./views/SuratMasuk/SuratMasukDetail";
 import SuratKeluarCreate from "./views/SuratKeluar/SuratKeluarCreate";
 import SuratKeluarEdit from "./views/SuratKeluar/SuratKeluarEdit";
+import SuratKeluarDetail from "./views/SuratKeluar/SuratKeluarDetail";
 import UserCreate from "./views/User/UserCreate";
 import UserEdit from "./views/User/UserEdit";
 import TamuUmum from "./views/TamuUmum/TamuUmum";
@@ -24,7 +27,6 @@ import TamuYayasanEdit from "./views/TamuYayasan/TamuYayasanEdit";
 import TamuDinas from "./views/TamuDinas/TamuDinas"; 
 import TamuDinasCreate from "./views/TamuDinas/TamuDinasCreate";
 import TamuDinasEdit from "./views/TamuDinas/TamuDinasEdit";
-import Detail from "./views/Detail/Detail.js";
 
 var routes = [
   {
@@ -179,8 +181,18 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: '/Detail/',
-    component: Detail,
+    path: '/ArsipDetail/',
+    component: ArsipDetail,
+    layout: "/admin",
+  },
+  {
+    path: '/SuratKeluarDetail/',
+    component: SuratKeluarDetail,
+    layout: "/admin",
+  },
+  {
+    path: '/SuratMasukDetail/',
+    component: SuratMasukDetail,
     layout: "/admin",
   },
 

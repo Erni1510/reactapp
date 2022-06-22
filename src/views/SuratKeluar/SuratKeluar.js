@@ -107,7 +107,7 @@ function SuratKeluar() {
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                             </td>
                                                                 <td>
-                                                                    <Link to={""} target="_blank" className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                                    <Link to={{ pathname: '/admin/SuratKeluarDetail/', state: { id: data.id } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                                                     <Link to={{ pathname: '/admin/editSuratKeluar/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                                                     <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
                                                                 </td>
