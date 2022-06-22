@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import apiClient from "../../services/API.js";
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function TamuDinasEdit() {
     const history = useHistory()
@@ -14,8 +15,13 @@ function TamuDinasEdit() {
     const [alamat_instansi, setAlamat] = useState('')
     const [no_hp, setNo] = useState('')
     const [keperluan, setKeperluan] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`).then((response) => {
             const tamuData=JSON.parse(response.data.tamu)
             console.log(tamuData)
@@ -60,7 +66,10 @@ function TamuDinasEdit() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Tamu Dinas
                                     </h6>
-                                    {/* Address */}
+                                    {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -150,6 +159,7 @@ function TamuDinasEdit() {
                                         </Button>
                                         <Link to={"/admin/TamuDinas"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
+                                    }
                                 </Form>
                             </CardHeader>
                         </Card>

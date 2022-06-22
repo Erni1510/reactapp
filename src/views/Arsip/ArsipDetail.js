@@ -5,7 +5,7 @@ import Header from "../../components/Headers/Header.js";
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Form, Col, Container, Row, FormGroup } from "reactstrap";
 import moment from 'moment';
-
+import PulseLoader from "react-spinners/PulseLoader";
 
 function ArsipDetail() {
   const location = useLocation();
@@ -14,8 +14,13 @@ function ArsipDetail() {
   const [created_at, setTanggal] = useState('')
   const [keterangan, setKeterangan] = useState('')
   const [file_arsip, setFile] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+        setLoading(false)
+    }, 1000)
       apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
           const arsipData = JSON.parse(response.data.arsip)
           console.log(arsipData)
@@ -45,6 +50,10 @@ function ArsipDetail() {
                                   </Col>
                               </Row>
                               <Form onSubmit={handleSubmit}>
+                              {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                   <div className="pl-lg-4">
                                       <Row>
                                           <Col md="12">
@@ -53,7 +62,7 @@ function ArsipDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      1. Nama Arsip : {nama_arsip}
+                                                      Nama Arsip : {nama_arsip}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -63,7 +72,7 @@ function ArsipDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      2. Keterangan Arsip : {keterangan}
+                                                      Keterangan Arsip : {keterangan}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -73,7 +82,7 @@ function ArsipDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      3. Tanggal Upload : {moment(created_at).format('DD MMMM yyyy')}
+                                                      Tanggal Upload : {moment(created_at).format('DD MMMM yyyy')}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -81,6 +90,7 @@ function ArsipDetail() {
                                       <Link to={""} className="btn btn-success float-right" bssize="sm">View</Link>
                                       <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
+                                  }
                               </Form>
                           </CardHeader>
                       </Card>

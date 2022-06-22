@@ -16,7 +16,7 @@ function SuratKeluarCreate() {
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/surat-keluar', {
             nomor_surat, tujuan_surat, uraian, keterangan, file_surat
-        })
+        }) 
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
 

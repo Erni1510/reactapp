@@ -5,6 +5,7 @@ import Header from "../../components/Headers/Header.js";
 import { NavLink as Link } from "react-router-dom";
 import { Card, CardHeader, Form, Col, Container, Row, FormGroup } from "reactstrap";
 import moment from 'moment';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function SuratMasukDetail() {
     const location = useLocation();
@@ -18,6 +19,10 @@ function SuratMasukDetail() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/surat-Masuk/${id}`).then((response) => {
             const suratMasukData = JSON.parse(response.data.suratMasuk)
             console.log(suratMasukData)
@@ -46,6 +51,10 @@ function SuratMasukDetail() {
                                   </Col>
                               </Row>
                               <Form>
+                                {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                   <div className="pl-lg-4">
                                       <Row>
                                           <Col md="12">
@@ -54,7 +63,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      1. Nomor Surat : {nomor_surat}
+                                                      Nomor Surat : {nomor_surat}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -64,7 +73,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      2. Tujuan Surat : {asal_surat}
+                                                      Tujuan Surat : {asal_surat}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -74,7 +83,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      3. Uraian : {uraian}
+                                                      Uraian : {uraian}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -84,7 +93,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      4. Keterangan : {keterangan}
+                                                      Keterangan : {keterangan}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -94,7 +103,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      5. Tanggal Upload : {moment(created_at).format('DD MMMM yyyy')}
+                                                      Tanggal Upload : {moment(created_at).format('DD MMMM yyyy')}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -102,6 +111,7 @@ function SuratMasukDetail() {
                                       <Link to={""} className="btn btn-success float-right" bssize="sm">View</Link>
                                       <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
+                                  }
                               </Form>
                           </CardHeader>
                       </Card>

@@ -19,6 +19,10 @@ function SuratKeluarEdit() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
             console.log(suratData)
@@ -64,6 +68,10 @@ function SuratKeluarEdit() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Surat Keluar
                                     </h6>
+                                    {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -172,9 +180,9 @@ function SuratKeluarEdit() {
                                         </Button>
                                         <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
+                                    }
                                 </Form>
                             </CardHeader>
-
                         </Card>
                     </Col>
                 </Row>

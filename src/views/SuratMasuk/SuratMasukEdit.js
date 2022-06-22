@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function SuratMasukEdit() {
     const history = useHistory()
@@ -15,8 +16,13 @@ function SuratMasukEdit() {
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_surat, setFile] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratMasuk)
             console.log(suratData)
@@ -62,6 +68,10 @@ function SuratMasukEdit() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit Surat Masuk
                                     </h6>
+                                    {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -170,6 +180,7 @@ function SuratMasukEdit() {
                                         </Button>
                                         <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
+                                    }
                                 </Form>
                             </CardHeader>
 

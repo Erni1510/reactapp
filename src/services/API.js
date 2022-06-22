@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'http://cerman.tahutekno.com/api',
     withCredentials: true
 });
 

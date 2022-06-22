@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function ArsipEdit() {
     const location = useLocation();
@@ -13,9 +14,14 @@ function ArsipEdit() {
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        apiClient.get(`http://cerman.tahutekno.com/api/arsip/${id}`).then((response) => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+        apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             console.log(arsipData)
             setNama(arsipData.nama_arsip)
@@ -28,7 +34,7 @@ function ArsipEdit() {
     const updateAPIData = async (e) => {
         const data = { nama_arsip, keterangan, file_arsip }
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        apiClient.put(`http://cerman.tahutekno.com/api/arsip/${id}`, data).catch((e) => {
+        apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
@@ -54,6 +60,10 @@ function ArsipEdit() {
                                     </Col>
                                 </Row>
                                 <Form onSubmit={handleSubmit}>
+                                {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -125,6 +135,7 @@ function ArsipEdit() {
                                         </Button>
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
+                                    }
                                 </Form>
                             </CardHeader>
 

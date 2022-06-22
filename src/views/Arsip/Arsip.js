@@ -7,7 +7,6 @@ import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
 import moment from 'moment';
 
-
 function Arsip() {
     const [arsip, setArsip] = useState([])
     const [loading, setLoading] = useState(false)

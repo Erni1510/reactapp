@@ -12,7 +12,7 @@ function ArsipCreate() {
     const history = useHistory()
 
     const postData = () => {
-        apiClient.post('http://cerman.tahutekno.com/api/arsip', {
+        apiClient.post('http://localhost:8000/api/arsip', {
             nama_arsip, keterangan, file_arsip
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");

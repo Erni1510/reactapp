@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function UserEdit() {
     const history = useHistory()
@@ -14,8 +15,14 @@ function UserEdit() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('')
+    const [loading, setLoading] = useState(false)
     
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+        
         apiClient.get(`http://cerman.tahutekno.com/api/user/${id}`).then((response) => {
             const userData = JSON.parse(response.data.user)
             console.log(userData)
@@ -59,7 +66,10 @@ function UserEdit() {
                                     <h6 className="heading-small text-muted mb-4">
                                         Edit User
                                     </h6>
-                                    {/* Address */}
+                                    {
+                                loading ?
+                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                    :
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -149,6 +159,7 @@ function UserEdit() {
                                         </Button>
                                         <Link to={"/admin/User"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
+                                    }
                                 </Form>
                             </CardHeader>
                         </Card>
