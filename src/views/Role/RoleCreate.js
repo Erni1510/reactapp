@@ -5,21 +5,21 @@ import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 
-function KategoriCreate() {
-    const [nama_kategori, setNama] = useState('')
+function RoleCreate() {
+    const [nama_role, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const history = useHistory()
 
     const postData = () => {
-        apiClient.post('http://cerman.tahutekno.com/api/kategori', {
-            nama_kategori, keterangan
+        apiClient.post('http://cerman.tahutekno.com/api/role', {
+            nama_role, keterangan
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        history.push('/admin/Kategori/')
+        history.push('/admin/Role/')
     }
 
     return (
@@ -32,12 +32,12 @@ function KategoriCreate() {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Kategori</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Role</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form onSubmit={handleSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
-                                        Tambah Kategori
+                                        Tambah Role
                                     </h6>
                                     <div className="pl-lg-4">
                                         <Row>
@@ -47,12 +47,12 @@ function KategoriCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Kategori*
+                                                        Nama*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Nama Kategori"
+                                                        placeholder="Nama Role"
                                                         type="text"
                                                         onChange={(e) => setNama(e.target.value)}
                                                         required
@@ -70,7 +70,7 @@ function KategoriCreate() {
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="leterangan Kategori"
+                                                        placeholder="keterangan Role"
                                                         type="textarea"
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                         required
@@ -86,7 +86,7 @@ function KategoriCreate() {
                                         >
                                             Submit
                                         </Button> 
-                                        <Link to={"/admin/Kategori"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
+                                        <Link to={"/admin/Role"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
@@ -99,4 +99,4 @@ function KategoriCreate() {
     )
 }
 
-export default KategoriCreate
+export default RoleCreate

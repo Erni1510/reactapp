@@ -13,8 +13,9 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import React from 'react'
 
-const Login = () => {
+function Login() {
   return (
     <>
       <Col lg="5" md="7">
@@ -88,6 +89,6 @@ const Login = () => {
       </Col>
     </>
   );
-};
+}
 
 export default Login;

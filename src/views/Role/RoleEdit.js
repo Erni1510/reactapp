@@ -1,27 +1,44 @@
-import React, { useState } from 'react'
 import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
+import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
+import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
-function KategoriCreate() {
-    const [nama_kategori, setNama] = useState('')
-    const [keterangan, setKeterangan] = useState('')
+function RoleEdit() {
+    const location = useLocation();
+    const [id, setID] = useState(JSON.parse(location.state.id))
     const history = useHistory()
+    const [nama_role, setNama] = useState('')
+    const [keterangan, setKeterangan] = useState('')
 
-    const postData = () => {
-        apiClient.post('http://cerman.tahutekno.com/api/kategori', {
-            nama_kategori, keterangan
+    useEffect(() => {
+        apiClient.get(`http://cerman.tahutekno.com/api/role/${id}`).then((response) => {
+            const roleData = JSON.parse(response.data.role)
+            console.log(roleData)
+            setNama(roleData.nama_role)
+            setKeterangan(roleData.keterangan)
+        }).catch((e) => {
+            console.error(e)
         })
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
-    }
-    
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        history.push('/admin/Kategori/')
+    }, [id])
+
+    const updateAPIData = async (e) => {
+        const data = { nama_role, keterangan}
+        swal("Good job!", "Data Berhasil Diedit!", "success");
+        apiClient.put(`http://cerman.tahutekno.com/api/role/${id}`, data).catch((e) => {
+            console.error(e)
+        }).catch((err) => {
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
+        })
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        history.push('/admin/Role')
+    }
     return (
         <>
             <Header />
@@ -32,13 +49,10 @@ function KategoriCreate() {
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
                                     <Col xs="8">
-                                        <h3 className="mb-0">Kategori</h3><hr className="my-4" />
+                                        <h3 className="mb-0">Edit Role</h3><hr className="my-4" />
                                     </Col>
                                 </Row>
                                 <Form onSubmit={handleSubmit}>
-                                    <h6 className="heading-small text-muted mb-4">
-                                        Tambah Kategori
-                                    </h6>
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col md="12">
@@ -47,13 +61,14 @@ function KategoriCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Kategori*
+                                                        Nama *
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Nama Kategori"
+                                                        placeholder="Nama Role"
                                                         type="text"
+                                                        value={nama_role}
                                                         onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
@@ -70,27 +85,27 @@ function KategoriCreate() {
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="leterangan Kategori"
+                                                        placeholder="keterangan"
                                                         type="textarea"
+                                                        value={keterangan}
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                         required
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                        </Row> 
+                                        </Row>
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={postData}
+                                            onClick={updateAPIData}
                                             type='submit'
                                         >
                                             Submit
-                                        </Button> 
-                                        <Link to={"/admin/Kategori"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
+                                        </Button>
+                                        <Link to={"/admin/Role"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>
                             </CardHeader>
-
                         </Card>
                     </Col>
                 </Row>
@@ -99,4 +114,4 @@ function KategoriCreate() {
     )
 }
 
-export default KategoriCreate
+export default RoleEdit

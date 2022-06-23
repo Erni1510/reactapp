@@ -7,6 +7,9 @@ import User from "./views/User/User.js";
 import Kategori from "./views/Kategori/Kategori.js";
 import KategoriCreate from "./views/Kategori/KategoriCreate";
 import KategoriEdit from "./views/Kategori/KategoriEdit";
+import Role from "./views/Role/Role.js";
+import RoleCreate from "./views/Role/RoleCreate";
+import RoleEdit from "./views/Role/RoleEdit";
 import ArsipCreate from "./views/Arsip/ArsipCreate";
 import ArsipEdit from "./views/Arsip/ArsipEdit";
 import ArsipDetail from "./views/Arsip/ArsipDetail";
@@ -93,6 +96,13 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/Role",
+    name: "Role",
+    icon: "ni ni-tag text-blue",  
+    component: Role,
+    layout: "/admin",
+  },
+  {
     path: "/login",
     name: "Login",
     icon: "ni ni-key-25 text-info",
@@ -148,6 +158,16 @@ var routes = [
   {
     path: "/editKategori/",
     component: KategoriEdit,
+    layout: "/admin",
+  },
+  {
+    path: "/RoleCreate",
+    component: RoleCreate,
+    layout: "/admin",
+  },
+  {
+    path: "/editRole/",
+    component: RoleEdit,
     layout: "/admin",
   },
   {
