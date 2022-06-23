@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
 function SuratMasukEdit() {
-    const history = useHistory()
+    const history = useNavigate()
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
     const [nomor_surat, setNomor] = useState('')
@@ -24,7 +24,7 @@ function SuratMasukEdit() {
             setAsal(suratData.asal_surat)
             setUraian(suratData.uraian)
             setKeterangan(suratData.keterangan)
-            setFile(suratData.file_surat)            
+            setFile(suratData.file_surat)
         }).catch((e) => {
             console.error(e)
         })
@@ -41,7 +41,7 @@ function SuratMasukEdit() {
         })
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         history.push('/admin/SuratMasuk')
     }

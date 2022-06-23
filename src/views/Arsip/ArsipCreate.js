@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
@@ -9,7 +9,7 @@ function ArsipCreate() {
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
-    const history = useHistory()
+    const history = useNavigate()
 
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/arsip', {
@@ -17,8 +17,8 @@ function ArsipCreate() {
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
-    
-    const handleSubmit = async(e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/Arsip/')
     }
@@ -97,7 +97,7 @@ function ArsipCreate() {
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                        </Row> 
+                                        </Row>
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
@@ -105,7 +105,7 @@ function ArsipCreate() {
                                             type='submit'
                                         >
                                             Submit
-                                        </Button> 
+                                        </Button>
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 function KategoriEdit() {
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
-    const history = useHistory()
+    const history = useNavigate()
     const [nama_kategori, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
 
@@ -25,7 +25,7 @@ function KategoriEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data = { nama_kategori, keterangan}
+        const data = { nama_kategori, keterangan }
         swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://cerman.tahutekno.com/api/kategori/${id}`, data).catch((e) => {
             console.error(e)

@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import apiClient from "../../services/API.js";
 import swal from 'sweetalert';
 
 function TamuDinasEdit() {
-    const history = useHistory()
+    const history = useNavigate()
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
     const [nama_instansi, setNama] = useState('')
@@ -17,7 +17,7 @@ function TamuDinasEdit() {
 
     useEffect(() => {
         apiClient.get(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`).then((response) => {
-            const tamuData=JSON.parse(response.data.tamu)
+            const tamuData = JSON.parse(response.data.tamu)
             console.log(tamuData)
             setNama(tamuData.nama_instansi)
             setAlamat(tamuData.alamat_instansi)
@@ -29,7 +29,7 @@ function TamuDinasEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
+        const data = { nama_instansi, alamat_instansi, no_hp, keperluan }
         swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`, data).catch((e) => {
             console.error(e)
@@ -39,7 +39,7 @@ function TamuDinasEdit() {
         })
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/TamuDinas')
     }

@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
@@ -6,7 +6,7 @@ import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 
 function TamuYayasanCreate() {
-    const history = useHistory()
+    const history = useNavigate()
     const [nama_instansi, setNama] = useState('')
     const [alamat_instansi, setAlamat] = useState('')
     const [no_hp, setNo] = useState('')
@@ -17,8 +17,8 @@ function TamuYayasanCreate() {
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
-    
-    const handleSubmit = async(e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/TamuYayasan')
     }
@@ -113,7 +113,7 @@ function TamuYayasanCreate() {
                                                         required
                                                     />
                                                 </FormGroup>
-                                            </Col>                                            
+                                            </Col>
                                         </Row>
                                         <Button
                                             className="btn btn-success float-right"

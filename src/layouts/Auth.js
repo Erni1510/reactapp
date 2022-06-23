@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Route, Routes, Navigate } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import AuthNavbar from "../components/Navbars/AuthNavbar.js";
 import AuthFooter from "../components/Footers/AuthFooter.js";
@@ -43,15 +43,15 @@ const Auth = (props) => {
       <div className="main-content" ref={mainContent}>
         <AuthNavbar />
         <div className="header bg-gradient-info py-7 py-lg-8">
-          
+
         </div>
         {/* Page content */}
         <Container className="mt--8 pb-5">
           <Row className="justify-content-center">
-            <Switch>
+            <Routes>
               {getRoutes(routes)}
-              <Redirect from="*" to="/auth/login" />
-            </Switch>
+              <Navigate from="*" to="/auth/login" />
+            </Routes>
           </Row>
         </Container>
       </div>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 
 function SuratMasukCreate() {
-    const history = useHistory()
+    const history = useNavigate()
     const [nomor_surat, setNomor] = useState('')
     const [asal_surat, setAsal] = useState('')
     const [uraian, setUraian] = useState('')
@@ -20,11 +20,11 @@ function SuratMasukCreate() {
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/SuratMasuk/')
     }
- 
+
     return (
         <>
             <Header />

@@ -3021,14 +3021,14 @@ input[type="button"].btn-block {
 .custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
   background-color: rgba(94, 114, 228, 0.5); }
 
-.custom-switch {
+.custom-Routes {
   padding-left: 3.9375rem; }
-  .custom-switch .custom-control-label::before {
+  .custom-Routes .custom-control-label::before {
     left: -3.9375rem;
     width: 2.1875rem;
     pointer-events: all;
     border-radius: 0.625rem; }
-  .custom-switch .custom-control-label::after {
+  .custom-Routes .custom-control-label::after {
     top: calc(0.125rem + 2px);
     left: calc(-3.9375rem + 2px);
     width: calc(1.25rem - 4px);
@@ -3037,12 +3037,12 @@ input[type="button"].btn-block {
     border-radius: 0.625rem;
     transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
     @media (prefers-reduced-motion: reduce) {
-      .custom-switch .custom-control-label::after {
+      .custom-Routes .custom-control-label::after {
         transition: none; } }
-  .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  .custom-Routes .custom-control-input:checked ~ .custom-control-label::after {
     background-color: #fff;
     transform: translateX(0.9375rem); }
-  .custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
+  .custom-Routes .custom-control-input:disabled:checked ~ .custom-control-label::before {
     background-color: rgba(94, 114, 228, 0.5); }
 
 .custom-select {
@@ -14229,14 +14229,14 @@ article h5 + figure {
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
     .datepicker table tr td span.old, .datepicker table tr td span.new {
       color: #8898aa; }
-  .datepicker .datepicker-switch {
+  .datepicker .datepicker-Routes {
     width: 145px; }
-  .datepicker .datepicker-switch,
+  .datepicker .datepicker-Routes,
   .datepicker .prev,
   .datepicker .next,
   .datepicker tfoot tr th {
     cursor: pointer; }
-    .datepicker .datepicker-switch:hover,
+    .datepicker .datepicker-Routes:hover,
     .datepicker .prev:hover,
     .datepicker .next:hover,
     .datepicker tfoot tr th:hover {
@@ -15917,7 +15917,7 @@ pre > code.highlight {
   font-weight: 500;
   border-radius: .375rem; }
 
-.rdtPicker th.rdtSwitch {
+.rdtPicker th.rdtRoutes {
   font-weight: 500;
   border-radius: .375rem;
   font-size: .875rem;
@@ -15939,7 +15939,7 @@ pre > code.highlight {
   cursor: pointer; }
 
 .rdtPicker .dow,
-.rdtPicker th.rdtSwitch,
+.rdtPicker th.rdtRoutes,
 .rdtPicker th.rdtNext,
 .rdtPicker th.rdtPrev,
 .rdtPicker .rdtTimeToggle {

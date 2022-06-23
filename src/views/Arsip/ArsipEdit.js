@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 function ArsipEdit() {
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
-    const history = useHistory()
+    const history = useNavigate()
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')

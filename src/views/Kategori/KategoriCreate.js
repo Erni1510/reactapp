@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 function KategoriCreate() {
     const [nama_kategori, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const history = useHistory()
+    const history = useNavigate()
 
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/Kategori', {
@@ -16,8 +16,8 @@ function KategoriCreate() {
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
-    
-    const handleSubmit = async(e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/Kategori/')
     }
@@ -77,7 +77,7 @@ function KategoriCreate() {
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                        </Row> 
+                                        </Row>
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
@@ -85,7 +85,7 @@ function KategoriCreate() {
                                             type='submit'
                                         >
                                             Submit
-                                        </Button> 
+                                        </Button>
                                         <Link to={"/admin/Kategori"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

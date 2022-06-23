@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -7,14 +7,14 @@ import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
 function UserEdit() {
-    const history = useHistory()
+    const history = useNavigate()
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
     const [nama, setNama] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('')
-    
+
     useEffect(() => {
         apiClient.get(`http://cerman.tahutekno.com/api/user/${id}`).then((response) => {
             const userData = JSON.parse(response.data.user)
@@ -29,7 +29,7 @@ function UserEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data = {nama, email, password, role}
+        const data = { nama, email, password, role }
         swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://cerman.tahutekno.com/api/user/${id}`, data).catch((e) => {
             console.error(e)
@@ -38,7 +38,7 @@ function UserEdit() {
             console.error(err)
         })
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/User/')
     }
