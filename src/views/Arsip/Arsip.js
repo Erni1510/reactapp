@@ -25,7 +25,11 @@ function Arsip() {
     }
 
     const getData = async (isMounted) => {
+<<<<<<< Updated upstream
         await apiClient.get('http://cerman.tahutekno.com/api/arsip').then((response) => {
+=======
+        await apiClient.get('http://cerman.tahutekno.com//api/arsip').then((response) => {
+>>>>>>> Stashed changes
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
         }).catch((err) => {
