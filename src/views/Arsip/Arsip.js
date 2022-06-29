@@ -103,7 +103,7 @@ function Arsip() {
                                                             </td>
                                                             <td>
                                                                 <Link to={{ pathname: '/admin/ArsipDetail/', state: { id: data.id, kategori: kategoriList } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
-                                                                <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
+                                                                <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id, kategori: kategoriList } }} className="btn btn-success" bssize="sm">
                                                                     <i className="fas fa-edit" aria-hidden="true" />
                                                                 </Link>
                                                                 <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>

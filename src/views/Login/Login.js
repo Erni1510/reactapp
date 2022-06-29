@@ -60,7 +60,7 @@ const Login = () => {
                 errRef.current.focus()
             })
         })
-        history.push('/admin/Arsip/')
+        history.push('/admin/')
     }
 
     return (
