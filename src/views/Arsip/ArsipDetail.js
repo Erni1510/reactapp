@@ -10,6 +10,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 function ArsipDetail() {
   const location = useLocation();
   const [id, setID] = useState(JSON.parse(location.state.id))
+  const [nomor_arsip, setNomor] = useState('')
   const [nama_arsip, setNama] = useState('')
   const [created_at, setTanggal] = useState('')
   const [keterangan, setKeterangan] = useState('')
@@ -24,9 +25,11 @@ function ArsipDetail() {
       apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
           const arsipData = JSON.parse(response.data.arsip)
           console.log(arsipData)
+          setNomor(arsipData.nomor_arsip)
           setNama(arsipData.nama_arsip)
           setKeterangan(arsipData.keterangan)
           setTanggal(arsipData.created_at)
+          setFile(arsipData.file_arsip)
       }).catch((e) => {
           console.error(e)
       })
@@ -56,6 +59,16 @@ function ArsipDetail() {
                                     :
                                   <div className="pl-lg-4">
                                       <Row>
+                                          <Col md="12">
+                                              <FormGroup>
+                                                  <label
+                                                      className="form-control-label"
+                                                      htmlFor="input-address"
+                                                  >
+                                                      Nomor Arsip : {nomor_arsip}
+                                                  </label>
+                                              </FormGroup>
+                                          </Col>
                                           <Col md="12">
                                               <FormGroup>
                                                   <label

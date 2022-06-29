@@ -6,6 +6,7 @@ import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 
 function ArsipCreate() {
+    const [nomor_arsip, setNomor] = useState('')
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
@@ -13,7 +14,7 @@ function ArsipCreate() {
 
     const postData = () => {
         apiClient.post('/arsip', {
-            nama_arsip, keterangan, file_arsip
+            nomor_arsip, nama_arsip, keterangan, file_arsip
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
@@ -42,6 +43,24 @@ function ArsipCreate() {
                                     </h6>
                                     <div className="pl-lg-4">
                                         <Row>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Nomor Arsip*
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Nama Arsip"
+                                                        type="text"
+                                                        onChange={(e) => setNomor(e.target.value)}
+                                                        required
+                                                    />
+                                                </FormGroup>
+                                            </Col>
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label

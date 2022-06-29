@@ -89,7 +89,7 @@ function User() {
                                             <p className="text-sm font-weight-bold mb-0">{data.name}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.username}</p>
+                                            <p className="text-sm font-weight-bold mb-0">{data.email}</p>
                                         </td>
                                         <td>
                                             <p className="text-sm font-weight-bold mb-0">{data.role_id}</p>

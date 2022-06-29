@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 import useAuth from '../../hooks/useAuth'
 import apiClient from '../../services/API'
@@ -8,6 +8,7 @@ const Login = () => {
     const [Auth, setAuth] = useState(useAuth());
 	const accessToken = localStorage.getItem('accessToken')
 	console.log("Load "+accessToken)
+    const history = useHistory()
     //const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
@@ -59,6 +60,7 @@ const Login = () => {
                 errRef.current.focus()
             })
         })
+        history.push('/admin/Arsip/')
     }
 
     return (

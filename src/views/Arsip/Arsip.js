@@ -63,6 +63,7 @@ function Arsip() {
                                             <thead className="thead-light">
                                                 <tr>
                                                     <th scope="col">No</th>
+                                                    <th scope="col">Nomor Arsip</th>
                                                     <th scope="col">Nama Arsip</th>
                                                     <th scope="col">Keterangan Arsip</th>
                                                     <th scope="col">Tanggal</th>
@@ -75,6 +76,10 @@ function Arsip() {
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
                                                                 <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nomor_arsip}</p>
+
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.nama_arsip}</p>

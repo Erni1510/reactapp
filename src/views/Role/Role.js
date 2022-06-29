@@ -85,7 +85,7 @@ function Role() {
                                                                 <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
                                                             </td>
                                                             <td>
-                                                                <Link to={{ pathname: '/admin/ediRole/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
+                                                                <Link to={{ pathname: '/admin/editRole/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
                                                                     <i className="fas fa-edit" aria-hidden="true" />
                                                                 </Link>
                                                                 <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>

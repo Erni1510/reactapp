@@ -11,6 +11,7 @@ function ArsipEdit() {
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
     const history = useHistory()
+    const [nomor_arsip, setNomor] = useState('')
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
@@ -24,6 +25,7 @@ function ArsipEdit() {
         apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             console.log(arsipData)
+            setNomor(arsipData.nomor_arsip)
             setNama(arsipData.nama_arsip)
             setKeterangan(arsipData.keterangan)
         }).catch((e) => {
@@ -32,7 +34,7 @@ function ArsipEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data = { nama_arsip, keterangan, file_arsip }
+        const data = { nomor_arsip, nama_arsip, keterangan, file_arsip }
         swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
             console.error(e)
@@ -66,6 +68,25 @@ function ArsipEdit() {
                                     :
                                     <div className="pl-lg-4">
                                         <Row>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Nomor Arsip*
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Nomor Arsip"
+                                                        type="text"
+                                                        value={nomor_arsip}
+                                                        onChange={(e) => setNomor(e.target.value)}
+                                                        required
+                                                    />
+                                                </FormGroup>
+                                            </Col>
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label
