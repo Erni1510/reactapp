@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useHistory, useLocation } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 
 function ArsipCreate() {
+    const location = useLocation()
+    const history = useHistory()
     const [nomor_arsip, setNomor] = useState('')
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
-    const history = useHistory()
+    const [kategori, setKategori] = useState('')
+    const kategoriList = location.state.kategori;
 
     const postData = () => {
         apiClient.post('/arsip', {
-            nomor_arsip, nama_arsip, keterangan, file_arsip
+            nomor_arsip, nama_arsip, keterangan, kategori, file_arsip
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
@@ -95,6 +98,28 @@ function ArsipCreate() {
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                         required
                                                     />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Tipe setArsip
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        type="select"
+                                                        value={kategori}
+                                                        onChange={(e) => setKategori(e.target.value)}
+                                                        required
+                                                    >
+                                                        {kategoriList.map(kategori => (
+                                                            <option key={kategori.id} value={kategori.id}>{kategori.nama}</option>
+                                                        ))}
+                                                    </Input>
                                                 </FormGroup>
                                             </Col>
                                             <Col md="12">

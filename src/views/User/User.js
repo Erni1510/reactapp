@@ -1,16 +1,5 @@
 import { NavLink as Link } from "react-router-dom";
-import {
-    Card,
-    CardHeader,
-    CardFooter,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Table,
-    Container,
-    Row,
-    Button
-} from "reactstrap";
+import {Card,CardHeader,CardFooter,Pagination,PaginationItem,PaginationLink,Table,Container,Row,Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
@@ -85,6 +74,7 @@ function User() {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <>
                                                 {user.map(data => {
                                                     return (
                                                         <tr key={data.id}>
@@ -98,9 +88,12 @@ function User() {
                                                                 <p className="text-sm font-weight-bold mb-0">{data.email}</p>
                                                             </td>
                                                             <td>
+                                                                <>
                                                                 {roleList.map(role => {
                                                                     return data.role_id === role.id ? <p className="text-sm font-weight-bold mb-0">{role.nama}</p> : null
                                                                 })}
+                                                                </>
+                                                                
                                                             </td>
                                                             <td>
                                                                 <Link to={{ pathname: '/admin/editUser/', state: { id: data.id, roles: roleList } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
@@ -110,6 +103,8 @@ function User() {
                                                     )
                                                 }
                                                 )}
+                                                </>
+                                                
                                             </tbody>
                                         </Table>
                                     </div>

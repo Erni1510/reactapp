@@ -89,10 +89,10 @@ function TamuDinas() {
                                             <h6 className="mb-0 text-center text-sm"  key={data.id}>{data.id}</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.nama_instansi}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.nama}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.alamat_instansi}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.alamat}</p>
                                         </td>
                                         <td>
                                             <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.no_hp}</p>
@@ -101,7 +101,7 @@ function TamuDinas() {
                                             <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.keperluan}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe_tamu}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe}</p>
                                         </td>
                                         <td>
                                         <Link to={{ pathname: '/admin/editTamuDinas/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>

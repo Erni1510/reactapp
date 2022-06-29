@@ -14,7 +14,7 @@ function Kategori() {
     const onDelete = async (id) => {
         console.log(id)
         let isMounted = true
-        await apiClient.delete(`http://cerman.tahutekno.com/api/kategoris/${id}`).then((response) => {
+        await apiClient.delete(`http://cerman.tahutekno.com/api/kategori/${id}`).then((response) => {
             swal("Good job!", "Data Berhasil Dihapus!", "success");
             getData(isMounted)
         }).catch((err) => {
@@ -24,7 +24,7 @@ function Kategori() {
     }
 
     const getData = async (isMounted) => {
-        await apiClient.get('http://cerman.tahutekno.com/api/kategoris').then((response) => {
+        await apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
             const kategoriData = JSON.parse(response.data.kategori)
             isMounted && setKategori(kategoriData)
         }).catch((err) => {
@@ -77,7 +77,7 @@ function Kategori() {
                                                                 <p className="text-sm font-weight-bold mb-0">{data.id}</p>
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{data.nama_kategori}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
 
                                                             </td>
                                                             <td>

@@ -10,6 +10,7 @@ import moment from 'moment';
 function Arsip() {
     const [arsip, setArsip] = useState([])
     const [loading, setLoading] = useState(false)
+    const [kategoriList, setKategoriList] = useState()
 
     const onDelete = async (id) => {
         console.log(id)
@@ -20,13 +21,17 @@ function Arsip() {
         }).catch((err) => {
             swal("Sorry!", "Data gagal Dihapus!", "warning");
             console.error(err)
-        })
+        }) 
     }
 
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/arsip').then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
+            apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
+                const kategori = JSON.parse(response.data.kategori)
+                setKategoriList(kategori)
+            })
         }).catch((err) => {
             console.error(err)
             return isMounted = false;
@@ -51,7 +56,7 @@ function Arsip() {
                         <Card className="shadow">
                             <CardHeader className="border-0">
                                 <h3 className="mb-0">Data Arsip</h3>
-                                <Link to={"/admin/ArsipCreate"} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
+                                <Link to={{ pathname: "/admin/ArsipCreate", state: { kategori: kategoriList } }} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
                             {
                                 loading ?
@@ -92,7 +97,12 @@ function Arsip() {
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                             </td>
                                                             <td>
-                                                                <Link to={{ pathname: '/admin/ArsipDetail/', state: { id: data.id } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                                {kategoriList.map(kategori => {
+                                                                    return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0">{kategori.nama}</p> : null
+                                                                })}
+                                                            </td>
+                                                            <td>
+                                                                <Link to={{ pathname: '/admin/ArsipDetail/', state: { id: data.id, kategori: kategoriList } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                                                 <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
                                                                     <i className="fas fa-edit" aria-hidden="true" />
                                                                 </Link>

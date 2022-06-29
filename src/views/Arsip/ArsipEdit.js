@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useHistory, useLocation } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState, useEffect } from 'react';
@@ -15,7 +15,9 @@ function ArsipEdit() {
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_arsip, setFile] = useState('')
+    const [kategori, setKategori] = useState('')
     const [loading, setLoading] = useState(false)
+    const kategoriList = location.state.kategori
 
     useEffect(() => {
         setLoading(true)
@@ -28,6 +30,10 @@ function ArsipEdit() {
             setNomor(arsipData.nomor_arsip)
             setNama(arsipData.nama_arsip)
             setKeterangan(arsipData.keterangan)
+
+            apiClient.get(`/kategori`).then((response) => {
+                console.log('response: ' + response.data.kategori)
+            })
         }).catch((e) => {
             console.error(e)
         })
@@ -62,100 +68,122 @@ function ArsipEdit() {
                                     </Col>
                                 </Row>
                                 <Form onSubmit={handleSubmit}>
-                                {
-                                loading ?
-                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
-                                    :
-                                    <div className="pl-lg-4">
-                                        <Row>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Nomor Arsip*
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Nomor Arsip"
-                                                        type="text"
-                                                        value={nomor_arsip}
-                                                        onChange={(e) => setNomor(e.target.value)}
-                                                        required
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Nama Arsip*
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Nama Arsip"
-                                                        type="text"
-                                                        value={nama_arsip}
-                                                        onChange={(e) => setNama(e.target.value)}
-                                                        required
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Keterangan Arsip*
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="leterangan Arsip"
-                                                        type="textarea"
-                                                        value={keterangan}
-                                                        onChange={(e) => setKeterangan(e.target.value)}
-                                                        required
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        File Arsip*
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Pilih File Arsip"
-                                                        type="file"
-                                                        bssize="xs"
-                                                        value={file_arsip}
-                                                        onChange={(e) => setFile(e.target.value)}
-                                                        required
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        <Button
-                                            className="btn btn-success float-right"
-                                            bssize="sm"
-                                            onClick={updateAPIData}
-                                            type='submit'
-                                        >
-                                            Submit
-                                        </Button>
-                                        <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
-                                    </div>
+                                    {
+                                        loading ?
+                                            <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                            :
+                                            <div className="pl-lg-4">
+                                                <Row>
+                                                    <Col md="12">
+                                                        <FormGroup>
+                                                            <label
+                                                                className="form-control-label"
+                                                                htmlFor="input-address"
+                                                            >
+                                                                Nomor Arsip*
+                                                            </label>
+                                                            <Input
+                                                                className="form-control-alternative"
+                                                                id="input-address"
+                                                                placeholder="Nomor Arsip"
+                                                                type="text"
+                                                                value={nomor_arsip}
+                                                                onChange={(e) => setNomor(e.target.value)}
+                                                                required
+                                                            />
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col md="12">
+                                                        <FormGroup>
+                                                            <label
+                                                                className="form-control-label"
+                                                                htmlFor="input-address"
+                                                            >
+                                                                Nama Arsip*
+                                                            </label>
+                                                            <Input
+                                                                className="form-control-alternative"
+                                                                id="input-address"
+                                                                placeholder="Nama Arsip"
+                                                                type="text"
+                                                                value={nama_arsip}
+                                                                onChange={(e) => setNama(e.target.value)}
+                                                                required
+                                                            />
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col md="12">
+                                                        <FormGroup>
+                                                            <label
+                                                                className="form-control-label"
+                                                                htmlFor="input-address"
+                                                            >
+                                                                Keterangan Arsip*
+                                                            </label>
+                                                            <Input
+                                                                className="form-control-alternative"
+                                                                id="input-address"
+                                                                placeholder="leterangan Arsip"
+                                                                type="textarea"
+                                                                value={keterangan}
+                                                                onChange={(e) => setKeterangan(e.target.value)}
+                                                                required
+                                                            />
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col md="12">
+                                                        <FormGroup>
+                                                            <label
+                                                                className="form-control-label"
+                                                                htmlFor="input-address"
+                                                            >
+                                                                Tipe Arsip*
+                                                            </label>
+                                                            <Input
+                                                                className="form-control-alternative"
+                                                                id="input-address"
+                                                                type="select"
+                                                                value={kategori}
+                                                                onChange={(e) => setKategori(e.target.value)}
+                                                                required
+                                                            >
+                                                                {kategoriList.map(kategori => (
+                                                                    <option key={kategori.id} value={kategori.id}>{kategori.nama}</option>
+                                                                ))}
+                                                            </Input>
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col md="12">
+                                                        <FormGroup>
+                                                            <label
+                                                                className="form-control-label"
+                                                                htmlFor="input-address"
+                                                            >
+                                                                File Arsip*
+                                                            </label>
+                                                            <Input
+                                                                className="form-control-alternative"
+                                                                id="input-address"
+                                                                placeholder="Pilih File Arsip"
+                                                                type="file"
+                                                                bssize="xs"
+                                                                value={file_arsip}
+                                                                onChange={(e) => setFile(e.target.value)}
+                                                                required
+                                                            />
+                                                        </FormGroup>
+                                                    </Col>
+                                                </Row>
+                                                <Button
+                                                    className="btn btn-success float-right"
+                                                    bssize="sm"
+                                                    onClick={updateAPIData}
+                                                    type='submit'
+                                                >
+                                                    Submit
+                                                </Button>
+                                                <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
+                                            </div>
                                     }
                                 </Form>
                             </CardHeader>
