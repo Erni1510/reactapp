@@ -26,11 +26,11 @@ function UserCreate() {
         apiClient.post('http://cerman.tahutekno.com/api/user', {
             nama, email, password, role
         })
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/User/')
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     return (
         <>
