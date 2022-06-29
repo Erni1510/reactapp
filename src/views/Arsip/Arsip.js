@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink as Link } from "react-router-dom";
-import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button } from "reactstrap";
+import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button, CardBody } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
@@ -21,7 +21,7 @@ function Arsip() {
         }).catch((err) => {
             swal("Sorry!", "Data gagal Dihapus!", "warning");
             console.error(err)
-        }) 
+        })
     }
 
     const getData = async (isMounted) => {
@@ -58,11 +58,9 @@ function Arsip() {
                                 <h3 className="mb-0">Data Arsip</h3>
                                 <Link to={{ pathname: "/admin/ArsipCreate", state: { kategori: kategoriList } }} className="btn btn-success float-right" bssize="sm">+Tambah</Link>
                             </CardHeader>
-                            {
-                                loading ?
-                                    <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
-                                    :
-                                    <div>
+                            {loading ? <PulseLoader color={'#3C79BE'} loading={loading} size={15} margin={2} />
+                                : <>
+                                    <CardBody>
                                         <Table className="align-items-center table-flush" responsive>
 
                                             <thead className="thead-light">
@@ -72,22 +70,23 @@ function Arsip() {
                                                     <th scope="col">Nama Arsip</th>
                                                     <th scope="col">Keterangan Arsip</th>
                                                     <th scope="col">Tanggal</th>
+                                                    <th scope="col">Tipe Arsip</th>
                                                     <th scope="col">Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {arsip.map(data => {
+                                                {arsip !== undefined ? arsip.map((data, idx) => {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
-                                                                <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{idx + 1}</p>
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{data.nomor_arsip}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nomor}</p>
 
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{data.nama_arsip}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
 
                                                             </td>
                                                             <td>
@@ -98,7 +97,7 @@ function Arsip() {
                                                             </td>
                                                             <td>
                                                                 {kategoriList.map(kategori => {
-                                                                    return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0">{kategori.nama}</p> : null
+                                                                    return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0" key={kategori.id}>{kategori.nama}</p> : null
                                                                 })}
                                                             </td>
                                                             <td>
@@ -110,48 +109,49 @@ function Arsip() {
                                                             </td>
                                                         </tr>
                                                     )
-                                                })}
+                                                }) : <td colSpan='6' align='center'></td>}
                                             </tbody>
                                         </Table>
-                                    </div>
-                            }
+                                    </CardBody>
 
-                            <CardFooter className="py-4">
-                                <nav aria-label="...">
-                                    <Pagination
-                                        className="pagination justify-content-end mb-0"
-                                        listClassName="justify-content-end mb-0"
-                                    >
-                                        <PaginationItem className="disabled">
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                                tabIndex="-1"
+                                    <CardFooter className="py-4">
+                                        <nav aria-label="...">
+                                            <Pagination
+                                                className="pagination justify-content-end mb-0"
+                                                listClassName="justify-content-end mb-0"
                                             >
-                                                <i className="fas fa-angle-left" />
-                                                <span className="sr-only">Previous</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem className="active">
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                1
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink
-                                                href="#pablo"
-                                                onClick={(e) => e.preventDefault()}
-                                            >
-                                                <i className="fas fa-angle-right" />
-                                                <span className="sr-only">Next</span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    </Pagination>
-                                </nav>
-                            </CardFooter>
+                                                <PaginationItem className="disabled">
+                                                    <PaginationLink
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                        tabIndex="-1"
+                                                    >
+                                                        <i className="fas fa-angle-left" />
+                                                        <span className="sr-only">Previous</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem className="active">
+                                                    <PaginationLink
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        1
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem>
+                                                    <PaginationLink
+                                                        href="#pablo"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                        <i className="fas fa-angle-right" />
+                                                        <span className="sr-only">Next</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                            </Pagination>
+                                        </nav>
+                                    </CardFooter>
+                                </>
+                            }
                         </Card>
                     </div>
                 </Row>
