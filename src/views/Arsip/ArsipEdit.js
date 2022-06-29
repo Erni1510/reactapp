@@ -40,7 +40,6 @@ function ArsipEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nomor_arsip, nama_arsip, keterangan, file_arsip }
-        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
@@ -52,6 +51,7 @@ function ArsipEdit() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/Arsip')
+        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

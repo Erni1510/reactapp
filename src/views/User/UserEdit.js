@@ -41,7 +41,6 @@ function UserEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nama, email, password, role }
-        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://cerman.tahutekno.com/api/user/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
@@ -52,6 +51,7 @@ function UserEdit() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/User/')
+        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

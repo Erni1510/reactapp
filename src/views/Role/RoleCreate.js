@@ -14,12 +14,12 @@ function RoleCreate() {
         apiClient.post('http://cerman.tahutekno.com/api/role', {
             nama_role, keterangan
         })
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
         history.push('/admin/Role/')
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
 
     return (

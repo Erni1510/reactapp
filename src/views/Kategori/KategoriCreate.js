@@ -14,12 +14,12 @@ function KategoriCreate() {
         apiClient.post('http://cerman.tahutekno.com/api/kategori', {
             nama_kategori, keterangan
         })
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
         history.push('/admin/Kategori/')
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
 
     return (

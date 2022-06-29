@@ -19,12 +19,12 @@ function ArsipCreate() {
         apiClient.post('/arsip', {
             nomor_arsip, nama_arsip, keterangan, kategori, file_arsip
         })
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
         history.push('/admin/Arsip/')
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
 
     return (

@@ -36,7 +36,6 @@ function TamuDinasEdit() {
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
-        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
@@ -48,6 +47,7 @@ function TamuDinasEdit() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         history.push('/admin/TamuDinas')
+        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

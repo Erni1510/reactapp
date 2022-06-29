@@ -26,7 +26,6 @@ function KategoriEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nama_kategori, keterangan}
-        swal("Good job!", "Data Berhasil Diedit!", "success");
         apiClient.put(`http://cerman.tahutekno.com/api/kategori/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
@@ -38,6 +37,7 @@ function KategoriEdit() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/Kategori')
+        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

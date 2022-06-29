@@ -10,11 +10,11 @@ import PulseLoader from "react-spinners/PulseLoader";
 function SuratKeluarDetail() {
     const location = useLocation();
     const [id, setID] = useState(JSON.parse(location.state.id))
-    const [nomor_surat, setNomor] = useState('')
-    const [tujuan_surat, setTujuan] = useState('')
+    const [nomor, setNomor] = useState('')
+    const [tujuan, setTujuan] = useState('')
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file_surat, setFile] = useState('')
+    const [file, setFile] = useState('')
     const [created_at, setTanggal] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -26,12 +26,12 @@ function SuratKeluarDetail() {
         apiClient.get(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
             const suratKeluarData = JSON.parse(response.data.suratKeluar)
             console.log(suratKeluarData)
-            setNomor(suratKeluarData.nomor_surat)
-            setTujuan(suratKeluarData.tujuan_surat)
+            setNomor(suratKeluarData.nomor)
+            setTujuan(suratKeluarData.tujuan)
             setUraian(suratKeluarData.uraian)
             setKeterangan(suratKeluarData.keterangan)
             setTanggal(suratKeluarData.created_at)
-            setFile(suratKeluarData.file_surat)
+            setFile(suratKeluarData.file)
         }).catch((e) => {
             console.error(e)
         })
@@ -63,7 +63,7 @@ function SuratKeluarDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Nomor Surat : {nomor_surat}
+                                                      Nomor Surat : {nomor}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -73,7 +73,7 @@ function SuratKeluarDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Tujuan Surat : {tujuan_surat}
+                                                      Tujuan Surat : {tujuan}
                                                   </label>
                                               </FormGroup>
                                           </Col>

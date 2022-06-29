@@ -89,10 +89,10 @@ function SuratKeluar() {
                                                                     <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
                                                                 </td>
                                                                 <td className="align-middle text-center">
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nomor_surat}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nomor}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tujuan_surat}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tujuan}</p>
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.uraian}</p>
@@ -101,7 +101,7 @@ function SuratKeluar() {
                                                                     <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tipe_surat}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tipe}</p>
                                                                 </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
