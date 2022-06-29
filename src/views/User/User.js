@@ -35,7 +35,7 @@ function User() {
 
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/user').then((response) => {
-            const userData = JSON.parse(response.data.user)
+            const userData = response.data.user
             isMounted && setUser(userData)
         }).catch((err) => {
             console.error(err)
@@ -86,13 +86,13 @@ function User() {
                                             <h6 className="mb-0 text-center text-sm">{data.id}</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
+                                            <p className="text-sm font-weight-bold mb-0">{data.name}</p>
                                         </td>
                                         <td>
                                             <p className="text-sm font-weight-bold mb-0">{data.username}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.jabatan}</p>
+                                            <p className="text-sm font-weight-bold mb-0">{data.role_id}</p>
                                         </td>
                                         <td>
                                          <Link to={{ pathname: '/admin/editUser/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>

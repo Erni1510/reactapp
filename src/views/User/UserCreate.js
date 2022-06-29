@@ -107,7 +107,7 @@ function UserCreate() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Jabatan"
-                                                        type="select"
+                                                        type="text"
                                                         onChange={(e) => setRole(e.target.value)}
                                                         required
                                                     />

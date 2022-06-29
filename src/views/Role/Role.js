@@ -25,7 +25,7 @@ function Role() {
 
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/role').then((response) => {
-            const roleData = JSON.parse(response.data.role)
+            const roleData = response.data.role
             isMounted && setRole(roleData)
         }).catch((err) => {
             console.error(err)
@@ -71,13 +71,14 @@ function Role() {
                                             <tbody>
 
                                                 {role.map(data => {
+													console.log(data.id)
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
                                                                 <p className="text-sm font-weight-bold mb-0">{data.id}</p>
                                                             </td>
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{data.nama_role}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
 
                                                             </td>
                                                             <td>
