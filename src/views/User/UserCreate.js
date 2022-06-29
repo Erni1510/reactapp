@@ -1,4 +1,4 @@
-import { NavLink as Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useHistory, useLocation } from "react-router-dom";
 import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
@@ -7,10 +7,20 @@ import swal from 'sweetalert';
 
 function UserCreate() {
     const history = useHistory()
+    const location = useLocation();
     const [nama, setNama] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('')
+    const roleList = location.state.roles;
+
+    // useEffect(() => {
+    //     apiClient.get('/role').then((response) => {
+    //         const role = JSON.parse(response.data.role)
+    //         setRoleList(role)
+    //     })
+    // }, [])
+
 
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/user', {
@@ -18,7 +28,7 @@ function UserCreate() {
         })
         swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/User/')
     }
@@ -65,7 +75,7 @@ function UserCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                       Email*
+                                                        Email*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -107,10 +117,15 @@ function UserCreate() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Jabatan"
-                                                        type="text"
+                                                        type="select"
+                                                        value={role}
                                                         onChange={(e) => setRole(e.target.value)}
                                                         required
-                                                    />
+                                                    >
+                                                        {roleList.map(role => (
+                                                            <option key={role.id} value={role.id}>{role.nama}</option>
+                                                        ))}
+                                                    </Input>
                                                 </FormGroup>
                                             </Col>
                                         </Row>

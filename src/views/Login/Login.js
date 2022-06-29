@@ -6,8 +6,8 @@ import apiClient from '../../services/API'
 
 const Login = () => {
     const [Auth, setAuth] = useState(useAuth());
-	const accessToken = localStorage.getItem('accessToken')
-	console.log("Load "+accessToken)
+    const accessToken = localStorage.getItem('accessToken')
+    console.log("Load " + accessToken)
     const history = useHistory()
     //const navigate = useNavigate()
     const location = useLocation()
@@ -31,21 +31,21 @@ const Login = () => {
     // Make request to API
     const handleSubmit = async (e) => {
         e.preventDefault()
-		var { email, password } = document.forms[0];
-		email = email.value;
-		password = password.value;
-		let postData = { email, password }
-        
+        var { email, password } = document.forms[0];
+        email = email.value;
+        password = password.value;
+        let postData = { email, password }
+
         apiClient.get("http://cerman.tahutekno.com/sanctum/csrf-cookie").then(response => {
             apiClient.post("/login", postData).then(response => {
-				const accessToken = response?.data?.access_token
+                const accessToken = response?.data?.access_token
                 const roles = response?.data?.user_info.roles
                 setAuth({ email, password, roles, accessToken })
                 setEmail(email)
                 setPwd(password)
-				localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('accessToken', accessToken);
                 // navigate(from, { replace: true })
-                console.log("Result "+accessToken)
+                console.log("Result " + response?.data?.user_info.roles)
             }).catch((err) => {
                 if (!err?.response) {
                     setErrMsg('No Server Response')
@@ -89,11 +89,11 @@ const Login = () => {
                             <Form onSubmit={handleSubmit}>
                                 <FormGroup>
                                     <Label>Email</Label>
-                                    <Input type='text' onChange={(e) => setEmail(e.target.value)} placeholder='Email' ref={emailRef} value="aby@admin.com" name="email"/>
+                                    <Input type='text' onChange={(e) => setEmail(e.target.value)} placeholder='Email' ref={emailRef} value="aby@admin.com" name="email" />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label>Password</Label>
-                                    <Input type='password' onChange={(e) => setPwd(e.target.value)} placeholder='Password' value="12345678" name="password"/>
+                                    <Input type='password' onChange={(e) => setPwd(e.target.value)} placeholder='Password' value="12345678" name="password" />
                                 </FormGroup>
                                 <Button color='success'>
                                     Login
