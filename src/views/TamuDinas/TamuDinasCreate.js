@@ -14,13 +14,16 @@ function TamuDinasCreate() {
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/tamu-dinas', {
             nama_instansi, alamat_instansi, no_hp, keperluan
-        })
+        }).then((res) => {
+            swal("Good job!", "Data Berhasil Ditambah!", "success")
+            history.push('/admin/TamuDinas')
+        }).catch((err) => {
+            swal("Error!", "Data Gagal Ditambahkan!", "error")
+        });
     }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        history.push('/admin/TamuDinas')
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     return (
         <>

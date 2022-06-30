@@ -89,9 +89,9 @@ function User() {
                                                             </td>
                                                             <td>
                                                                 <>
-                                                                {roleList.map(role => {
+                                                                {/* {roleList.map(role => {
                                                                     return data.role_id === role.id ? <p className="text-sm font-weight-bold mb-0">{role.nama}</p> : null
-                                                                })}
+                                                                })} */}
                                                                 </>
                                                                 
                                                             </td>

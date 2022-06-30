@@ -11,7 +11,7 @@ function Arsip() {
     const [arsip, setArsip] = useState([])
     const [loading, setLoading] = useState(false)
     const [kategoriList, setKategoriList] = useState()
-
+    
     const onDelete = async (id) => {
         console.log(id)
         let isMounted = true
@@ -28,6 +28,7 @@ function Arsip() {
         await apiClient.get('http://cerman.tahutekno.com/api/arsip').then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
+            console.log(arsip)
             apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
                 const kategori = JSON.parse(response.data.kategori)
                 setKategoriList(kategori)
@@ -71,12 +72,48 @@ function Arsip() {
                                                     <th scope="col">Nomor Arsip</th>
                                                     <th scope="col">Nama Arsip</th>
                                                     <th scope="col">Keterangan Arsip</th>
+                                                    <th scope="col">Tipe Arsip</th>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {arsip.map(data => {
+                                            {arsip.map(data => {
+                                                    return (
+                                                        <tr key={data.id}>
+                                                            <td className="align-middle text-center">
+                                                                <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nomor}</p>
+
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
+
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
+                                                            </td>
+                                                            <td>
+                                                                {/* {kategoriList.map(kategori => {
+                                                                    return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0">{kategori.nama}</p> : null
+                                                                })} */}
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
+                                                            </td>
+                                                            <td>
+                                                                <Link to={{ pathname: '/admin/ArsipDetail/', state: { id: data.id, kategori: kategoriList } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
+                                                                <Link to={{ pathname: '/admin/editArsip/', state: { id: data.id, kategori: kategoriList } }} className="btn btn-success" bssize="sm">
+                                                                    <i className="fas fa-edit" aria-hidden="true" />
+                                                                </Link>
+                                                                <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })}
+                                                {/* {arsip.map(data => {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
@@ -110,7 +147,7 @@ function Arsip() {
                                                             </td>
                                                         </tr>
                                                     )
-                                                })}
+                                                })} */}
                                             </tbody>
                                         </Table>
                                     </div>

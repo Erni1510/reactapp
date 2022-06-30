@@ -26,7 +26,7 @@ function UserEdit() {
 
         apiClient.get(`http://cerman.tahutekno.com/api/user/${id}`).then((response) => {
             const userData = JSON.parse(response.data.user)
-            setNama(userData.name)
+            setNama(userData.nama)
             setEmail(userData.email)
             setPassword(userData.password)
             setRole(userData.role_id)

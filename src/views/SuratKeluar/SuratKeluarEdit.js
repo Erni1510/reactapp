@@ -26,11 +26,11 @@ function SuratKeluarEdit() {
         apiClient.get(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
             console.log(suratData)
-            setNomor(suratData.nomor_surat)
-            setTujuan(suratData.tujuan_surat)
+            setNomor(suratData.nomor)
+            setTujuan(suratData.tujuan)
             setUraian(suratData.uraian)
             setKeterangan(suratData.keterangan)
-            setFile(suratData.file_surat)
+            setFile(suratData.file)
         }).catch((e) => {
             console.error(e)
         })

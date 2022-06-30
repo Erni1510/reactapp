@@ -23,12 +23,13 @@ function ArsipEdit() {
         setTimeout(() => {
             setLoading(false)
         }, 1000)
-        apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+        apiClient.get(`/arsip/${id}`).then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             console.log(arsipData)
             setNomor(arsipData.nomor_arsip)
             setNama(arsipData.nama_arsip)
             setKeterangan(arsipData.keterangan)
+            setKategori(arsipData.kategori)
 
             apiClient.get(`/kategori`).then((response) => {
                 console.log('response: ' + response.data.kategori)
@@ -39,8 +40,9 @@ function ArsipEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data = { nomor_arsip, nama_arsip, keterangan, file_arsip }
-        apiClient.put(`http://localhost:8000/api/arsip/${id}`, data).catch((e) => {
+        const data = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
+        apiClient.put(`/arsip/${id}`, data).catch((e) => {
+        swal("Good job!", "Data Berhasil Diedit!", "success");
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
@@ -50,8 +52,8 @@ function ArsipEdit() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         history.push('/admin/Arsip')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

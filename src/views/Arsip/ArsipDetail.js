@@ -10,11 +10,11 @@ import PulseLoader from "react-spinners/PulseLoader";
 function ArsipDetail() {
   const location = useLocation();
   const [id, setID] = useState(JSON.parse(location.state.id))
-  const [nomor_arsip, setNomor] = useState('')
-  const [nama_arsip, setNama] = useState('')
+  const [nomor, setNomor] = useState('')
+  const [nama, setNama] = useState('')
   const [created_at, setTanggal] = useState('')
   const [keterangan, setKeterangan] = useState('')
-  const [file_arsip, setFile] = useState('')
+  const [file, setFile] = useState('')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -22,14 +22,14 @@ function ArsipDetail() {
     setTimeout(() => {
         setLoading(false)
     }, 1000)
-      apiClient.get(`http://localhost:8000/api/arsip/${id}`).then((response) => {
+      apiClient.get(`/arsip/${id}`).then((response) => {
           const arsipData = JSON.parse(response.data.arsip)
           console.log(arsipData)
-          setNomor(arsipData.nomor_arsip)
-          setNama(arsipData.nama_arsip)
+          setNomor(arsipData.nomor)
+          setNama(arsipData.nama)
           setKeterangan(arsipData.keterangan)
           setTanggal(arsipData.created_at)
-          setFile(arsipData.file_arsip)
+          setFile(arsipData.file)
       }).catch((e) => {
           console.error(e)
       })
@@ -65,7 +65,7 @@ function ArsipDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Nomor Arsip : {nomor_arsip}
+                                                      Nomor Arsip : {nomor}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -75,7 +75,7 @@ function ArsipDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Nama Arsip : {nama_arsip}
+                                                      Nama Arsip : {nama}
                                                   </label>
                                               </FormGroup>
                                           </Col>

@@ -14,13 +14,16 @@ function TamuYayasanCreate() {
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/tamu-yayasan', {
             nama_instansi, alamat_instansi, no_hp, keperluan
-        })
+        }).then((res) => {
+            swal("Good job!", "Data Berhasil Ditambah!", "success")
+            history.push('/admin/TamuYayasan')
+        }).catch((err) => {
+            swal("Error!", "Data Gagal Ditambahkan!", "error")
+        });
     }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        history.push('/admin/TamuYayasan')
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
     return (
         <>

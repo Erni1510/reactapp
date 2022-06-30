@@ -15,16 +15,16 @@ function ArsipCreate() {
     const [kategori, setKategori] = useState('')
     const kategoriList = location.state.kategori;
 
-    const postData = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         apiClient.post('/arsip', {
             nomor_arsip, nama_arsip, keterangan, kategori, file_arsip
-        })
-    }
-    
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        history.push('/admin/Arsip/')
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
+        }).then((res) => {
+            swal("Good job!", "Data Berhasil Ditambah!", "success")
+            history.push('/admin/Arsip/')
+        }).catch((err) => {
+            swal("Error!", "Data Gagal Ditambahkan!", "error")
+        });
     }
 
     return (
@@ -141,15 +141,14 @@ function ArsipCreate() {
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                        </Row> 
+                                        </Row>
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={postData}
                                             type='submit'
                                         >
                                             Submit
-                                        </Button> 
+                                        </Button>
                                         <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                     </div>
                                 </Form>

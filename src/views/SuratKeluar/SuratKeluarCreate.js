@@ -16,13 +16,16 @@ function SuratKeluarCreate() {
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/surat-keluar', {
             nomor_surat, tujuan_surat, uraian, keterangan, file_surat
-        }) 
+        }).then((res) => {
+            swal("Good job!", "Data Berhasil Ditambah!", "success")
+            history.push('/admin/SuratKeluar')
+        }).catch((err) => {
+            swal("Error!", "Data Gagal Ditambahkan!", "error")
+        });
     }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        history.push('/admin/SuratKeluar')
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
     }
  
     return (
