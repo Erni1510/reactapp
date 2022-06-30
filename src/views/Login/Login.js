@@ -58,7 +58,7 @@ const Login = () => {
                 setPwd(password)
 				localStorage.setItem('accessToken', accessToken);
                 history.push('/admin')
-                // navigate(from, { replace: true })
+                // navigate(from, { replace: true }) 
                 console.log("Result "+accessToken)
             }).catch((err) => {
                 if (!err?.response) {
