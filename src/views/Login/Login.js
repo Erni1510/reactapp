@@ -19,7 +19,7 @@ import apiClient from '../../services/API'
 
 const Login = () => {
     const [Auth, setAuth] = useState(useAuth());
-	const accessToken = localStorage.getItem('accessToken')
+	const accessToken = sessionStorage.getItem('accessToken')
 	console.log("Load "+accessToken)
     //const navigate = useNavigate()
     const location = useLocation()
@@ -56,7 +56,7 @@ const Login = () => {
                 setAuth({ email, password, roles, accessToken })
                 setEmail(email)
                 setPwd(password)
-				localStorage.setItem('accessToken', accessToken);
+				sessionStorage.setItem('accessToken', accessToken);
                 history.push('/admin')
                 // navigate(from, { replace: true }) 
                 console.log("Result "+accessToken)
@@ -66,7 +66,11 @@ const Login = () => {
                 } else if (err.response?.status === 400) {
                     setErrMsg('Missing Username or Password')
                 } else if (err.response?.status === 401) {
-                    setErrMsg('Maaf, Username dan Password tidak ditemukan')
+                    setErrMsg = (
+                        <div className='alert alert-danger' role="alert">
+                            ("Username dan Password tidak valid")
+                        </div>
+                    )
                 } else {
                     setErrMsg('Login Failed')
                 }

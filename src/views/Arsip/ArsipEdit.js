@@ -170,7 +170,7 @@ function ArsipEdit() {
                                                                 bssize="xs"
                                                                 value={file_arsip}
                                                                 onChange={(e) => setFile(e.target.value)}
-                                                                required
+                                                                
                                                             />
                                                         </FormGroup>
                                                     </Col>

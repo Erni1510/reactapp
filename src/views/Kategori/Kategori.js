@@ -10,6 +10,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 function Kategori() {
     const [kategori, setKategori] = useState([])
     const [loading, setLoading] = useState(false)
+    const [userList, setUserList] = useState()
 
     const onDelete = async (id) => {
         console.log(id)
@@ -27,11 +28,14 @@ function Kategori() {
         await apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
             const kategoriData = JSON.parse(response.data.kategori)
             isMounted && setKategori(kategoriData)
+            apiClient.get('/user').then((response) => {
+                const user = JSON.parse(response.data.user)
+                setUserList(user)
+            })
         }).catch((err) => {
             console.error(err)
             return isMounted = false;
-        })
-    }
+        })}
 
     useEffect(() => {
         setLoading(true)
@@ -65,16 +69,17 @@ function Kategori() {
                                                     <th scope="col">No</th>
                                                     <th scope="col">Nama kategori</th>
                                                     <th scope="col">Keterangan</th>
+                                                    <th scope="col">Dibuat oleh</th>
                                                     <th scope="col">Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                {kategori.map(data => {
+                                                {kategori.map((data, idx) => {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
-                                                                <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{idx+1}</p>
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
@@ -82,6 +87,11 @@ function Kategori() {
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
+                                                            </td>
+                                                            <td>
+                                                                {userList.map(user => {
+                                                                    return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
+                                                                    })}
                                                             </td>
                                                             <td>
                                                                 <Link to={{ pathname: '/admin/editKategori/', state: { id: data.id } }} className="btn btn-success" bssize="sm">

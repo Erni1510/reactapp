@@ -70,7 +70,7 @@ function Role() {
                                             </thead>
                                             <tbody>
                                             <>
-                                            {role.map(data => {
+                                            {role.map((data, idx) => {
 													console.log(data.id)
                                                     return (
                                                         <tr key={data.id}>

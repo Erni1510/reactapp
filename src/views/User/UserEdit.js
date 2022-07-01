@@ -14,7 +14,7 @@ function UserEdit() {
     const [nama, setNama] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('')
+    const [roles, setRole] = useState('')
     const [loading, setLoading] = useState(false)
     const roleList = location.state.roles
 
@@ -40,22 +40,22 @@ function UserEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data = { nama, email, password, role }
+        const data = { nama, email, password, roles }
         apiClient.put(`http://cerman.tahutekno.com/api/user/${id}`, data).catch((e) => {
-            console.error(e)
+            console.log(data)
+        }).then((res) => {
+            swal("Good job!", "Data Berhasil Ditambah!", "success")
+            history.push('/admin/User/')
         }).catch((err) => {
-            swal("Sorry!", "Data gagal Diedit!", "warning");
-            console.error(err)
-        })
+            swal("Error!", "Data Gagal Ditambahkan!", "error")
+        });
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push('/admin/User/')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>
-            <Header />
+            <Header /> 
             <Container className="mt--7" fluid>
                 <Row>
                     <Col className="order-xl-1" xl="12">
@@ -128,9 +128,7 @@ function UserEdit() {
                                                                 placeholder="password"
                                                                 type="password"
                                                                 value={password}
-                                                                onChange={(e) => setPassword(e.target.value)}
-                                                                required
-                                                            />
+                                                                onChange={(e) => setPassword(e.target.value)}                                                            />
                                                         </FormGroup>
                                                     </Col>
                                                     <Col md="12">
@@ -146,18 +144,22 @@ function UserEdit() {
                                                                 id="input-address"
                                                                 placeholder="Jabatan"
                                                                 type="select"
-                                                                value={role}
+                                                                value={roles}
                                                                 onChange={(e) => setRole(e.target.value)}
                                                                 required
                                                             >
-                                                                {roleList.map(role => (
-                                                                    <option key={role.id} value={role.id}>{role.nama}</option>
-                                                                ))}
+                                                                {roleList.map(role => {
+                                                                    return(
+                                                                        roles === role.id 
+                                                                        ? <option key={role.id} value={role.id} selected>{role.nama}</option>
+                                                                        : <option key={role.id} value={role.id}>{role.nama}</option>
+                                                                        )
+                                                                    })}
                                                             </Input>
                                                         </FormGroup>
                                                     </Col>
                                                 </Row>
-                                                <Button
+                                                <Button 
                                                     className="btn btn-success float-right"
                                                     bssize="sm"
                                                     onClick={updateAPIData}

@@ -20,6 +20,7 @@ import moment from 'moment';
 function SuratKeluar() {
     const [suratKeluar, setSuratKeluar] = useState([])
     const [loading, setLoading] = useState(false)
+    const [userList, setUserList] = useState()
 
     const onDelete = async (id) => {
         console.log(id)
@@ -29,13 +30,17 @@ function SuratKeluar() {
             getData(isMounted)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Dihapus!", "warning");
-            console.error(err)
+            console.error(err) 
         })
     }
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/surat-keluar').then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
             isMounted && setSuratKeluar(suratData)
+            apiClient.get('/user').then((response) => {
+                const user = JSON.parse(response.data.user)
+                setUserList(user)
+            })
         }).catch((err) => {
             console.error(err)
             return isMounted = false;
@@ -75,34 +80,36 @@ function SuratKeluar() {
                                                     <th scope="col">tujuan Surat</th>
                                                     <th scope="col">Uraian</th>
                                                     <th scope="col">Keterangan</th>
-                                                    <th scope="col">Tipe</th>
+                                                    <th scope="col">Dibuat oleh</th>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {suratKeluar.map(data => {
+                                                {suratKeluar.map((data, idx) => {
                                                     return (
                                                         <>
-                                                            <tr>
+                                                            <tr key={data.id} >
                                                                 <td className="align-middle text-center">
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.id}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{idx+1}</p>
                                                                 </td>
                                                                 <td className="align-middle text-center">
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.nomor}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{data.nomor}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tujuan}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{data.tujuan}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.uraian}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{data.uraian}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.keterangan}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{data.keterangan}</p>
                                                                 </td>
-                                                                <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" key={data.id}>{data.tipe}</p>
-                                                                </td>
+                                         <td>
+                                            {/* {userList.map(user => {
+                                                return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
+                                                })} */}
+                                        </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                             </td>

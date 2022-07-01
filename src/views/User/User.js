@@ -75,7 +75,7 @@ function User() {
                                             </thead>
                                             <tbody>
                                                 <>
-                                                {user.map(data => {
+                                                {user.map((data,idx) => {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td align-middle text-center text-sm>
