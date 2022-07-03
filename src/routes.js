@@ -38,6 +38,7 @@ var routes = [
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/SuratMasuk",
@@ -45,6 +46,7 @@ var routes = [
     icon: "ni ni-credit-card text-green",
     component: SuratMasuk,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/SuratKeluar",
@@ -52,6 +54,7 @@ var routes = [
     icon: "ni ni-ungroup ",
     component: SuratKeluar,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/Arsip",
@@ -59,6 +62,7 @@ var routes = [
     icon: "ni ni-box-2 text-primary",
     component: Arsip,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/TamuUmum",
@@ -66,6 +70,7 @@ var routes = [
     icon: "ni ni-book-bookmark text-purple",
     component: TamuUmum,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/TamuDinas",
@@ -73,6 +78,7 @@ var routes = [
     icon: "ni ni-building text-orange",
     component: TamuDinas,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/TamuYayasan",
@@ -80,6 +86,7 @@ var routes = [
     icon: "ni ni-folder-17 text-teal",
     component: TamuYayasan,
     layout: "/admin",
+	type: "",
   },
   {
     path: "/User",
@@ -87,6 +94,7 @@ var routes = [
     icon: "ni ni-tag text-pink",  
     component: User,
     layout: "/admin",
+	type: "admin",
   },
   {
     path: "/Kategori",
@@ -94,6 +102,7 @@ var routes = [
     icon: "ni ni-tag text-blue",  
     component: Kategori,
     layout: "/admin",
+	type: "admin",
   },
   {
     path: "/Role",
@@ -101,6 +110,7 @@ var routes = [
     icon: "ni ni-key-25 text-info", 
     component: Role,
     layout: "/admin",
+	type: "admin",
   },
   {
     path: "/login",

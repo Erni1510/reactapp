@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function UserCreate() {
     const history = useHistory()
@@ -21,7 +22,13 @@ function UserCreate() {
     //     })
     // }, [])
 
-
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
+	
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/user', {
             nama, email, password, role

@@ -1,35 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
 import moment from 'moment';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function Arsip() {
     const [arsip, setArsip] = useState([])
     const [loading, setLoading] = useState(false)
     const [kategoriList, setKategoriList] = useState()
     const [userList, setUserList] = useState()
-
+    const history = useHistory()
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	
     const onDelete = async (id) => {
-        console.log(id)
-        let isMounted = true
-        await apiClient.delete(`http://cerman.tahutekno.com/api/arsip/${id}`).then((response) => {
-            swal("Good job!", "Data Berhasil Dihapus!", "success");
-            getData(isMounted)
-        }).catch((err) => {
-            swal("Sorry!", "Data gagal Dihapus!", "warning");
-            console.error(err)
-        }) 
+        if (isAdmin) {
+		swal("Error!", "Anda bukan Sekretaris!", "error")
+		history.push("/admin");
+		}else{
+			let isMounted = true
+			await apiClient.delete(`http://cerman.tahutekno.com/api/arsip/${id}`).then((response) => {
+				swal("Good job!", "Data Berhasil Dihapus!", "success");
+				getData(isMounted)
+			}).catch((err) => {
+				swal("Sorry!", "Data gagal Dihapus!", "warning");
+				console.error(err)
+			}) 
+		}
     }
 
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/arsip').then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
-            console.log(arsipData)
+            console.log(arsip)
             apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
                 const kategori = JSON.parse(response.data.kategori)
                 setKategoriList(kategori)
@@ -38,6 +45,7 @@ function Arsip() {
                 const user = JSON.parse(response.data.user)
                 setUserList(user)
             })
+
         }).catch((err) => {
             console.error(err)
             return isMounted = false;
@@ -101,7 +109,8 @@ function Arsip() {
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
                                                             </td>
-                                                            {/* <td>
+
+                                                            <td>
                                                                 {userList.map(user => {
                                                                     return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
                                                                 })} 
@@ -110,7 +119,7 @@ function Arsip() {
                                                                 {kategoriList.map(kategori => {
                                                                     return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0">{kategori.nama}</p> : null
                                                                 })} 
-                                                            </td>  */}
+                                                            </td> 
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                             </td>

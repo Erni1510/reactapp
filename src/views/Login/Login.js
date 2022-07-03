@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate, useHistory } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
     Button,
     Card,
@@ -16,16 +16,17 @@ import {
   } from "reactstrap";
 import useAuth from '../../hooks/useAuth'
 import apiClient from '../../services/API'
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage'
 
 const Login = () => {
     const [Auth, setAuth] = useState(useAuth());
-	const accessToken = sessionStorage.getItem('accessToken')
-	console.log("Load "+accessToken)
     //const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
-    const history = useHistory()
-
+    //const history = useHistory()
+	//const accessToken = getFromLocal('accessToken')
+	
+	//console.log("Result "+accessToken)
     const emailRef = useRef()
     const errRef = useRef()
 
@@ -53,11 +54,15 @@ const Login = () => {
             apiClient.post("/login", postData).then(response => {
 				const accessToken = response?.data?.access_token
                 const roles = response?.data?.user_info.roles
+				const name = response?.data?.user_info.nama
                 setAuth({ email, password, roles, accessToken })
                 setEmail(email)
                 setPwd(password)
-				sessionStorage.setItem('accessToken', accessToken);
-                history.push('/admin')
+				
+				saveToLocal('Name', name);
+				saveToLocal('Roles', roles);
+				saveToLocal('accessToken', accessToken);
+                window.location.href = "/admin/index"
                 // navigate(from, { replace: true }) 
                 console.log("Result "+accessToken)
             }).catch((err) => {
@@ -66,11 +71,7 @@ const Login = () => {
                 } else if (err.response?.status === 400) {
                     setErrMsg('Missing Username or Password')
                 } else if (err.response?.status === 401) {
-                    setErrMsg = (
-                        <div className='alert alert-danger' role="alert">
-                            ("Username dan Password tidak valid")
-                        </div>
-                    )
+                    setErrMsg('Maaf, Username dan Password tidak ditemukan')
                 } else {
                     setErrMsg('Login Failed')
                 }
@@ -97,7 +98,7 @@ const Login = () => {
                                             <i className="ni ni-email-83" />
                                         </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' onChange={(e) => setEmail(e.target.value)} placeholder='Email' ref={emailRef} name="email" />
+                                    <Input type='text' onChange={(e) => setEmail(e.target.value)} placeholder='Email' ref={emailRef} name="email" /*value="erni@gmail.com"*/ />
                                 </InputGroup>
                             </FormGroup>
                             <FormGroup>
@@ -107,7 +108,7 @@ const Login = () => {
                                             <i className="ni ni-lock-circle-open" />
                                         </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='password' onChange={(e) => setPwd(e.target.value)} placeholder='Password' name="password" />
+                                    <Input type='password' onChange={(e) => setPwd(e.target.value)} placeholder='Password' name="password" /*value="12345678"*//>
                                 </InputGroup>
                             </FormGroup>
                             <div className="custom-control custom-control-alternative custom-checkbox">

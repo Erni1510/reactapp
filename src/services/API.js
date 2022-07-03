@@ -1,5 +1,7 @@
 import axios from "axios";
-const accessToken = localStorage.getItem('accessToken')
+import {saveToLocal, getFromLocal, removeFromLocal} from './Storage'
+
+const accessToken = getFromLocal('accessToken')
 const apiClient = axios.create({
     baseURL: 'http://cerman.tahutekno.com/api',
     withCredentials: true,

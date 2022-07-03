@@ -1,12 +1,14 @@
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import {Card,CardHeader,CardFooter,Pagination,PaginationItem,PaginationLink,Table,Container,Row,Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function User() {
+	const history = useHistory()
     const [user, setUser] = useState([])
     const [loading, setLoading] = useState(false)
     const [roleList, setRoleList] = useState()
@@ -22,7 +24,13 @@ function User() {
             console.error(err)
         })
     }
-
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
+	
     const getData = async (isMounted) => {
         await apiClient.get('/user').then((response) => {
             const userData = JSON.parse(response.data.user)
@@ -39,6 +47,9 @@ function User() {
     }
 
     useEffect(() => {
+		if (!isAdmin) {
+			history.push("/admin");
+		}
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
@@ -75,11 +86,11 @@ function User() {
                                             </thead>
                                             <tbody>
                                                 <>
-                                                {user.map((data,idx) => {
+                                                {user.map((data, idx) => {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td align-middle text-center text-sm>
-                                                                <h6 className="mb-0 text-center text-sm">{data.id}</h6>
+                                                                <h6 className="mb-0 text-center text-sm">{idx+1}</h6>
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.name}</p>

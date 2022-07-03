@@ -6,6 +6,7 @@ import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function UserEdit() {
     const history = useHistory()
@@ -42,20 +43,26 @@ function UserEdit() {
     const updateAPIData = async (e) => {
         const data = { nama, email, password, roles }
         apiClient.put(`http://cerman.tahutekno.com/api/user/${id}`, data).catch((e) => {
-            console.log(data)
-        }).then((res) => {
-            swal("Good job!", "Data Berhasil Ditambah!", "success")
-            history.push('/admin/User/')
+            console.error(e)
         }).catch((err) => {
-            swal("Error!", "Data Gagal Ditambahkan!", "error")
-        });
+            swal("Sorry!", "Data gagal Diedit!", "warning");
+            console.error(err)
+        })
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        history.push('/admin/User/')
+        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
     return (
         <>
-            <Header /> 
+            <Header />
             <Container className="mt--7" fluid>
                 <Row>
                     <Col className="order-xl-1" xl="12">
@@ -128,7 +135,8 @@ function UserEdit() {
                                                                 placeholder="password"
                                                                 type="password"
                                                                 value={password}
-                                                                onChange={(e) => setPassword(e.target.value)}                                                            />
+                                                                onChange={(e) => setPassword(e.target.value)}
+                                                            />
                                                         </FormGroup>
                                                     </Col>
                                                     <Col md="12">
@@ -159,7 +167,7 @@ function UserEdit() {
                                                         </FormGroup>
                                                     </Col>
                                                 </Row>
-                                                <Button 
+                                                <Button
                                                     className="btn btn-success float-right"
                                                     bssize="sm"
                                                     onClick={updateAPIData}

@@ -4,23 +4,30 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function RoleCreate() {
     const [nama_role, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const history = useHistory()
+	const handleSubmit = async(e) => {
+        e.preventDefault();
+        history.push('/admin/Role/')
+        swal("Good job!", "Data Berhasil Ditambah!", "success");
+    }
 
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/role', {
             nama_role, keterangan
         })
     }
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
     
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        history.push('/admin/Role/')
-        swal("Good job!", "Data Berhasil Ditambah!", "success");
-    }
 
     return (
         <>

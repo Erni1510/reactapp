@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+import React, {useState, useEffect, useDispatch, useNavigate, LoadingSpinner} from 'react';
+import { Link, useHistory } from "react-router-dom";
+import {saveToLocal, getFromLocal, removeFromLocal, clearFromLocal} from '../../services/Storage'
+
 // reactstrap components
 import {
   DropdownMenu,
@@ -17,7 +20,13 @@ import {
   Media,
 } from "reactstrap";
 
+
 const AdminNavbar = (props) => {
+	const history = useHistory();
+	const clickMe = (data) => {
+		localStorage.clear();
+		history.push("/", {data: data});
+	};
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -59,7 +68,7 @@ const AdminNavbar = (props) => {
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="/auth/login" onClick={(e) => e.preventDefault()}>
+                <DropdownItem onClick={() => clickMe({name: "test"})}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>

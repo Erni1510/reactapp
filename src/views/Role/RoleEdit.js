@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function RoleEdit() {
     const location = useLocation();
@@ -12,12 +13,17 @@ function RoleEdit() {
     const history = useHistory()
     const [nama_role, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
     useEffect(() => {
         apiClient.get(`http://cerman.tahutekno.com/api/role/${id}`).then((response) => {
             const roleData = JSON.parse(response.data.role)
             console.log(roleData)
-            setNama(roleData.nama_role)
+            setNama(roleData.nama)
             setKeterangan(roleData.keterangan)
         }).catch((e) => {
             console.error(e)
@@ -33,7 +39,7 @@ function RoleEdit() {
             console.error(err)
         })
     }
-
+	
     const handleSubmit = async (e) => {
         e.preventDefault();
         history.push('/admin/Role')

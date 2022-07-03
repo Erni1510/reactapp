@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function ArsipEdit() {
     const location = useLocation();
@@ -17,7 +18,13 @@ function ArsipEdit() {
     const [kategori, setKategori] = useState('')
     const [loading, setLoading] = useState(false)
     const kategoriList = location.state.kategori
-
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (isAdmin) {
+		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
+	
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
@@ -170,7 +177,7 @@ function ArsipEdit() {
                                                                 bssize="xs"
                                                                 value={file_arsip}
                                                                 onChange={(e) => setFile(e.target.value)}
-                                                                
+                                                                required
                                                             />
                                                         </FormGroup>
                                                     </Col>

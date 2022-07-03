@@ -4,6 +4,7 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function ArsipCreate() {
     const location = useLocation()
@@ -14,7 +15,13 @@ function ArsipCreate() {
     const [file_arsip, setFile] = useState('')
     const [kategori, setKategori] = useState('')
     const kategoriList = location.state.kategori;
-
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (isAdmin) {
+		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
+	
     const handleSubmit = async (e) => {
         e.preventDefault();
         apiClient.post('/arsip', {
@@ -26,7 +33,7 @@ function ArsipCreate() {
             swal("Error!", "Data Gagal Ditambahkan!", "error")
         });
     }
-
+	
     return (
         <>
             <Header />
@@ -112,8 +119,9 @@ function ArsipCreate() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         type="select"
-                                                        value={kategori}
+                                                        value={kategori.value}
                                                         onChange={(e) => setKategori(e.target.value)}
+														defaultValue={'1'}
                                                         required
                                                     >
                                                         {kategoriList.map(kategori => (

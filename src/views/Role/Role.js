@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 
 function Role() {
     const [role, setRole] = useState([])
     const [loading, setLoading] = useState(false)
-
+	const history = useHistory()
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
     const onDelete = async (id) => {
         console.log(id)
         let isMounted = true
@@ -22,7 +29,7 @@ function Role() {
             console.error(err)
         })
     }
-
+	
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/role').then((response) => {
             const roleData = JSON.parse(response.data.role)
@@ -34,6 +41,9 @@ function Role() {
     }
 
     useEffect(() => {
+		if (!isAdmin) {
+			history.push("/admin");
+		}
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
@@ -75,7 +85,7 @@ function Role() {
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">
-                                                                <p className="text-sm font-weight-bold mb-0">{data.id}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{idx+1}</p>
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.nama}</p>

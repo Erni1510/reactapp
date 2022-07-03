@@ -19,7 +19,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 function TamuDinas() {
     const [tamu, setTamu] = useState([])
     const [loading, setLoading] = useState(false)
-    const [userList, setUserList] = useState()
 
     const onDelete = async (id) =>{
         console.log(id)
@@ -37,17 +36,12 @@ function TamuDinas() {
         await apiClient.get('http://cerman.tahutekno.com/api/tamu-dinas').then((response) => {
             const tamuData = JSON.parse(response.data.tamu)
             isMounted && setTamu(tamuData)
-            console.log(tamuData)
-
-        apiClient.get('/user').then((response) => {
-            const user = JSON.parse(response.data.user)
-            setUserList(user)
+        }).catch((err) => {
+            console.error(err)
+            return isMounted = false;
         })
-    }).catch((err) => {
-        console.error(err)
-        return isMounted = false;
-    })
-}
+    }
+
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
@@ -60,8 +54,8 @@ function TamuDinas() {
 
         return (
             <>
-            <Header />
-            <Container className="mt--7" fluid>
+                    <Header />
+                    <Container className="mt--7" fluid>
                         <Row>
                             <div className="col">
                                 <Card className="shadow">
@@ -82,6 +76,7 @@ function TamuDinas() {
                                         <th scope="col">Alamat Instansi</th>
                                         <th scope="col">No HP</th>
                                         <th scope="col">Keperluan</th>
+                                        <th scope="col">Tipe Tamu</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -89,21 +84,24 @@ function TamuDinas() {
                                 {tamu.map((data, idx) => {
                                     return (
                                         <>
-                                    <tr key={data.id}>
+                                    <tr>
                                         <td align-middle text-center text-sm>
-                                            <h6 className="mb-0 text-center text-sm">{idx+1}</h6>
+                                            <h6 className="mb-0 text-center text-sm"  key={data.id}>{idx+1}</h6>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.nama}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.alamat}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.alamat}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.no_hp}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.no_hp}</p>
                                         </td>
                                         <td>
-                                            <p className="text-sm font-weight-bold mb-0">{data.keperluan}</p>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.keperluan}</p>
+                                        </td>
+                                        <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe}</p>
                                         </td>
                                         <td>
                                         <Link to={{ pathname: '/admin/editTamuDinas/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>

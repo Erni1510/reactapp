@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { Card, CardHeader, CardFooter, Pagination, PaginationItem, PaginationLink, Table, Container, Row, Button } from "reactstrap";
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 
 function Kategori() {
     const [kategori, setKategori] = useState([])
     const [loading, setLoading] = useState(false)
-    const [userList, setUserList] = useState()
-
+	const history = useHistory()
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (!isAdmin) {
+		swal("Error!", "Anda bukan Admin!", "error").then(() => {
+        history.push("/admin");
+      });
+	}
     const onDelete = async (id) => {
         console.log(id)
         let isMounted = true
@@ -28,16 +34,16 @@ function Kategori() {
         await apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
             const kategoriData = JSON.parse(response.data.kategori)
             isMounted && setKategori(kategoriData)
-            apiClient.get('/user').then((response) => {
-                const user = JSON.parse(response.data.user)
-                setUserList(user)
-            })
         }).catch((err) => {
             console.error(err)
             return isMounted = false;
-        })}
+        })
+    }
 
     useEffect(() => {
+		if (!isAdmin) {
+			history.push("/admin");
+		}
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
@@ -69,7 +75,6 @@ function Kategori() {
                                                     <th scope="col">No</th>
                                                     <th scope="col">Nama kategori</th>
                                                     <th scope="col">Keterangan</th>
-                                                    <th scope="col">Dibuat oleh</th>
                                                     <th scope="col">Opsi</th>
                                                 </tr>
                                             </thead>
@@ -87,11 +92,6 @@ function Kategori() {
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>
-                                                            </td>
-                                                            <td>
-                                                                {userList.map(user => {
-                                                                    return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
-                                                                    })}
                                                             </td>
                                                             <td>
                                                                 <Link to={{ pathname: '/admin/editKategori/', state: { id: data.id } }} className="btn btn-success" bssize="sm">
