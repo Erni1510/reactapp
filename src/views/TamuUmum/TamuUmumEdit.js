@@ -25,8 +25,8 @@ function TamuUmumEdit() {
         apiClient.get(`http://cerman.tahutekno.com/api/tamu-umum/${id}`).then((response) => {
             const tamuData=JSON.parse(response.data.tamu)
             console.log(tamuData)
-            setNama(tamuData.nama_instansi)
-            setAlamat(tamuData.alamat_instansi)
+            setNama(tamuData.nama)
+            setAlamat(tamuData.alamat)
             setNo(tamuData.no_hp)
             setKeperluan(tamuData.keperluan)
         }).catch((e) => {

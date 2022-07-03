@@ -18,15 +18,15 @@ function TamuDinasEdit() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(true) 
         setTimeout(() => {
             setLoading(false)
         }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`).then((response) => {
             const tamuData=JSON.parse(response.data.tamu)
             console.log(tamuData)
-            setNama(tamuData.nama_instansi)
-            setAlamat(tamuData.alamat_instansi)
+            setNama(tamuData.nama)
+            setAlamat(tamuData.alamat)
             setNo(tamuData.no_hp)
             setKeperluan(tamuData.keperluan)
         }).catch((e) => {

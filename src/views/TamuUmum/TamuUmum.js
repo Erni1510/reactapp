@@ -81,7 +81,6 @@ function TamuUmum() {
                                         <th scope="col">Alamat Instansi</th>
                                         <th scope="col">No HP</th>
                                         <th scope="col">Keperluan</th>
-                                        <th scope="col">Dibuat oleh</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -104,11 +103,6 @@ function TamuUmum() {
                                         </td>
                                         <td>
                                             <p className="text-sm font-weight-bold mb-0">{data.keperluan}</p>
-                                        </td>
-                                         <td>
-                                            {userList.map(user => {
-                                                return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
-                                                })}
                                         </td>
                                         <td>
                                         <Link to={{ pathname: '/admin/editTamuUmum/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>

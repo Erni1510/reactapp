@@ -23,7 +23,7 @@ function SuratMasukDetail() {
         setTimeout(() => {
             setLoading(false)
         }, 1000)
-        apiClient.get(`http://cerman.tahutekno.com/api/surat-Masuk/${id}`).then((response) => {
+        apiClient.get(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
             const suratMasukData = JSON.parse(response.data.suratMasuk)
             console.log(suratMasukData)
             setNomor(suratMasukData.nomor)
