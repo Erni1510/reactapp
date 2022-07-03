@@ -4,6 +4,7 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function SuratKeluarCreate() {
     const history = useHistory()
@@ -12,7 +13,12 @@ function SuratKeluarCreate() {
     const [uraian, setUraian] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_surat, setFile] = useState('')
-
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (isAdmin) {
+		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+        history.push("/admin/SuratKeluar");
+      });
+	}
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/surat-keluar', {
             nomor_surat, tujuan_surat, uraian, keterangan, file_surat

@@ -6,6 +6,7 @@ import apiClient from '../../services/API.js';
 import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function SuratKeluarEdit() {
     const location = useLocation();
@@ -17,7 +18,12 @@ function SuratKeluarEdit() {
     const [keterangan, setKeterangan] = useState('')
     const [file_surat, setFile] = useState('')
     const [loading, setLoading] = useState(false)
-
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+	if (isAdmin) {
+		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+        history.push("/admin/SuratKeluar");
+      });
+	}
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {

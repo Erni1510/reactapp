@@ -18,7 +18,7 @@ function ArsipCreate() {
 	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 	if (isAdmin) {
 		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
-        history.push("/admin");
+        history.push("/admin/Arsip");
       });
 	}
 	

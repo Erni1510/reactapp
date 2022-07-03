@@ -25,9 +25,9 @@ import TamuUmum from "./views/TamuUmum/TamuUmum";
 import TamuUmumCreate from "./views/TamuUmum/TamuUmumCreate";
 import TamuUmumEdit from "./views/TamuUmum/TamuUmumEdit";
 import TamuYayasan from "./views/TamuYayasan/TamuYayasan";
-import TamuYayasanCreate from "./views/TamuYayasan/TamuYayasanCreate"; 
-import TamuYayasanEdit from "./views/TamuYayasan/TamuYayasanEdit"; 
-import TamuDinas from "./views/TamuDinas/TamuDinas"; 
+import TamuYayasanCreate from "./views/TamuYayasan/TamuYayasanCreate";
+import TamuYayasanEdit from "./views/TamuYayasan/TamuYayasanEdit";
+import TamuDinas from "./views/TamuDinas/TamuDinas";
 import TamuDinasCreate from "./views/TamuDinas/TamuDinasCreate";
 import TamuDinasEdit from "./views/TamuDinas/TamuDinasEdit";
 
@@ -38,7 +38,7 @@ var routes = [
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/SuratMasuk",
@@ -46,7 +46,7 @@ var routes = [
     icon: "ni ni-credit-card text-green",
     component: SuratMasuk,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/SuratKeluar",
@@ -54,7 +54,7 @@ var routes = [
     icon: "ni ni-ungroup ",
     component: SuratKeluar,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/Arsip",
@@ -62,7 +62,7 @@ var routes = [
     icon: "ni ni-box-2 text-primary",
     component: Arsip,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/TamuUmum",
@@ -70,7 +70,7 @@ var routes = [
     icon: "ni ni-book-bookmark text-purple",
     component: TamuUmum,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/TamuDinas",
@@ -78,7 +78,7 @@ var routes = [
     icon: "ni ni-building text-orange",
     component: TamuDinas,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/TamuYayasan",
@@ -86,31 +86,31 @@ var routes = [
     icon: "ni ni-folder-17 text-teal",
     component: TamuYayasan,
     layout: "/admin",
-	type: "",
+    type: "",
   },
   {
     path: "/User",
     name: "Tabel User",
-    icon: "ni ni-tag text-pink",  
+    icon: "ni ni-tag text-pink",
     component: User,
     layout: "/admin",
-	type: "admin",
+    type: "admin",
   },
   {
     path: "/Kategori",
     name: "Kategori",
-    icon: "ni ni-tag text-blue",  
+    icon: "ni ni-tag text-blue",
     component: Kategori,
     layout: "/admin",
-	type: "admin",
+    type: "admin",
   },
   {
     path: "/Role",
     name: "Role",
-    icon: "ni ni-key-25 text-info", 
+    icon: "ni ni-key-25 text-info",
     component: Role,
     layout: "/admin",
-	type: "admin",
+    type: "admin",
   },
   {
     path: "/login",
