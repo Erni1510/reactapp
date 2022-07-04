@@ -16,6 +16,7 @@ function ArsipCreate() {
     const [kategori, setKategori] = useState('')
     const kategoriList = location.state.kategori;
 	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+
 	if (isAdmin) {
 		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
         history.push("/admin/Arsip");
@@ -24,8 +25,10 @@ function ArsipCreate() {
 	
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData()
+        formData.append("file_arsip", file_arsip)
         apiClient.post('/arsip', {
-            nomor_arsip, nama_arsip, keterangan, kategori, file_arsip
+            nomor_arsip, nama_arsip, keterangan, kategori, file_arsip            
         }).then((res) => {
             swal("Good job!", "Data Berhasil Ditambah!", "success")
             history.push('/admin/Arsip/')
@@ -33,7 +36,7 @@ function ArsipCreate() {
             swal("Error!", "Data Gagal Ditambahkan!", "error")
         });
     }
-	
+
     return (
         <>
             <Header />

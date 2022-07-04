@@ -14,13 +14,18 @@ import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
-import PulseLoader from "react-spinners/PulseLoader";
+import PulseLoader from "react-spinners/PulseLoader"; 
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function TamuYayasan() {
     const [tamu, setTamu] = useState([])
     const [loading, setLoading] = useState(false)
+	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 
     const onDelete = async (id) =>{
+        if (isAdmin) {
+		swal("Error!", "Anda bukan Sekretaris!", "error")
+		}else{
         console.log(id)
         let isMounted = true
         await apiClient.delete(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`).then((response) => {
@@ -30,7 +35,7 @@ function TamuYayasan() {
             swal("Sorry!", "Data gagal Dihapus!", "warning");
             console.error(err)
         })
-    }
+    }}
 
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/tamu-yayasan').then((response) => {
@@ -56,7 +61,7 @@ function TamuYayasan() {
             <>
                     <Header />
                     <Container className="mt--7" fluid>
-                        <Row>
+                        <Row> 
                             <div className="col">
                                 <Card className="shadow">
                                     <CardHeader className="border-0">

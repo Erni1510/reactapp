@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import apiClient from "../../services/API.js";
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function TamuDinasEdit() {
     const history = useHistory()
@@ -16,6 +17,12 @@ function TamuDinasEdit() {
     const [no_hp, setNo] = useState('')
     const [keperluan, setKeperluan] = useState('')
     const [loading, setLoading] = useState(false)
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+        if (isAdmin) {
+            swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+            history.push("/admin/TamuDinas");
+        });
+        }
 
     useEffect(() => {
         setLoading(true) 

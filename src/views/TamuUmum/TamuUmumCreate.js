@@ -4,6 +4,7 @@ import Header from "../../components/Headers/Header.js";
 import React, { useState } from 'react';
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
+import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function TamuUmumCreate() {
     const history = useHistory()
@@ -11,6 +12,13 @@ function TamuUmumCreate() {
     const [alamat_instansi, setAlamat] = useState('')
     const [no_hp, setNo] = useState('')
     const [keperluan, setKeperluan] = useState('')
+    const [loading, setLoading] = useState(false)
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+        if (isAdmin) {
+            swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+            history.push("/admin/TamuUmum");
+        });
+        }
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/tamu-umum', {
             nama_instansi, alamat_instansi, no_hp, keperluan
