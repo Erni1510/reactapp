@@ -77,8 +77,8 @@ function SuratKeluar() {
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">Nomor Surat</th>
+                                                    <th scope="col">Nama</th>
                                                     <th scope="col">tujuan Surat</th>
-                                                    <th scope="col">Uraian</th>
                                                     <th scope="col">Keterangan</th>
                                                     <th scope="col">Dibuat oleh</th>
                                                     <th scope="col">Tanggal</th>
@@ -93,14 +93,14 @@ function SuratKeluar() {
                                                                 <td className="align-middle text-center">
                                                                     <p className="text-sm font-weight-bold mb-0" >{idx+1}</p>
                                                                 </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{data.nama}</p>
+                                                                </td>
                                                                 <td className="align-middle text-center">
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.nomor}</p>
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.tujuan}</p>
-                                                                </td>
-                                                                <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" >{data.uraian}</p>
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.keterangan}</p>

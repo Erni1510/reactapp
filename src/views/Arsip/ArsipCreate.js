@@ -113,20 +113,19 @@ function ArsipCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Tipe setArsip
+                                                        Tipe Arsip
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         type="select"
-                                                        value={kategori.value}
+                                                        value={kategori}
                                                         onChange={(e) => setKategori(e.target.value)}
-														defaultValue={'1'}
                                                         required
                                                     >
-                                                        {kategoriList.map(kategori => (
+                                                        <>{kategoriList.map(kategori => (
                                                             <option key={kategori.id} value={kategori.id}>{kategori.nama}</option>
-                                                        ))}
+                                                        ))}</>
                                                     </Input>
                                                 </FormGroup>
                                             </Col>

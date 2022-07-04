@@ -10,7 +10,7 @@ function SuratMasukCreate() {
     const history = useHistory()
     const [nomor_surat, setNomor] = useState('')
     const [asal_surat, setAsal] = useState('')
-    const [uraian, setUraian] = useState('')
+    const [nama_surat, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_surat, setFile] = useState('')
     const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
@@ -21,7 +21,7 @@ function SuratMasukCreate() {
 	}
     const postData = () => {
         apiClient.post('http://cerman.tahutekno.com/api/surat-masuk', {
-            nomor_surat, asal_surat, uraian, keterangan, file_surat
+            nomor_surat, asal_surat, nama_surat, keterangan, file_surat
         }).then((res) => {
             swal("Good job!", "Data Berhasil Ditambah!", "success")
             history.push('/admin/SuratMasuk')
@@ -95,14 +95,14 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Uraian Surat*
+                                                        Nama Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Uraian Surat"
                                                         type="textarea"
-                                                        onChange={(e) => setUraian(e.target.value)}
+                                                        onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
                                                 </FormGroup>

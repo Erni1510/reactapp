@@ -14,7 +14,7 @@ function SuratKeluarEdit() {
     const history = useHistory()
     const [nomor_surat, setNomor] = useState('')
     const [tujuan_surat, setTujuan] = useState('')
-    const [uraian, setUraian] = useState('')
+    const [nama_surat, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file_surat, setFile] = useState('')
     const [loading, setLoading] = useState(false)
@@ -34,7 +34,7 @@ function SuratKeluarEdit() {
             console.log(suratData)
             setNomor(suratData.nomor)
             setTujuan(suratData.tujuan)
-            setUraian(suratData.uraian)
+            setNama(suratData.nama_surat)
             setKeterangan(suratData.keterangan)
             setFile(suratData.file)
         }).catch((e) => {
@@ -43,7 +43,7 @@ function SuratKeluarEdit() {
     }, [id])
 
     const updateAPIData = async (e) => {
-        const data = { nomor_surat, tujuan_surat, uraian, keterangan, file_surat }
+        const data = { nomor_surat, tujuan_surat, nama_surat, keterangan, file_surat }
         apiClient.put(`http://cerman.tahutekno.com/api/surat-keluar/${id}`, data).catch((e) => {
             console.error(e)
         }).catch((err) => {
@@ -124,15 +124,15 @@ function SuratKeluarEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Uraian Surat*
+                                                        nama Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Uraian Surat"
+                                                        placeholder="nama Surat"
                                                         type="textarea"
-                                                        value={uraian}
-                                                        onChange={(e) => setUraian(e.target.value)}
+                                                        value={nama_surat}
+                                                        onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
                                                 </FormGroup>
