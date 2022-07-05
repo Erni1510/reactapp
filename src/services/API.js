@@ -5,7 +5,7 @@ const accessToken = getFromLocal('accessToken')
 const apiClient = axios.create({
     baseURL: 'http://cerman.tahutekno.com/api',
     withCredentials: true,
-    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` }
+    headers: { "Content-Type": "multipart/form-data", 'Access-Control-Allow-Origin':'*', "Authorization": `Bearer ${accessToken}` }
 });
 
 export default apiClient

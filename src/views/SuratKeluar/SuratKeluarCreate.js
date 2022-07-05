@@ -19,19 +19,22 @@ function SuratKeluarCreate() {
         history.push("/admin/SuratKeluar");
       });
 	}
-    const postData = () => {
-        apiClient.post('http://cerman.tahutekno.com/api/surat-keluar', {
-            nomor_surat, tujuan_surat, nama_surat, keterangan, file_surat
-        }).then((res) => {
-            swal("Good job!", "Data Berhasil Ditambah!", "success")
-            history.push('/admin/SuratKeluar')
-        }).catch((err) => {
-            swal("Error!", "Data Gagal Ditambahkan!", "error")
-        });
-    }
+    function handleChange(e) {
+		setFile(e.target.files[0])
+		}
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        const formData = new FormData()
+        formData.append("file_surat", file_surat)
+        apiClient.post('/surat-keluar', {
+            nomor_surat, tujuan_surat, nama_surat, keterangan, file_surat
+        }).then((res) => {
+            swal("Good job!", "Data Berhasil Ditambah!", "success")
+            history.push('/admin/SuratMasuk') 
+        }).catch((err) => {
+            swal("Error!", "Data Gagal Ditambahkan!", "error")
+        });
     }
  
     return (
@@ -138,7 +141,7 @@ function SuratKeluarCreate() {
                                                         placeholder="Pilih File Surat"
                                                         type="file"
                                                         bssize="xs"
-                                                        onChange={(e) => setFile(e.target.value)}
+                                                        onChange={handleChange}
                                                         required
                                                     />
                                                 </FormGroup>
@@ -147,7 +150,6 @@ function SuratKeluarCreate() {
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={postData}
                                             type='submit'
                                         >
                                             Submit

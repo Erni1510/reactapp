@@ -23,8 +23,12 @@ function ArsipCreate() {
       });
 	}
 	
+	function handleChange(e) {
+		setFile(e.target.files[0])
+		}
+	
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
         const formData = new FormData()
         formData.append("file_arsip", file_arsip)
         apiClient.post('/arsip', {
@@ -146,7 +150,7 @@ function ArsipCreate() {
                                                         placeholder="Pilih File Arsip"
                                                         type="file"
                                                         bssize="xs"
-                                                        onChange={(e) => setFile(e.target.value)}
+                                                        onChange={handleChange}
                                                         required
                                                     />
                                                 </FormGroup>

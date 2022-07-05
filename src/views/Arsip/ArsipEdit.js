@@ -46,9 +46,16 @@ function ArsipEdit() {
         })
     }, [id])
 
-    const updateAPIData = async (e) => {
-        const data = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
-        apiClient.put(`/arsip/${id}`, data).catch((e) => {
+    function handleChange(e) {
+		setFile(e.target.files[0])
+		}
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData()
+        formData.append("file_arsip", file_arsip)
+        // const data = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
+        apiClient.put(`/arsip/${id}`, nomor_arsip, nama_arsip, keterangan, kategori, file_arsip).catch((e) => {
         swal("Good job!", "Data Berhasil Diedit!", "success");
         history.push('/admin/Arsip')
             console.error(e)
@@ -56,11 +63,6 @@ function ArsipEdit() {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
         })
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
     }
     return (
         <>
@@ -175,8 +177,7 @@ function ArsipEdit() {
                                                                 placeholder="Pilih File Arsip"
                                                                 type="file"
                                                                 bssize="xs"
-                                                                value={file_arsip}
-                                                                onChange={(e) => setFile(e.target.value)}
+                                                                onChange={handleChange}
                                                                 required
                                                             />
                                                         </FormGroup>
@@ -185,7 +186,6 @@ function ArsipEdit() {
                                                 <Button
                                                     className="btn btn-success float-right"
                                                     bssize="sm"
-                                                    onClick={updateAPIData}
                                                     type='submit'
                                                 >
                                                     Submit

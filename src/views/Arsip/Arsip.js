@@ -11,8 +11,8 @@ import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage
 function Arsip() {
     const [arsip, setArsip] = useState([])
     const [loading, setLoading] = useState(false)
-    const [kategoriList, setKategoriList] = useState()
-    const [userList, setUserList] = useState()
+    const [kategoriList, setKategoriList] = useState([])
+    const [userList, setUserList] = useState([])
     const history = useHistory()
 	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 	
@@ -22,7 +22,7 @@ function Arsip() {
 		history.push("/admin");
 		}else{
 			let isMounted = true
-			await apiClient.delete(`http://cerman.tahutekno.com/api/arsip/${id}`).then((response) => {
+			await apiClient.delete(`/arsip/${id}`).then((response) => {
 				swal("Good job!", "Data Berhasil Dihapus!", "success");
 				getData(isMounted)
 			}).catch((err) => {
@@ -33,11 +33,11 @@ function Arsip() {
     }
 
     const getData = async (isMounted) => {
-        await apiClient.get('http://cerman.tahutekno.com/api/arsip').then((response) => {
+        await apiClient.get('/arsip').then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
             console.log(arsip)
-            apiClient.get('http://cerman.tahutekno.com/api/kategori').then((response) => {
+            apiClient.get('/kategori').then((response) => {
                 const kategori = JSON.parse(response.data.kategori)
                 setKategoriList(kategori)
             })
@@ -111,14 +111,14 @@ function Arsip() {
                                                             </td>
 
                                                             <td>
-                                                                {userList.map(user => {
+                                                                {/* {userList.map(user => {
                                                                     return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
-                                                                })} 
+                                                                })}  */}
                                                             </td>
                                                             <td>
-                                                                {kategoriList.map(kategori => {
+                                                                {/* {kategoriList.map(kategori => {
                                                                     return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0">{kategori.nama}</p> : null
-                                                                })} 
+                                                                })}  */}
                                                             </td> 
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
