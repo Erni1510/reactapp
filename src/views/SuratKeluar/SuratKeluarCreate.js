@@ -32,7 +32,7 @@ function SuratKeluarCreate() {
         },
         {headers: {'Content-Type' : 'multipart/form-data'}}).then((res) => {
             swal("Good job!", "Data Berhasil Ditambah!", "success")
-            history.push('/admin/SuratMasuk') 
+            history.push('/admin/SuratKeluar') 
         }).catch((err) => {
             swal("Error!", "Data Gagal Ditambahkan!", "error")
         });
