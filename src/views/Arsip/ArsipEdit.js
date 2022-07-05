@@ -56,10 +56,10 @@ function ArsipEdit() {
         const formData = new FormData()
         formData.append("file_arsip", file_arsip)
         const dataa = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
-        apiClient.putForm(`/arsip/${id}`, {
+        apiClient.put(`/arsip/${id}`, {
             data:dataa
         },
-        {headers: {'Content-Type' : 'file.type'}}
+        {headers: {'Content-Type' : 'multipart/form-data'}}
         ).then((e) => {
             swal("Good job!", "Data Berhasil Diedit!", "success");
             history.push('/admin/Arsip')
