@@ -33,7 +33,8 @@ function ArsipCreate() {
         formData.append("file_arsip", file_arsip)
         apiClient.post('/arsip', {
             nomor_arsip, nama_arsip, keterangan, kategori, file_arsip
-        }).then((res) => {
+        },
+        {headers: {'Content-Type' : 'multipart/form-data'}}).then((res) => {
             swal("Good job!", "Data Berhasil Ditambah!", "success")
             history.push('/admin/Arsip/')
         }).catch((err) => {

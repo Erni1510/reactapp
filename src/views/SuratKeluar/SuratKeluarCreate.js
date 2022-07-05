@@ -29,7 +29,8 @@ function SuratKeluarCreate() {
         formData.append("file_surat", file_surat)
         apiClient.post('/surat-keluar', {
             nomor_surat, tujuan_surat, nama_surat, keterangan, file_surat
-        }).then((res) => {
+        },
+        {headers: {'Content-Type' : 'multipart/form-data'}}).then((res) => {
             swal("Good job!", "Data Berhasil Ditambah!", "success")
             history.push('/admin/SuratMasuk') 
         }).catch((err) => {
