@@ -43,8 +43,10 @@ function TamuDinasEdit() {
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
-        apiClient.put(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`, data).then((e) => {
             console.error(e)
+            history.push('/admin/TamuDinas')
+            swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
@@ -53,8 +55,6 @@ function TamuDinasEdit() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        history.push('/admin/TamuDinas')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

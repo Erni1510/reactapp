@@ -32,8 +32,11 @@ function RoleEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nama_role, keterangan}
-        apiClient.put(`http://cerman.tahutekno.com/api/role/${id}`, data).catch((e) => {
+        apiClient.put(`/role/${id}`, {data}).then((e) => {
             console.error(e)
+        history.push('/admin/Role')
+        swal("Good job!", "Data Berhasil Diedit!", "success");
+    
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
@@ -42,8 +45,6 @@ function RoleEdit() {
 	
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push('/admin/Role')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

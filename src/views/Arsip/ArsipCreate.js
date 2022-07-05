@@ -4,7 +4,7 @@ import { Card, CardHeader, Col, Input, FormGroup, Form, Container, Row, Button }
 import Header from "../../components/Headers/Header.js";
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
-import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
+import { saveToLocal, getFromLocal, removeFromLocal } from '../../services/Storage';
 
 function ArsipCreate() {
     const location = useLocation()
@@ -15,24 +15,24 @@ function ArsipCreate() {
     const [file_arsip, setFile] = useState('')
     const [kategori, setKategori] = useState('')
     const kategoriList = location.state.kategori;
-	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 
-	if (isAdmin) {
-		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
-        history.push("/admin/Arsip");
-      });
-	}
-	
-	function handleChange(e) {
-		setFile(e.target.files[0])
-		}
-	
+    if (isAdmin) {
+        swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+            history.push("/admin/Arsip");
+        });
+    }
+
+    function handleChange(e) {
+        setFile(e.target.files[0])
+    }
+
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         const formData = new FormData()
         formData.append("file_arsip", file_arsip)
         apiClient.post('/arsip', {
-            nomor_arsip, nama_arsip, keterangan, kategori, file_arsip            
+            nomor_arsip, nama_arsip, keterangan, kategori, file_arsip
         }).then((res) => {
             swal("Good job!", "Data Berhasil Ditambah!", "success")
             history.push('/admin/Arsip/')

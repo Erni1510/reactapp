@@ -43,8 +43,10 @@ function TamuYayasanEdit() {
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
-        apiClient.put(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`, data).then((e) => {
             console.error(e)
+            history.push('/admin/TamuYayasan')
+            swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
@@ -53,8 +55,6 @@ function TamuYayasanEdit() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        history.push('/admin/TamuYayasan')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

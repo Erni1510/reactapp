@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
-import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
+import { saveToLocal, getFromLocal, removeFromLocal } from '../../services/Storage';
 
 function ArsipEdit() {
     const location = useLocation();
@@ -18,13 +18,14 @@ function ArsipEdit() {
     const [kategori, setKategori] = useState('')
     const [loading, setLoading] = useState(false)
     const kategoriList = location.state.kategori
-	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
-	if (isAdmin) {
-		swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
-        history.push("/admin/Arsip");
-      });
-	}
-	
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+
+    if (isAdmin) {
+        swal("Error!", "Anda bukan Sekretaris!", "error").then(() => {
+            history.push("/admin/Arsip");
+        });
+    }
+
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
@@ -47,18 +48,21 @@ function ArsipEdit() {
     }, [id])
 
     function handleChange(e) {
-		setFile(e.target.files[0])
-		}
+        setFile(e.target.files[0])
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData()
         formData.append("file_arsip", file_arsip)
-        // const data = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
-        apiClient.put(`/arsip/${id}`, nomor_arsip, nama_arsip, keterangan, kategori, file_arsip).catch((e) => {
-        swal("Good job!", "Data Berhasil Diedit!", "success");
-        history.push('/admin/Arsip')
-            console.error(e)
+        const dataa = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
+        apiClient.putForm(`/arsip/${id}`, {
+            data:dataa
+        },
+        {headers: {'Content-Type' : 'file.type'}}
+        ).then((e) => {
+            swal("Good job!", "Data Berhasil Diedit!", "success");
+            history.push('/admin/Arsip')
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
@@ -97,7 +101,7 @@ function ArsipEdit() {
                                                                 id="input-address"
                                                                 placeholder="Nomor Arsip"
                                                                 type="text"
-                                                                value={nomor_arsip}
+                                                                defaultValue={nomor_arsip}
                                                                 onChange={(e) => setNomor(e.target.value)}
                                                                 required
                                                             />
@@ -116,7 +120,7 @@ function ArsipEdit() {
                                                                 id="input-address"
                                                                 placeholder="Nama Arsip"
                                                                 type="text"
-                                                                value={nama_arsip}
+                                                                defaultValue={nama_arsip}
                                                                 onChange={(e) => setNama(e.target.value)}
                                                                 required
                                                             />
@@ -153,7 +157,7 @@ function ArsipEdit() {
                                                                 className="form-control-alternative"
                                                                 id="input-address"
                                                                 type="select"
-                                                                value={kategori}
+                                                                defaultValue={kategori}
                                                                 onChange={(e) => setKategori(e.target.value)}
                                                                 required
                                                             >
@@ -178,7 +182,6 @@ function ArsipEdit() {
                                                                 type="file"
                                                                 bssize="xs"
                                                                 onChange={handleChange}
-                                                                required
                                                             />
                                                         </FormGroup>
                                                     </Col>

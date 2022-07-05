@@ -44,8 +44,10 @@ function SuratMasukEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nomor_surat, asal_surat, nama_surat, keterangan, file_surat }
-        apiClient.put(`http://cerman.tahutekno.com/api/surat-masuk/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/surat-masuk/${id}`, data).then((e) => {
             console.error(e)
+            history.push('/admin/SuratMasuk')
+            swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
@@ -54,8 +56,6 @@ function SuratMasukEdit() {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        history.push('/admin/SuratMasuk')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>

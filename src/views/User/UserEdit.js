@@ -27,11 +27,9 @@ function UserEdit() {
 
         apiClient.get(`http://cerman.tahutekno.com/api/user/${id}`).then((response) => {
             const userData = JSON.parse(response.data.user)
-            setNama(userData.nama)
+            setNama(userData.name)
             setEmail(userData.email)
-            setPassword(userData.password)
             setRole(userData.role_id)
-
             apiClient.get(`/role`).then((response) => {
                 console.log('response: ' + response.data.role)
             })
@@ -42,8 +40,10 @@ function UserEdit() {
 
     const updateAPIData = async (e) => {
         const data = { nama, email, password, roles }
-        apiClient.put(`http://cerman.tahutekno.com/api/user/${id}`, data).catch((e) => {
+        apiClient.put(`/user/${id}`, data).then((e) => {
             console.error(e)
+            history.push('/admin/User/')
+            swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
@@ -51,8 +51,6 @@ function UserEdit() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push('/admin/User/')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
 	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 	if (!isAdmin) {

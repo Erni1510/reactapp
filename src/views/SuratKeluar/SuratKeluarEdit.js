@@ -29,33 +29,35 @@ function SuratKeluarEdit() {
         setTimeout(() => {
             setLoading(false)
         }, 1000)
-        apiClient.get(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
+        apiClient.get(`/surat-keluar/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
             console.log(suratData)
             setNomor(suratData.nomor)
             setTujuan(suratData.tujuan)
-            setNama(suratData.nama_surat)
+            setNama(suratData.nama)
             setKeterangan(suratData.keterangan)
             setFile(suratData.file)
         }).catch((e) => {
             console.error(e)
         })
     }, [id])
-
-    const updateAPIData = async (e) => {
+    function handleChange(e) {
+		setFile(e.target.files[0])
+		}
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("file_surat", file_surat)
         const data = { nomor_surat, tujuan_surat, nama_surat, keterangan, file_surat }
-        apiClient.put(`http://cerman.tahutekno.com/api/surat-keluar/${id}`, data).catch((e) => {
+        apiClient.put(`/surat-keluar/${id}`, data).then((e) => {
+        swal("Good job!", "Data Berhasil Diedit!", "success");
+        console.log(data)
             console.error(e)
+            history.push('/admin/SuratKeluar')
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
         })
-    }
-
-    const handleSubmit = async(e) => {
-        e.preventDefault()
-        history.push('/admin/SuratKeluar')
-        swal("Good job!", "Data Berhasil Diedit!", "success");
     }
     return (
         <>
@@ -170,7 +172,7 @@ function SuratKeluarEdit() {
                                                         type="file"
                                                         bssize="xs"
                                                         value={file_surat}
-                                                        onChange={(e) => setFile(e.target.value)}
+                                                        onChange={handleChange}
                                                         required
                                                     />
                                                 </FormGroup>
@@ -179,7 +181,6 @@ function SuratKeluarEdit() {
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={updateAPIData}
                                             type='submit'
                                         >
                                             Submit

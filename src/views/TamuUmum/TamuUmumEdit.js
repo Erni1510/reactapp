@@ -25,7 +25,7 @@ function TamuUmumEdit() {
         }
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(true) 
         setTimeout(() => {
             setLoading(false)
         }, 1000)
@@ -43,7 +43,7 @@ function TamuUmumEdit() {
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
-        apiClient.put(`http://cerman.tahutekno.com/api/tamu-umum/${id}`, data).catch((e) => {
+        apiClient.put(`http://cerman.tahutekno.com/api/tamu-umum/${id}`, data).then((e) => {
             console.error(e)
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
@@ -85,7 +85,7 @@ function TamuUmumEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Instansi
+                                                        Nama Instansi*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -94,6 +94,7 @@ function TamuUmumEdit() {
                                                         type="text"
                                                         value={nama_instansi}
                                                         onChange={(e) => setNama(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -103,7 +104,7 @@ function TamuUmumEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Alamat Instansi
+                                                        Alamat Instansi*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -112,6 +113,7 @@ function TamuUmumEdit() {
                                                         type="text"
                                                         value={alamat_instansi}
                                                         onChange={(e) => setAlamat(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -121,7 +123,7 @@ function TamuUmumEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        No HP
+                                                        No HP*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -130,6 +132,7 @@ function TamuUmumEdit() {
                                                         type="text"
                                                         value={no_hp}
                                                         onChange={(e) => setNo(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
@@ -139,7 +142,7 @@ function TamuUmumEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Keperluan
+                                                        Keperluan*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
@@ -148,6 +151,7 @@ function TamuUmumEdit() {
                                                         type="textarea"
                                                         value={keperluan}
                                                         onChange={(e) => setKeperluan(e.target.value)}
+                                                        required
                                                     />
                                                 </FormGroup>
                                             </Col>
