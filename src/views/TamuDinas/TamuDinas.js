@@ -26,15 +26,24 @@ function TamuDinas() {
         if (isAdmin) {
 		swal("Error!", "Anda bukan Sekretaris!", "error")
 		}else{
-        console.log(id)
-        let isMounted = true
-        await apiClient.delete(`http://cerman.tahutekno.com/api/tamu-dinas/${id}`).then((response) => {
-            swal("Good job!", "Data Berhasil Dihapus!", "success");
-            getData(isMounted)
-        }).catch((err) => {
-            swal("Sorry!", "Data gagal Dihapus!", "warning");
-            console.error(err)
-        })
+            let isMounted = true
+            swal({
+                title: "Apakah Kamu Yakin?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    apiClient.delete(`/tamu-dinas/${id}`).then((response) => {
+                        getData(isMounted)
+                    swal("Good job! ", "Data Berhasil Dihapus!", "success");
+                    }).catch((err) => {
+                        swal("Sorry!", "Data gagal Dihapus!", "warning");
+                        console.error(err)
+                    })
+                }
+              })
     }}
 
     const getData = async (isMounted) => {

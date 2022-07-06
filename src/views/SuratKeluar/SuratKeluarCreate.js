@@ -75,6 +75,25 @@ function SuratKeluarCreate() {
                                                     />
                                                 </FormGroup>
                                             </Col>
+                                            
+                                            <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        Nama Surat*
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Nama Surat"
+                                                        type="textarea"
+                                                        onChange={(e) => setNama(e.target.value)}
+                                                        required
+                                                    />
+                                                </FormGroup>
+                                            </Col>
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label
@@ -89,24 +108,6 @@ function SuratKeluarCreate() {
                                                         placeholder="tujuan Surat"
                                                         type="text"
                                                         onChange={(e) => setTujuan(e.target.value)}
-                                                        required
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        Nama Surat*
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Deskripsi Surat"
-                                                        type="textarea"
-                                                        onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
                                                 </FormGroup>

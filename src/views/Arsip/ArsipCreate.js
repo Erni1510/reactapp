@@ -72,7 +72,7 @@ function ArsipCreate() {
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Nama Arsip"
+                                                        placeholder="Nomor Arsip"
                                                         type="text"
                                                         onChange={(e) => setNomor(e.target.value)}
                                                         required
@@ -108,7 +108,7 @@ function ArsipCreate() {
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="leterangan Arsip"
+                                                        placeholder="keterangan Arsip"
                                                         type="textarea"
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                         required

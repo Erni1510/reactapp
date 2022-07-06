@@ -16,28 +16,38 @@ import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
 import PulseLoader from "react-spinners/PulseLoader";
 import moment from 'moment';
-import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
+import { saveToLocal, getFromLocal, removeFromLocal } from '../../services/Storage';
 
 function SuratKeluar() {
     const [suratKeluar, setSuratKeluar] = useState([])
     const [loading, setLoading] = useState(false)
     const [userList, setUserList] = useState()
-	const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
+    const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 
     const onDelete = async (id) => {
         if (isAdmin) {
-		swal("Error!", "Anda bukan Sekretaris!", "error")
-		}else{
-        console.log(id)
-        let isMounted = true
-        await apiClient.delete(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
-            swal("Good job!", "Data Berhasil Dihapus!", "success");
-            getData(isMounted)
-        }).catch((err) => {
-            swal("Sorry!", "Data gagal Dihapus!", "warning");
-            console.error(err) 
-        })
-    }}
+            swal("Error!", "Anda bukan Sekretaris!", "error")
+        } else {
+            let isMounted = true
+            swal({
+                title: "Apakah Kamu Yakin?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        apiClient.delete(`/surat-keluar/${id}`).then((response) => {
+                            getData(isMounted)
+                            swal("Good job! ", "Data Berhasil Dihapus!", "success");
+                        }).catch((err) => {
+                            swal("Sorry!", "Data gagal Dihapus!", "warning");
+                            console.error(err)
+                        })
+                    }
+                })
+        }
+    }
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/surat-keluar').then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
@@ -82,7 +92,7 @@ function SuratKeluar() {
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">Nomor Surat</th>
-                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Nama Surat</th>
                                                     <th scope="col">tujuan Surat</th>
                                                     <th scope="col">Keterangan</th>
                                                     <th scope="col">Dibuat oleh</th>
@@ -96,13 +106,13 @@ function SuratKeluar() {
                                                         <>
                                                             <tr key={data.id} >
                                                                 <td className="align-middle text-center">
-                                                                    <p className="text-sm font-weight-bold mb-0" >{idx+1}</p>
-                                                                </td>
-                                                                <td>
-                                                                    <p className="text-sm font-weight-bold mb-0" >{data.nama}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{idx + 1}</p>
                                                                 </td>
                                                                 <td className="align-middle text-center">
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.nomor}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0" >{data.nama}</p>
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.tujuan}</p>
@@ -110,14 +120,14 @@ function SuratKeluar() {
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.keterangan}</p>
                                                                 </td>
-                                         <td>
-                                            {/* {userList.map(user => {
+                                                                <td>
+                                                                    {/* {userList.map(user => {
                                                 return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
                                                 })} */}
-                                        </td>
-                                                            <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
-                                                            </td>
+                                                                </td>
+                                                                <td>
+                                                                    <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
+                                                                </td>
                                                                 <td>
                                                                     <Link to={{ pathname: '/admin/SuratKeluarDetail/', state: { id: data.id } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>
                                                                     <Link to={{ pathname: '/admin/editSuratKeluar/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>

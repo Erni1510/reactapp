@@ -137,7 +137,7 @@ function ArsipEdit() {
                                                             <Input
                                                                 className="form-control-alternative"
                                                                 id="input-address"
-                                                                placeholder="leterangan Arsip"
+                                                                placeholder="keterangan Arsip"
                                                                 type="textarea"
                                                                 value={keterangan}
                                                                 onChange={(e) => setKeterangan(e.target.value)}

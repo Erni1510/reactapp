@@ -12,7 +12,7 @@ function SuratKeluarDetail() {
     const [id, setID] = useState(JSON.parse(location.state.id))
     const [nomor, setNomor] = useState('')
     const [tujuan, setTujuan] = useState('')
-    const [uraian, setUraian] = useState('')
+    const [nama, setnama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file, setFile] = useState('')
     const [created_at, setTanggal] = useState('')
@@ -28,7 +28,7 @@ function SuratKeluarDetail() {
             console.log(suratKeluarData)
             setNomor(suratKeluarData.nomor)
             setTujuan(suratKeluarData.tujuan)
-            setUraian(suratKeluarData.uraian)
+            setnama(suratKeluarData.nama)
             setKeterangan(suratKeluarData.keterangan)
             setTanggal(suratKeluarData.created_at)
             setFile(suratKeluarData.file)
@@ -83,7 +83,7 @@ function SuratKeluarDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Uraian : {uraian}
+                                                      Nama Surat : {nama}
                                                   </label>
                                               </FormGroup>
                                           </Col>

@@ -28,15 +28,24 @@ function SuratMasuk() {
         if (isAdmin) {
 		swal("Error!", "Anda bukan Sekretaris!", "error")
 		}else{ 
-        console.log(id)
-        let isMounted = true
-        await apiClient.delete(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
-            swal("Good job!", "Data Berhasil Dihapus!", "success");
-            getData(isMounted)
-        }).catch((err) => {
-            swal("Sorry!", "Data gagal Dihapus!", "warning");
-            console.error(err)
-        })
+            let isMounted = true
+            swal({
+                title: "Apakah Kamu Yakin?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    apiClient.delete(`/surat-masuk/${id}`).then((response) => {
+                        getData(isMounted)
+                    swal("Good job! ", "Data Berhasil Dihapus!", "success");
+                    }).catch((err) => {
+                        swal("Sorry!", "Data gagal Dihapus!", "warning");
+                        console.error(err)
+                    })
+                }
+              })
     }}
     const getData = async (isMounted) => {
         await apiClient.get('http://cerman.tahutekno.com/api/surat-masuk').then((response) => {
@@ -82,8 +91,8 @@ function SuratMasuk() {
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">Nomor Surat</th>
+                                                    <th scope="col">Nama Surat</th>
                                                     <th scope="col">Asal Surat</th>
-                                                    <th scope="col">Uraian</th>
                                                     <th scope="col">Keterangan</th>
                                                     <th scope="col">Dibuat Oleh</th>
                                                     <th scope="col">Tanggal</th>
@@ -102,10 +111,10 @@ function SuratMasuk() {
                                                                     <p className="text-sm font-weight-bold mb-0">{data.nomor}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0">{data.asal}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0">{data.nama}</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0">{data.uraian}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0">{data.asal}</p>
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0">{data.keterangan}</p>

@@ -105,15 +105,15 @@ function SuratMasukEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Asal Surat*
+                                                        Nama Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="asal Surat"
-                                                        type="text"
-                                                        value={asal_surat}
-                                                        onChange={(e) => setAsal(e.target.value)}
+                                                        placeholder="Deskripsi Surat"
+                                                        type="textarea"
+                                                        value={nama_surat}
+                                                        onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
                                                 </FormGroup>
@@ -124,15 +124,15 @@ function SuratMasukEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Nama Surat*
+                                                        Asal Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Deskripsi Surat"
-                                                        type="textarea"
-                                                        value={nama_surat}
-                                                        onChange={(e) => setNama(e.target.value)}
+                                                        placeholder="asal Surat"
+                                                        type="text"
+                                                        value={asal_surat}
+                                                        onChange={(e) => setAsal(e.target.value)}
                                                         required
                                                     />
                                                 </FormGroup>

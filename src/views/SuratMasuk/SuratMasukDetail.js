@@ -12,7 +12,7 @@ function SuratMasukDetail() {
     const [id, setID] = useState(JSON.parse(location.state.id))
     const [nomor, setNomor] = useState('')
     const [asal, setAsal] = useState('')
-    const [uraian, setUraian] = useState('')
+    const [nama, setnama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [file, setFile] = useState('')
     const [created_at, setTanggal] = useState('')
@@ -28,7 +28,7 @@ function SuratMasukDetail() {
             console.log(suratMasukData)
             setNomor(suratMasukData.nomor)
             setAsal(suratMasukData.asal)
-            setUraian(suratMasukData.uraian)
+            setnama(suratMasukData.nama)
             setKeterangan(suratMasukData.keterangan)
             setTanggal(suratMasukData.created_at)
             setFile(suratMasukData.file)
@@ -83,7 +83,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Uraian : {uraian}
+                                                      Nama Surat : {nama}
                                                   </label>
                                               </FormGroup>
                                           </Col>

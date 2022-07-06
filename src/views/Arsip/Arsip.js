@@ -22,13 +22,23 @@ function Arsip() {
 		history.push("/admin");
 		}else{
 			let isMounted = true
-			await apiClient.delete(`/arsip/${id}`).then((response) => {
-				swal("Good job!", "Data Berhasil Dihapus!", "success");
-				getData(isMounted)
-			}).catch((err) => {
-				swal("Sorry!", "Data gagal Dihapus!", "warning");
-				console.error(err)
-			}) 
+            swal({
+                title: "Apakah Kamu Yakin?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    apiClient.delete(`/arsip/${id}`).then((response) => {
+                        getData(isMounted)
+                    swal("Good job! ", "Data Berhasil Dihapus!", "success");
+                    }).catch((err) => {
+                        swal("Sorry!", "Data gagal Dihapus!", "warning");
+                        console.error(err)
+                    })
+                }
+              })
 		}
     }
 
