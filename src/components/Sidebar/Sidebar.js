@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
 import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
-
+import { NavLink as NavLinkRRD, Link, useHistory } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
@@ -30,6 +29,12 @@ import {
 var ps;
 
 const Sidebar = (props) => {
+  const history = useHistory();
+	const clickMe = (data) => {
+		localStorage.clear();
+		history.push("/", {data: data});
+	};
+
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
@@ -147,13 +152,7 @@ const Sidebar = (props) => {
             <DropdownToggle nav>
               <Media className="align-items-center">
                 <span className="avatar avatar-sm rounded-circle">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/theme/team-1-800x800.jpg")
-                        .default
-                    }
-                  />
+                    <i className="ni ni-circle-08"></i>
                 </span>
               </Media>
             </DropdownToggle>
@@ -161,15 +160,10 @@ const Sidebar = (props) => {
               <DropdownItem className="noti-title" header tag="div">
                 <h6 className="text-overflow m-0">Welcome!</h6>
               </DropdownItem>
-              <DropdownItem to="/admin/user-profile" tag={Link}>
-                <i className="ni ni-single-02" />
-                <span>My profile</span>
+              <DropdownItem onClick={() => clickMe({name: "test"})}>
+                  <i className="ni ni-user-run" />
+                  <span>Logout</span>
                 </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem href="/auth/login" onClick={(e) => e.preventDefault()}>
-                <i className="ni ni-user-run" />
-                <span>Logout</span>
-              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

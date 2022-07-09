@@ -49,11 +49,18 @@ const AdminNavbar = (props) => {
               </InputGroup>
             </FormGroup>
           </Form>
+
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
+                    {/* <img
+                    alt="..."
+                    src={
+                      require("../../assets/img/theme/admin.jpg").default
+                    }
+                    /> */}
                     <i className="ni ni-circle-08"></i>
                   </span>
                   <Media className="ml-2 d-none d-lg-block">

@@ -100,7 +100,7 @@ function ArsipDetail() {
                                               </FormGroup>
                                           </Col>
                                       </Row>
-                                      <Link to={""} className="btn btn-success float-right" bssize="sm">View</Link>
+                                      <Link to={{ pathname: '/storage/arsip/', state: { id: id } }} className="btn btn-success float-right" bssize="sm">View</Link>
                                       <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
                                   }
