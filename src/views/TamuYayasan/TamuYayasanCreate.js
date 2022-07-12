@@ -19,7 +19,9 @@ function TamuYayasanCreate() {
             history.push("/admin/TamuYayasan");
         });
         }
-    const postData = () => {
+    
+    const handleSubmit = async(e) => {
+        e.preventDefault();
         apiClient.post('http://cerman.tahutekno.com/api/tamu-yayasan', {
             nama_instansi, alamat_instansi, no_hp, keperluan
         }).then((res) => {
@@ -28,10 +30,6 @@ function TamuYayasanCreate() {
         }).catch((err) => {
             swal("Error!", "Data Gagal Ditambahkan!", "error")
         });
-    }
-    
-    const handleSubmit = async(e) => {
-        e.preventDefault();
     }
     return (
         <>
@@ -129,7 +127,6 @@ function TamuYayasanCreate() {
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={postData}
                                             type='submit'
                                         >
                                             Submit

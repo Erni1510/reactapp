@@ -16,6 +16,7 @@ function SuratKeluarEdit() {
     const [tujuan_surat, setTujuan] = useState('')
     const [nama_surat, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
+    // const [file_surat, setFile] = useState('')
     const [loading, setLoading] = useState(false)
     const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 	if (isAdmin) {
@@ -165,8 +166,8 @@ function SuratKeluarEdit() {
                                                         type="file"
                                                         bssize="xs"
                                                         value={file_surat}
-                                                        onChange={handleChange}
-                                                        required
+                                                        // onChange={handleChange}
+                                                        disable
                                                     />
                                                 </FormGroup>
                                             </Col> */}

@@ -14,7 +14,7 @@ function SuratKeluarDetail() {
     const [tujuan, setTujuan] = useState('')
     const [nama, setnama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file, setFile] = useState('')
+    const [file, setFile] = useState('') 
     const [created_at, setTanggal] = useState('')
     const [loading, setLoading] = useState(false)
 

@@ -15,6 +15,7 @@ function ArsipEdit() {
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [kategori, setKategori] = useState('')
+    // const [file_arsip, setFile] = useState('')
     const [loading, setLoading] = useState(false)
     const kategoriList = location.state.kategori
     const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
@@ -155,6 +156,26 @@ function ArsipEdit() {
                                                             </Input>
                                                         </FormGroup>
                                                     </Col>
+                                            {/* <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        File Surat*
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Pilih File Surat"
+                                                        type="file"
+                                                        bssize="xs"
+                                                        value={file_surat}
+                                                        // onChange={handleChange}
+                                                        disable
+                                                    />
+                                                </FormGroup>
+                                            </Col> */}
                                                 </Row>
                                                 <Button
                                                     className="btn btn-success float-right"

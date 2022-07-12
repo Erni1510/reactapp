@@ -149,7 +149,27 @@ function SuratMasukEdit() {
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>
-                                            </Col>                                            
+                                            </Col>
+                                            {/* <Col md="12">
+                                                <FormGroup>
+                                                    <label
+                                                        className="form-control-label"
+                                                        htmlFor="input-address"
+                                                    >
+                                                        File Surat*
+                                                    </label>
+                                                    <Input
+                                                        className="form-control-alternative"
+                                                        id="input-address"
+                                                        placeholder="Pilih File Surat"
+                                                        type="file"
+                                                        bssize="xs"
+                                                        value={file_surat}
+                                                        // onChange={handleChange}
+                                                        disable
+                                                    />
+                                                </FormGroup>
+                                            </Col> */}                                            
                                         </Row>
                                         <Button
                                             className="btn btn-success float-right"
