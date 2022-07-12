@@ -16,7 +16,6 @@ function KategoriEdit() {
     useEffect(() => {
         apiClient.get(`http://cerman.tahutekno.com/api/kategori/${id}`).then((response) => {
             const kategoriData = JSON.parse(response.data.kategori)
-            console.log(kategoriData)
             setNama(kategoriData.nama)
             setKeterangan(kategoriData.keterangan)
         }).catch((e) => {

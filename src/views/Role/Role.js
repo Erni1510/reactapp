@@ -90,7 +90,6 @@ function Role() {
                                             <tbody>
                                             <>
                                             {role.map((data, idx) => {
-													console.log(data.id)
                                                     return (
                                                         <tr key={data.id}>
                                                             <td className="align-middle text-center">

@@ -22,7 +22,6 @@ function RoleEdit() {
     useEffect(() => {
         apiClient.get(`http://cerman.tahutekno.com/api/role/${id}`).then((response) => {
             const roleData = JSON.parse(response.data.role)
-            console.log(roleData)
             setNama(roleData.nama)
             setKeterangan(roleData.keterangan)
         }).catch((e) => {

@@ -16,7 +16,6 @@ function SuratKeluarEdit() {
     const [tujuan_surat, setTujuan] = useState('')
     const [nama_surat, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file_surat, setFile] = useState('')
     const [loading, setLoading] = useState(false)
     const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
 	if (isAdmin) {
@@ -24,6 +23,7 @@ function SuratKeluarEdit() {
         history.push("/admin/SuratKeluar");
       });
 	}
+
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
@@ -31,27 +31,20 @@ function SuratKeluarEdit() {
         }, 1000)
         apiClient.get(`/surat-keluar/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratKeluar)
-            console.log(suratData)
             setNomor(suratData.nomor)
             setTujuan(suratData.tujuan)
             setNama(suratData.nama)
             setKeterangan(suratData.keterangan)
-            setFile(suratData.file)
         }).catch((e) => {
             console.error(e)
         })
     }, [id])
-    function handleChange(e) {
-		setFile(e.target.files[0])
-		}
+    
     const handleSubmit = async(e) => {
         e.preventDefault()
-        const formData = new FormData()
-        formData.append("file_surat", file_surat)
-        const data = { nomor_surat, tujuan_surat, nama_surat, keterangan, file_surat }
+        const data = { nomor_surat, tujuan_surat, nama_surat, keterangan }
         apiClient.put(`/surat-keluar/${id}`, data).then((e) => {
         swal("Good job!", "Data Berhasil Diedit!", "success");
-        console.log(data)
             console.error(e)
             history.push('/admin/SuratKeluar')
         }).catch((err) => {
@@ -157,7 +150,7 @@ function SuratKeluarEdit() {
                                                     />
                                                 </FormGroup>
                                             </Col>
-                                            <Col md="12">
+                                            {/* <Col md="12">
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"
@@ -176,7 +169,7 @@ function SuratKeluarEdit() {
                                                         required
                                                     />
                                                 </FormGroup>
-                                            </Col>
+                                            </Col> */}
                                         </Row>
                                         <Button
                                             className="btn btn-success float-right"

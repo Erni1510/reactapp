@@ -132,6 +132,7 @@ function UserCreate() {
                                                         onChange={(e) => setRole(e.target.value)}
                                                         required
                                                     >
+                                                        <option>Pilih Kategori</option>
                                                         {roleList.map(role => (
                                                             <option key={role.id} value={role.id}>{role.nama}</option>
                                                         ))}

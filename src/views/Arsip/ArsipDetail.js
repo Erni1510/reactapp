@@ -24,7 +24,6 @@ function ArsipDetail() {
     }, 1000)
       apiClient.get(`/arsip/${id}`).then((response) => {
           const arsipData = JSON.parse(response.data.arsip)
-          console.log(arsipData)
           setNomor(arsipData.nomor)
           setNama(arsipData.nama)
           setKeterangan(arsipData.keterangan)
@@ -100,7 +99,7 @@ function ArsipDetail() {
                                               </FormGroup>
                                           </Col>
                                       </Row>
-                                      <Link to={{ pathname: '/storage/arsip/', state: { id: id } }} className="btn btn-success float-right" bssize="sm">View</Link>
+                                      <a href={'http://cerman.tahutekno.com/'+file} className="btn btn-success float-right" bssize="sm">View</a>
                                       <Link to={"/admin/Arsip"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
                                   }

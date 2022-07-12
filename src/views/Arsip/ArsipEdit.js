@@ -14,7 +14,6 @@ function ArsipEdit() {
     const [nomor_arsip, setNomor] = useState('')
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file_arsip, setFile] = useState('')
     const [kategori, setKategori] = useState('')
     const [loading, setLoading] = useState(false)
     const kategoriList = location.state.kategori
@@ -33,12 +32,10 @@ function ArsipEdit() {
         }, 1000)
         apiClient.get(`/arsip/${id}`).then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
-            console.log(arsipData)
             setNomor(arsipData.nomor)
             setNama(arsipData.nama)
             setKeterangan(arsipData.keterangan)
-            setKategori(arsipData.kategori)
-
+            setKategori(arsipData.kategori_id)
             apiClient.get(`/kategori`).then((response) => {
                 console.log('response: ' + response.data.kategori)
             })
@@ -47,27 +44,19 @@ function ArsipEdit() {
         })
     }, [id])
 
-    function handleChange(e) {
-        setFile(e.target.files[0])
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData()
-        formData.append("file_arsip", file_arsip)
-        const dataa = { nomor_arsip, nama_arsip, keterangan, kategori, file_arsip }
-        apiClient.put(`/arsip/${id}`, {
-            data:dataa
-        },
-        {headers: {'Content-Type' : 'multipart/form-data'}}
-        ).then((e) => {
+        const data = { nomor_arsip, nama_arsip, keterangan, kategori }
+        apiClient.put(`/arsip/${id}`, data).then((e) => {
             swal("Good job!", "Data Berhasil Diedit!", "success");
+            console.error(e)
             history.push('/admin/Arsip')
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
         })
     }
+
     return (
         <>
             <Header />
@@ -101,7 +90,7 @@ function ArsipEdit() {
                                                                 id="input-address"
                                                                 placeholder="Nomor Arsip"
                                                                 type="text"
-                                                                defaultValue={nomor_arsip}
+                                                                value={nomor_arsip}
                                                                 onChange={(e) => setNomor(e.target.value)}
                                                                 required
                                                             />
@@ -120,7 +109,7 @@ function ArsipEdit() {
                                                                 id="input-address"
                                                                 placeholder="Nama Arsip"
                                                                 type="text"
-                                                                defaultValue={nama_arsip}
+                                                                value={nama_arsip}
                                                                 onChange={(e) => setNama(e.target.value)}
                                                                 required
                                                             />
@@ -157,32 +146,13 @@ function ArsipEdit() {
                                                                 className="form-control-alternative"
                                                                 id="input-address"
                                                                 type="select"
-                                                                defaultValue={kategori}
+                                                                value={kategori}
                                                                 onChange={(e) => setKategori(e.target.value)}
-                                                                required
                                                             >
-                                                                {kategoriList.map(kategori => (
+                                                                {kategoriList.map((kategori) => (
                                                                     <option key={kategori.id} value={kategori.id}>{kategori.nama}</option>
                                                                 ))}
                                                             </Input>
-                                                        </FormGroup>
-                                                    </Col>
-                                                    <Col md="12">
-                                                        <FormGroup>
-                                                            <label
-                                                                className="form-control-label"
-                                                                htmlFor="input-address"
-                                                            >
-                                                                File Arsip*
-                                                            </label>
-                                                            <Input
-                                                                className="form-control-alternative"
-                                                                id="input-address"
-                                                                placeholder="Pilih File Arsip"
-                                                                type="file"
-                                                                bssize="xs"
-                                                                onChange={handleChange}
-                                                            />
                                                         </FormGroup>
                                                     </Col>
                                                 </Row>

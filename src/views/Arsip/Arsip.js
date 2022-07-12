@@ -46,7 +46,6 @@ function Arsip() {
         await apiClient.get('/arsip').then((response) => {
             const arsipData = JSON.parse(response.data.arsip)
             isMounted && setArsip(arsipData)
-            console.log(arsip)
             apiClient.get('/kategori').then((response) => {
                 const kategori = JSON.parse(response.data.kategori)
                 setKategoriList(kategori)
@@ -121,14 +120,14 @@ function Arsip() {
                                                             </td>
 
                                                             <td>
-                                                                {/* {userList.map(user => {
+                                                                {userList.map(user => {
                                                                     return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
-                                                                })}  */}
+                                                                })} 
                                                             </td>
                                                             <td>
-                                                                {/* {kategoriList.map(kategori => {
+                                                                {kategoriList.map(kategori => {
                                                                     return data.kategori_id === kategori.id ? <p className="text-sm font-weight-bold mb-0">{kategori.nama}</p> : null
-                                                                })}  */}
+                                                                })} 
                                                             </td> 
                                                             <td>
                                                                 <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>

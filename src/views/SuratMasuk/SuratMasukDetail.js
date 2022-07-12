@@ -108,7 +108,7 @@ function SuratMasukDetail() {
                                               </FormGroup>
                                           </Col>
                                       </Row>
-                                      <Link to={""} className="btn btn-success float-right" bssize="sm">View</Link>
+                                      <a href={'http://cerman.tahutekno.com/'+file} className="btn btn-success float-right" bssize="sm">View</a>
                                       <Link to={"/admin/SuratMasuk"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
                                   }

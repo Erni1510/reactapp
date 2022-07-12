@@ -122,8 +122,8 @@ function SuratKeluar() {
                                                                 </td>
                                                                 <td>
                                                                     {/* {userList.map(user => {
-                                                return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
-                                                })} */}
+                                                                        return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
+                                                                })} */}
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>

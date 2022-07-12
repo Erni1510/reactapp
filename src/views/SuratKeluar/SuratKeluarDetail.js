@@ -25,7 +25,6 @@ function SuratKeluarDetail() {
         }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/surat-keluar/${id}`).then((response) => {
             const suratKeluarData = JSON.parse(response.data.suratKeluar)
-            console.log(suratKeluarData)
             setNomor(suratKeluarData.nomor)
             setTujuan(suratKeluarData.tujuan)
             setnama(suratKeluarData.nama)
@@ -108,7 +107,7 @@ function SuratKeluarDetail() {
                                               </FormGroup>
                                           </Col>
                                       </Row>
-                                      <Link to={""} className="btn btn-success float-right" bssize="sm">View</Link>
+                                      <a href={'http://cerman.tahutekno.com/'+file} className="btn btn-success float-right" bssize="sm">View</a>
                                       <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
                                   }

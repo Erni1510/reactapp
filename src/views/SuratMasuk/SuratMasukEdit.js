@@ -16,7 +16,7 @@ function SuratMasukEdit() {
     const [asal_surat, setAsal] = useState('')
     const [nama_surat, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
-    const [file_surat, setFile] = useState('')
+    // const [file_surat, setFile] = useState('')
     const [loading, setLoading] = useState(false)
     const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
         if (isAdmin) {
@@ -31,31 +31,26 @@ function SuratMasukEdit() {
         }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
             const suratData = JSON.parse(response.data.suratMasuk)
-            console.log(suratData)
             setNomor(suratData.nomor)
             setAsal(suratData.asal)
-            setNama(suratData.nama_surat)
-            setKeterangan(suratData.keterangan)
-            setFile(suratData.file)            
+            setNama(suratData.nama)
+            setKeterangan(suratData.keterangan)    
         }).catch((e) => {
             console.error(e)
         })
     }, [id])
 
-    const updateAPIData = async (e) => {
-        const data = { nomor_surat, asal_surat, nama_surat, keterangan, file_surat }
-        apiClient.put(`http://cerman.tahutekno.com/api/surat-masuk/${id}`, data).then((e) => {
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        const data = { nomor_surat, asal_surat, nama_surat, keterangan }
+        apiClient.put(`/surat-masuk/${id}`, data).then((e) => {
+        swal("Good job!", "Data Berhasil Diedit!", "success");
             console.error(e)
             history.push('/admin/SuratMasuk')
-            swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
         })
-    }
-
-    const handleSubmit = async(e) => {
-        e.preventDefault()
     }
     return (
         <>
@@ -110,8 +105,8 @@ function SuratMasukEdit() {
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Deskripsi Surat"
-                                                        type="textarea"
+                                                        placeholder="Nama Surat"
+                                                        type="text"
                                                         value={nama_surat}
                                                         onChange={(e) => setNama(e.target.value)}
                                                         required
@@ -149,38 +144,17 @@ function SuratMasukEdit() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
-                                                        type="text"
+                                                        type="textarea"
                                                         value={keterangan}
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>
-                                            </Col>
-                                            <Col md="12">
-                                                <FormGroup>
-                                                    <label
-                                                        className="form-control-label"
-                                                        htmlFor="input-address"
-                                                    >
-                                                        File Surat*
-                                                    </label>
-                                                    <Input
-                                                        className="form-control-alternative"
-                                                        id="input-address"
-                                                        placeholder="Pilih File Surat"
-                                                        type="file"
-                                                        bssize="xs"
-                                                        value={file_surat}
-                                                        onChange={(e) => setFile(e.target.value)}
-                                                        required
-                                                    />
-                                                </FormGroup>
-                                            </Col>
+                                            </Col>                                            
                                         </Row>
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={updateAPIData}
-                                            type='submit'
+                                            type='submit' 
                                         >
                                             Submit
                                         </Button>

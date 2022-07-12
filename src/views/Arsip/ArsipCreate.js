@@ -131,6 +131,7 @@ function ArsipCreate() {
                                                         onChange={(e) => setKategori(e.target.value)}
                                                         required
                                                     >
+                                                        <option>Pilih Kategori</option>
                                                         <>{kategoriList.map(kategori => (
                                                             <option key={kategori.id} value={kategori.id}>{kategori.nama}</option>
                                                         ))}</>
