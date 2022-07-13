@@ -19,6 +19,7 @@ function RoleEdit() {
         history.push("/admin");
       });
 	}
+
     useEffect(() => {
         apiClient.get(`http://cerman.tahutekno.com/api/role/${id}`).then((response) => {
             const roleData = JSON.parse(response.data.role)
@@ -28,22 +29,17 @@ function RoleEdit() {
             console.error(e)
         })
     }, [id])
-
-    const updateAPIData = async (e) => {
+	
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const data = { nama_role, keterangan}
-        apiClient.put(`/role/${id}`, {data}).then((e) => {
-            console.error(e)
+        apiClient.put(`/role/${id}`, data).then((e) => {
         history.push('/admin/Role')
         swal("Good job!", "Data Berhasil Diedit!", "success");
-    
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
             console.error(err)
         })
-    }
-	
-    const handleSubmit = async (e) => {
-        e.preventDefault();
     }
     return (
         <>
@@ -103,7 +99,6 @@ function RoleEdit() {
                                         <Button
                                             className="btn btn-success float-right"
                                             bssize="sm"
-                                            onClick={updateAPIData}
                                             type='submit'
                                         >
                                             Submit

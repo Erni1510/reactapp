@@ -33,7 +33,6 @@ function ArsipDetail() {
       })
   }, [id])
 
-
   const handleSubmit = async (e) => {
       e.preventDefault();
   }
