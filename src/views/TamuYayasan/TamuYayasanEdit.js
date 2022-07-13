@@ -31,25 +31,21 @@ function TamuYayasanEdit() {
         }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`).then((response) => {
             const tamuData=JSON.parse(response.data.tamu)
-            console.log(tamuData)
             setNama(tamuData.nama)
             setAlamat(tamuData.alamat)
             setNo(tamuData.no_hp)
             setKeperluan(tamuData.keperluan)
         }).catch((e) => {
-            console.error(e)
         })
     }, [id])
 
     const updateAPIData = async (e) => {
         const data ={nama_instansi, alamat_instansi, no_hp, keperluan}
         apiClient.put(`http://cerman.tahutekno.com/api/tamu-yayasan/${id}`, data).then((e) => {
-            console.error(e)
             history.push('/admin/TamuYayasan')
             swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
-            console.error(err)
         })
     }
 

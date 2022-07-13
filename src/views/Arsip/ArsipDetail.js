@@ -30,7 +30,6 @@ function ArsipDetail() {
           setTanggal(arsipData.created_at)
           setFile(arsipData.file)
       }).catch((e) => {
-          console.error(e)
       })
   }, [id])
 

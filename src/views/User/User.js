@@ -28,7 +28,6 @@ function User() {
                     swal("Good job! ", "Data Berhasil Dihapus!", "success");
                     }).catch((err) => {
                         swal("Sorry!", "Data gagal Dihapus!", "warning");
-                        console.error(err)
                     })
                 }
               })
@@ -44,13 +43,11 @@ function User() {
         await apiClient.get('/user').then((response) => {
             const userData = JSON.parse(response.data.user)
             isMounted && setUser(userData)
-            console.log(userData)
             apiClient.get('/role').then((response) => {
                 const role = JSON.parse(response.data.role)
                 setRoleList(role)
             })
         }).catch((err) => {
-            console.error(err)
             return isMounted = false
         })
     }
@@ -109,9 +106,9 @@ function User() {
                                                             </td>
                                                             <td>
                                                                 <>
-                                                                {/* {roleList.map(role => {
+                                                                {roleList.map(role => {
                                                                     return data.role_id === role.id ? <p className="text-sm font-weight-bold mb-0">{role.nama}</p> : null
-                                                                })} */}
+                                                                })}
                                                                 </>
                                                                 
                                                             </td>

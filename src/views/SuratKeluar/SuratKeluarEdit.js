@@ -37,7 +37,6 @@ function SuratKeluarEdit() {
             setNama(suratData.nama)
             setKeterangan(suratData.keterangan)
         }).catch((e) => {
-            console.error(e)
         })
     }, [id])
     
@@ -46,11 +45,9 @@ function SuratKeluarEdit() {
         const data = { nomor_surat, tujuan_surat, nama_surat, keterangan }
         apiClient.put(`/surat-keluar/${id}`, data).then((e) => {
         swal("Good job!", "Data Berhasil Diedit!", "success");
-            console.error(e)
             history.push('/admin/SuratKeluar')
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
-            console.error(err)
         })
     }
     return (

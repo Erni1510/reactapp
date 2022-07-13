@@ -40,7 +40,6 @@ function TamuUmum() {
                     swal("Good job! ", "Data Berhasil Dihapus!", "success");
                     }).catch((err) => {
                         swal("Sorry!", "Data gagal Dihapus!", "warning");
-                        console.error(err)
                     })
                 }
               })
@@ -51,7 +50,6 @@ function TamuUmum() {
             const tamuData = JSON.parse(response.data.tamu)
             isMounted && setTamu(tamuData)
         }).catch((err) => {
-            console.error(err)
             return isMounted = false;
         })
     }

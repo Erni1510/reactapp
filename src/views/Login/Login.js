@@ -64,7 +64,7 @@ const Login = () => {
 				saveToLocal('accessToken', accessToken);
                 window.location.href = "/admin/index"
                 // navigate(from, { replace: true }) 
-                console.log("Result "+accessToken)
+                // console.log("Result "+accessToken)
             }).catch((err) => {
                 if (!err?.response) {
                     setErrMsg('No Server Response')
@@ -75,7 +75,6 @@ const Login = () => {
                 } else {
                     setErrMsg('Login Failed')
                 }
-                console.error(err)
                 errRef.current.focus()
             })
         })

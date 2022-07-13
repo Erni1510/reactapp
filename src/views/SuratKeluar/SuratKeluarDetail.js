@@ -32,7 +32,6 @@ function SuratKeluarDetail() {
             setTanggal(suratKeluarData.created_at)
             setFile(suratKeluarData.file)
         }).catch((e) => {
-            console.error(e)
         })
     }, [id])
 

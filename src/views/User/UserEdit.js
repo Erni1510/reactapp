@@ -34,19 +34,16 @@ function UserEdit() {
                 console.log('response: ' + response.data.role)
             })
         }).catch((e) => {
-            console.error(e)
         })
     }, [id])
 
     const updateAPIData = async (e) => {
         const data = { nama, email, password, roles }
         apiClient.put(`/user/${id}`, data).then((e) => {
-            console.error(e)
             history.push('/admin/User/')
             swal("Good job!", "Data Berhasil Diedit!", "success");
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
-            console.error(err)
         })
     }
     const handleSubmit = async (e) => {

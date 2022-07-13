@@ -35,7 +35,6 @@ function Arsip() {
                     swal("Good job! ", "Data Berhasil Dihapus!", "success");
                     }).catch((err) => {
                         swal("Sorry!", "Data gagal Dihapus!", "warning");
-                        console.error(err)
                     })
                 }
               })
@@ -54,9 +53,7 @@ function Arsip() {
                 const user = JSON.parse(response.data.user)
                 setUserList(user)
             })
-
         }).catch((err) => {
-            console.error(err)
             return isMounted = false;
         })
     }

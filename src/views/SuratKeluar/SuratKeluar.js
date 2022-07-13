@@ -42,7 +42,6 @@ function SuratKeluar() {
                             swal("Good job! ", "Data Berhasil Dihapus!", "success");
                         }).catch((err) => {
                             swal("Sorry!", "Data gagal Dihapus!", "warning");
-                            console.error(err)
                         })
                     }
                 })
@@ -57,7 +56,6 @@ function SuratKeluar() {
                 setUserList(user)
             })
         }).catch((err) => {
-            console.error(err)
             return isMounted = false;
         })
     }
@@ -121,9 +119,9 @@ function SuratKeluar() {
                                                                     <p className="text-sm font-weight-bold mb-0" >{data.keterangan}</p>
                                                                 </td>
                                                                 <td>
-                                                                    {/* {userList.map(user => {
+                                                                    {userList.map(user => {
                                                                         return data.user_id === user.id ? <p className="text-sm font-weight-bold mb-0">{user.name}</p> : null
-                                                                })} */}
+                                                                })}
                                                                 </td>
                                                                 <td>
                                                                     <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>

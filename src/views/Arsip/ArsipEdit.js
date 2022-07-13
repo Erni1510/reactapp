@@ -41,7 +41,6 @@ function ArsipEdit() {
                 console.log('response: ' + response.data.kategori)
             })
         }).catch((e) => {
-            console.error(e)
         })
     }, [id])
 
@@ -50,11 +49,9 @@ function ArsipEdit() {
         const data = { nomor_arsip, nama_arsip, keterangan, kategori }
         apiClient.put(`/arsip/${id}`, data).then((e) => {
             swal("Good job!", "Data Berhasil Diedit!", "success");
-            console.error(e)
             history.push('/admin/Arsip')
         }).catch((err) => {
             swal("Sorry!", "Data gagal Diedit!", "warning");
-            console.error(err)
         })
     }
 

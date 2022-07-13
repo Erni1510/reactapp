@@ -25,7 +25,6 @@ function SuratMasukDetail() {
         }, 1000)
         apiClient.get(`http://cerman.tahutekno.com/api/surat-masuk/${id}`).then((response) => {
             const suratMasukData = JSON.parse(response.data.suratMasuk)
-            console.log(suratMasukData)
             setNomor(suratMasukData.nomor)
             setAsal(suratMasukData.asal)
             setnama(suratMasukData.nama)
@@ -33,7 +32,6 @@ function SuratMasukDetail() {
             setTanggal(suratMasukData.created_at)
             setFile(suratMasukData.file)
         }).catch((e) => {
-            console.error(e)
         })
     }, [id])
 
