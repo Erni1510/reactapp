@@ -98,13 +98,13 @@ function SuratKeluarEdit() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        nama Surat*
+                                                        Nama Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="nama Surat"
-                                                        type="textarea"
+                                                        type="text"
                                                         value={nama_surat}
                                                         onChange={(e) => setNama(e.target.value)}
                                                         required
@@ -142,7 +142,7 @@ function SuratKeluarEdit() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
-                                                        type="text"
+                                                        type="textarea"
                                                         value={keterangan}
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                     />

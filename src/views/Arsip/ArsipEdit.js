@@ -153,7 +153,7 @@ function ArsipEdit() {
                                                             </Input>
                                                         </FormGroup>
                                                     </Col>
-                                            {/* <Col md="12">
+                                                    {/* <Col md="12">
                                                 <FormGroup>
                                                     <label
                                                         className="form-control-label"

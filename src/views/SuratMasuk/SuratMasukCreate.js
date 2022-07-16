@@ -86,8 +86,8 @@ function SuratMasukCreate() {
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Uraian Surat"
-                                                        type="textarea"
+                                                        placeholder="Nama Surat"
+                                                        type="text"
                                                         onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
@@ -99,12 +99,12 @@ function SuratMasukCreate() {
                                                         className="form-control-label"
                                                         htmlFor="input-address"
                                                     >
-                                                        Tujuan Surat*
+                                                        Asal Surat*
                                                     </label>
                                                     <Input
                                                         className="form-control-alternative"
                                                         id="input-address"
-                                                        placeholder="Tujuan Surat"
+                                                        placeholder="Asal Surat"
                                                         type="text"
                                                         onChange={(e) => setAsal(e.target.value)}
                                                         required
@@ -123,7 +123,7 @@ function SuratMasukCreate() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
-                                                        type="text"
+                                                        type="textarea"
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>

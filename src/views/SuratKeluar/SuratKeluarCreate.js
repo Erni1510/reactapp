@@ -88,7 +88,7 @@ function SuratKeluarCreate() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Nama Surat"
-                                                        type="textarea"
+                                                        type="text"
                                                         onChange={(e) => setNama(e.target.value)}
                                                         required
                                                     />
@@ -124,7 +124,7 @@ function SuratKeluarCreate() {
                                                         className="form-control-alternative"
                                                         id="input-address"
                                                         placeholder="Keterangan Surat"
-                                                        type="text"
+                                                        type="textarea"
                                                         onChange={(e) => setKeterangan(e.target.value)}
                                                     />
                                                 </FormGroup>

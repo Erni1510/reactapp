@@ -127,7 +127,7 @@ function Arsip() {
                                                                 })} 
                                                             </td> 
                                                             <td>
-                                                                <p className="text-sm font-weight-bold mb-0">{moment(data.updated_at).format('DD MMMM yyyy')}</p>
+                                                                <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                             </td>
                                                             <td>
                                                                 <Link to={{ pathname: '/admin/ArsipDetail/', state: { id: data.id, kategori: kategoriList } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>

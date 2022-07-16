@@ -123,7 +123,7 @@ function SuratMasuk() {
                                                                         })}
                                                                 </td>
                                                                 <td>
-                                                                    <p className="text-sm font-weight-bold mb-0">{moment(data.updated_at).format('DD MMMM yyyy')}</p>
+                                                                    <p className="text-sm font-weight-bold mb-0">{moment(data.created_at).format('DD MMMM yyyy')}</p>
                                                                 </td>
                                                                 <td>
                                                                     <Link to={{ pathname: '/admin/SuratMasukDetail/', state: { id: data.id } }} className="btn btn-info" bssize="sm"><i className="fas fa-eye" aria-hidden="true" /></Link>

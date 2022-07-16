@@ -71,7 +71,7 @@ function SuratKeluarDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Tujuan Surat : {tujuan}
+                                                      Nama Surat : {nama}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -81,7 +81,7 @@ function SuratKeluarDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Nama Surat : {nama}
+                                                      Tujuan Surat : {tujuan}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -106,7 +106,7 @@ function SuratKeluarDetail() {
                                               </FormGroup>
                                           </Col>
                                       </Row>
-                                      <a href={'http://cerman.tahutekno.com/'+file} className="btn btn-success float-right" bssize="sm">View</a>
+                                      <a href={'http://cerman.tahutekno.com/'+file} className="btn btn-success float-right" bssize="sm" target="_blank">View</a>
                                       <Link to={"/admin/SuratKeluar"} className="btn btn-warning float-right" bssize="sm">Cancel</Link>
                                   </div>
                                   }
