@@ -14,7 +14,8 @@ import Header from "../../components/Headers/Header.js";
 import React, { useEffect, useState } from 'react'
 import apiClient from '../../services/API.js';
 import swal from 'sweetalert';
-import PulseLoader from "react-spinners/PulseLoader"; 
+import PulseLoader from "react-spinners/PulseLoader";
+import moment from 'moment';
 import {saveToLocal, getFromLocal, removeFromLocal} from '../../services/Storage';
 
 function TamuYayasan() {
@@ -84,11 +85,11 @@ function TamuYayasan() {
                                 <thead className="thead-light">
                                     <tr>
                                         <th scope="col" className="text-center">No</th>
+                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Nama Instansi</th>
                                         <th scope="col">Alamat Instansi</th>
                                         <th scope="col">No HP</th>
                                         <th scope="col">Keperluan</th>
-                                        <th scope="col">Tipe Tamu</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -101,6 +102,9 @@ function TamuYayasan() {
                                             <h6 className="mb-0 text-center text-sm"  key={data.id}>{idx+1}</h6>
                                         </td>
                                         <td>
+                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{moment(data.created_at).format('DD MMMM yyyy')}</p>
+                                        </td>
+                                        <td>
                                             <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.nama}</p>
                                         </td>
                                         <td>
@@ -111,11 +115,7 @@ function TamuYayasan() {
                                         </td>
                                         <td>
                                             <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.keperluan}</p>
-                                        </td>
-                                        <td>
-                                            <p className="text-sm font-weight-bold mb-0"  key={data.id}>{data.tipe}</p>
-                                        </td>
-                                        <td>
+                                        </td>                                        <td>
                                         <Link to={{ pathname: '/admin/editTamuYayasan/', state: { id: data.id } }} className="btn btn-success" bssize="sm"><i className="fas fa-edit" aria-hidden="true" /></Link>
                                         <Button onClick={() => onDelete(data.id)} id={data.id} className=" btn btn-danger"><i className="fa fa-trash" aria-hidden="true" /></Button>
                                         </td>

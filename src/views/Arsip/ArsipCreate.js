@@ -155,6 +155,7 @@ function ArsipCreate() {
                                                         onChange={handleChange}
                                                         required
                                                     />
+                                                    {/* <Col><h5 className="text-sm mb-0"> Nb : Maximum file size is 8.00 MB</h5></Col> */}
                                                 </FormGroup>
                                             </Col>
                                         </Row>
