@@ -71,7 +71,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Tujuan Surat : {asal}
+                                                      Nama Surat : {nama}
                                                   </label>
                                               </FormGroup>
                                           </Col>
@@ -81,7 +81,7 @@ function SuratMasukDetail() {
                                                       className="form-control-label"
                                                       htmlFor="input-address"
                                                   >
-                                                      Nama Surat : {nama}
+                                                      Asal Surat : {asal}
                                                   </label>
                                               </FormGroup>
                                           </Col>
