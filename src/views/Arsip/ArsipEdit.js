@@ -15,7 +15,7 @@ function ArsipEdit() {
     const [nama_arsip, setNama] = useState('')
     const [keterangan, setKeterangan] = useState('')
     const [kategori, setKategori] = useState('')
-    // const [file_arsip, setFile] = useState('')
+    const [file_arsip, setFile] = useState('')
     const [loading, setLoading] = useState(false)
     const kategoriList = location.state.kategori
     const isAdmin = getFromLocal("Roles") === 'Admin' ? true : false;
@@ -167,12 +167,12 @@ function ArsipEdit() {
                                                         placeholder="Pilih File Surat"
                                                         type="file"
                                                         bssize="xs"
-                                                        value={file_surat}
+                                                        value={file_arsip}
                                                         // onChange={handleChange}
                                                         disable
                                                     />
                                                 </FormGroup>
-                                            </Col> */}
+                                            </Col>  */}
                                                 </Row>
                                                 <Button
                                                     className="btn btn-success float-right"
